@@ -1,0 +1,150 @@
+@media (max-width: 1200px){
+    .icon {
+        height: 35px;
+        margin-right: 30px;
+        cursor: pointer;
+    }
+
+    .btnDiv {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px){
+    .btnDiv {
+        margin-right: 100px;
+    }
+}
+
+@media (min-width: 1200px){
+    .btnDiv{
+        width: 300px;
+        display: grid;
+        grid-template-columns: 100px 100px 100px;
+        gap: 30px;
+        align-items: center;
+    }
+
+    .icon{
+        display: none;
+    }
+
+    .login{
+        border: 1px solid;
+        background-color: transparent;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.5s;
+    }
+
+    .login span{
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    
+    .login span:after {
+        content: '🔑';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    .login:hover span {
+        padding-right: 25px;
+    }
+    
+    .login:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+
+    .signup{
+        border: 1px solid;
+        background-color: transparent;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.5s;
+    }
+
+    .signup span{
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    
+    .signup span:after {
+        content: '🔗';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    
+    .signup:hover span {
+        padding-right: 25px;
+    }
+    
+    .signup:hover span:after{
+        opacity: 1;
+        right: 0;
+    }
+
+    .dropbtn{
+        border: 1px solid;
+        background-color: transparent;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: all 0.2s;
+    }
+    
+    .dropbtn:hover, .dropbtn:focus{
+        background-color: rgb(243, 243, 243);
+    }
+
+    .dropdown-content{
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 105px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+    }
+    
+    .dropdown-content option{
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown option:hover{
+        transition: all 0.3s;
+        background-color: #ddd;
+        cursor: pointer;
+    }
+    
+    .show{
+        display: block;
+    }
+
+    #arrow{
+        margin-left: 5px;
+        transition: all 0.3s;
+    }
+
+    .arrowPosition{
+        transform: rotateX(180deg);    
+    }
+}
