@@ -1,3 +1,7 @@
+.logoFooter{
+    height: 2.3rem;
+}
+
 .title{
     font-size: 20px;
     font-weight: 600;
@@ -34,6 +38,25 @@ a:visited:hover{
     color: orange;
 }
 
+.footerInner{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 0px auto;
+    padding-left: 2rem;
+}
+
+.footerTop{
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.footerBottom{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
 @media (max-width: 600px){
     .footerInner{
         display: flex;
@@ -56,41 +79,21 @@ a:visited:hover{
 }
 
 @media (min-width: 600px) and (max-width: 1800px) {
-    .footerInner{
-        display: flex;
-        flex-direction: column;
-        width: auto;
-        margin: 0px auto;
-        padding-left: 2rem;
-    }
-
-    .footerTop{
-        padding-top: 2rem;
-        padding-bottom: 1.5rem;
-    }
-
     .footerBottom{
-        display: flex;
         gap: 20rem;
     }
 }
 
 @media (min-width: 1800px) {
     .footerInner{
-        padding-left: 2rem;
-        display: flex;
-        flex-direction: column;
         width: 1700px;
-        margin: 0px auto;
     }
 
     .footerTop{
-        padding-top: 2rem;
         padding-bottom: 1rem;
     }
 
     .footerBottom{
-        display: flex;
         gap: 20rem;
     }
 }

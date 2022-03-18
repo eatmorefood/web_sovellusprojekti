@@ -28,22 +28,22 @@
     margin-bottom: 1.8rem;
 }
 
+.image{
+    height: 545px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.supportTitle{
+    font-family: 'Fredoka One', cursive;
+    top: 19rem;
+    left: 1rem;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+}
+
 @media (max-width: 600px){
-    .image{
-        height: 545px;
-        width: 100%;
-        object-fit: cover;
-    }
-
-    .supportTitle{
-        font-family: 'Fredoka One', cursive;
-        top: 19rem;
-        left: 1rem;
-        color: white;
-        font-size: 20px;
-        position: absolute;
-    }
-
     .supportContent{
         margin-top: 30px;
         padding: 0 1.5rem;
@@ -65,37 +65,21 @@
 }
 
 @media (min-width: 600px) and (max-width: 1800px){
-    .image{
-        height: 545px;
-        width: 100%;
-        object-fit: cover;
-    }
-
-    .supportTitle{
-        font-family: 'Fredoka One', cursive;
-        top: 19rem;
+.supportTitle{
         left: 2.5rem;
-        color: white;
         font-size: 40px;
-        position: absolute;
     }
 }
 
 @media (min-width: 1800px) {
     .supportTitle{
-        font-family: 'Fredoka One', cursive;
-        top: 19rem;
-        color: white;
-        font-size: 23px;
+        font-size: 45px;
         position: relative;
         width: 1700px;
         margin: 0px auto;
     }
 
     .image{
-        margin-top: -2rem;
-        height: 545px;
-        width: 100%;
-        object-fit: cover;
+        margin-top: -3.5rem;
     }
 }

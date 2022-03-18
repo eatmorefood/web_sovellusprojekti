@@ -1,3 +1,84 @@
+.header {
+    position: fixed;
+    width: 100vw;
+    background-color: white;
+    border-bottom: 1px solid lightgrey;
+    z-index: 1;
+}
+
+.headerContent {
+    height: 65px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 40px;
+}
+
+.headerLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 1rem;
+}
+
+.headerMiddle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 20vw;
+}
+
+form {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background-color: #f7f5f5;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgrey;
+    max-width: 100%;
+}
+
+input {
+    all: unset;
+    font: 16px system-ui;
+    color: black;
+    padding: 6px 10px;
+}
+
+::placeholder {
+    color: grey;
+    opacity: 0.7; 
+}
+
+svg {
+    fill: grey;
+    width: 20px;
+    height: 20px;
+    padding-top: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 1px;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 @media(max-width: 600px) {
     .logo{
         display: none;
@@ -9,197 +90,40 @@
         border-radius: 2rem;
     }
 
-    .header {
-        position: fixed;
-        width: 100vw;
-        background-color: white;
-        border-bottom: 1px solid lightgrey;
-        z-index: 1;
-    }
-
-    .headerContent {
-        height: 65px;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .headerLeft {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        padding-left: 1rem;
-    }
-
-    .headerMiddle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .headerRight {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        width: 20vw;
-    }
-
-    form {
-        margin-left: 2rem;
-        margin-right: 2rem;
-        background-color: #f7f5f5;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        border: 1px solid lightgrey;
-        max-width: 100%;
-    }
-
     input {
-        all: unset;
         font: 11px system-ui;
-        color: black;
-        padding: 6px 10px;
-    }
-
-    ::placeholder {
-        color: grey;
-        opacity: 0.7; 
-    }
-
-    button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
-    
-    svg {
-        fill: grey;
-        width: 20px;
-        height: 20px;
-        padding-top: 6px;
-        padding-left: 6px;
-        padding-right: 6px;
-        padding-bottom: 1px;
     }
 }
 
 @media(min-width:600px) and (max-width: 1800px) {
-    .logo{
-        font-size: 25px;
-        font-weight: 600;
-        cursor: pointer;
-        height: 40px;
-    }
-
     .logoSmall{
         display: none;
     }
 
-    .header {
-        position: fixed;
-        width: 100vw;
-        background-color: white;
-        border-bottom: 1px solid lightgrey;
-        z-index: 1;
-    }
-
-    .headerContent {
-        height: 65px;
-        display: flex;
-        justify-content: space-between;
-    }
-
     .headerLeft {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
         width: 33.333%;
         min-width: 300px;
         padding-left: 2rem;
     }
 
     .headerMiddle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 33.333%;
     }
 
     .headerRight {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
         width: 33.333%;
-    }
-
-    form {
-        margin-left: 2rem;
-        margin-right: 2rem;
-        background-color: #f7f5f5;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        border: 1px solid lightgrey;
-    }
-
-    input {
-        all: unset;
-        font: 16px system-ui;
-        color: black;
-        padding: 6px 10px;
-    }
-
-    ::placeholder {
-        color: grey;
-        opacity: 0.7; 
-    }
-
-    button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
-    
-    svg {
-        fill: grey;
-        width: 20px;
-        height: 20px;
-        padding-top: 6px;
-        padding-left: 6px;
-        padding-right: 6px;
-        padding-bottom: 1px;
     }
 }
 
 @media (min-width: 1800px) {
-    .logo{
-        font-size: 25px;
-        font-weight: 600;
-        cursor: pointer;
-        height: 40px;
-    }
-
     .logoSmall{
         display: none;
     }
 
-    .header {
-        position: fixed;
-        width: 100vw;
-        background-color: white;
-        border-bottom: 1px solid lightgrey;
-        z-index: 1;
-    }
-    
     .headerContent {
         width: 1700px;
         margin: 0px auto;
-        height: 65px;
-        display: flex;
         align-items: center;
-        justify-content: space-between;
     }
     
     .headerLeft {
@@ -225,39 +149,11 @@
     }
     
     form {
-        background-color: #f7f5f5;
-        border-radius: 5px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        border: 1px solid lightgrey;
+        margin-left: 0rem;
+        margin-right: 0rem;
     }
     
     input {
-        all: unset;
         font: 16px system-ui;
-        color: black;
-        padding: 6px 10px;
-    }
-    
-    ::placeholder {
-        color: grey;
-        opacity: 0.7; 
-    }
-    
-    button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-    }
-      
-    svg {
-        fill: grey;
-        width: 20px;
-        height: 20px;
-        padding-top: 6px;
-        padding-left: 6px;
-        padding-right: 6px;
-        padding-bottom: 1px;
     }
 }

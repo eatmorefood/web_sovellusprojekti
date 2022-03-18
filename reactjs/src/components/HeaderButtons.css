@@ -12,13 +12,8 @@
 }
 
 @media (min-width: 1200px){
-    .btnDiv {
-        margin-right: 100px;
-    }
-}
-
-@media (min-width: 1200px){
     .btnDiv{
+        margin-right: 100px;
         width: 300px;
         display: grid;
         grid-template-columns: 100px 100px 110px;
