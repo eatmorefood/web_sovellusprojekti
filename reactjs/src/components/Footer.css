@@ -1,4 +1,96 @@
-.footer{
-    background-color: lightgrey;
-    height: 200px;
+.title{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+}
+
+.gap{
+    padding-top: 0.5rem;
+}
+
+a:link{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+a:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+a:visited{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+a:visited:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: orange;
+}
+
+@media (max-width: 600px){
+    .footerInner{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        margin: 0px auto;
+        padding-left: 2rem;
+    }
+
+    .footerTop{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .footerBottom{
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1800px) {
+    .footerInner{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        margin: 0px auto;
+        padding-left: 2rem;
+    }
+
+    .footerTop{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .footerBottom{
+        display: flex;
+        gap: 20rem;
+    }
+}
+
+@media (min-width: 1800px) {
+    .footerInner{
+        padding-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        width: 1700px;
+        margin: 0px auto;
+    }
+
+    .footerTop{
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    .footerBottom{
+        display: flex;
+        gap: 20rem;
+    }
 }

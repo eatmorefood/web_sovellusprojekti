@@ -1,9 +1,12 @@
 import './App.css';
-//import { useEffect, useState } from 'react';
-//import axios from 'axios';
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
-
+import Search from './components/Search.js';
+import Home from './components/Home.js';
+import Support from './components/Support.js';
+import Businesses from './components/Businesses.js';
+import NotFound from './components/NotFound.js';
 
 function App() {
 
@@ -11,16 +14,21 @@ function App() {
     <div className="App">
         <Header />
 
-      <div className="content">
-        <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"></img>
-        <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"></img>
-        <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"></img>
-        <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"></img>
-        <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"></img>
-        <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"></img>
-        <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg"></img>
-      </div>
-      <Footer />
+        <div className="content"> 
+          <Router>
+            <Routes>
+              <Route path='/' element={<Search />} />
+              <Route path='/home' element={<Home />} />
+              <Route path='/support' element={<Support />} />
+              <Route path='/businesses' element={<Businesses />} />
+              <Route path='/*' element={<NotFound />} />
+            </Routes>  
+          </Router>
+        </div>
+
+        <footer className="footer">
+          <Footer />
+        </footer>
     </div>
   );
 }
