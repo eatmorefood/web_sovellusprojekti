@@ -11,15 +11,15 @@ function Footer() {
       
       <div className="footerBottom">
         <div className="footerLeft">
-          <div className="title">Collaboration?</div>
-          <a href="/businesses">For businesses</a>
+          <div className="footerTitle">Collaboration?</div>
+          <a className="footerLink" href="/businesses">For businesses</a>
         </div>
 
         <div className="footerRight">
-          <div className="title">Our links</div>
-          <a href="/support">Support</a>
-          <div className="gap"/>
-          <a href="https://github.com/eatmorefood" target="_blank" rel="noopener noreferrer">Github</a>
+          <div className="footerTitle">Our links</div>
+          <a className="footerLink" href="/support">Support</a>
+          <div className="footerRightGap"/>
+          <a className="footerLink" href="https://github.com/eatmorefood" target="_blank" rel="noopener noreferrer">Github</a>
         </div>
       </div>
 

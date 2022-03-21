@@ -1,12 +1,22 @@
-.content{
+#appContent{
     padding-top: 4rem;
-    min-height: 100vh;    
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+#loginMain{
+    transition: all 5s;
 }
 
 .footer {
     margin-top: 3rem;
     height: 250px;
     background-color: rgb(252, 241, 225);
+}
+
+@media (max-width: 800px) {
+    #appContent{
+        width: 100vw;
+    }
 }

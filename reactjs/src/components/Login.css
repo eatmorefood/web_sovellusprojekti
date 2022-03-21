@@ -1,0 +1,147 @@
+.Login{
+    display: block;
+    position: fixed;
+    background-color: white;
+    border-radius: 1rem;
+    border: 1px solid grey;
+    top: 7rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 100000;
+    padding: 2rem
+}
+
+.closeLogin{
+    display: block;
+    position: fixed;
+    right: 1rem;
+    top: 0.5rem;
+    height: 1.5rem;
+    border: 0.1rem solid grey;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.closeLogin:hover{
+    border: 0.1rem solid orange;
+}
+
+.loginContent{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginTitle{
+    cursor: default;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.loginSubTitle{
+    cursor: default;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: none;
+}
+
+.loginEmail{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.6rem;
+    margin-bottom: 1.3rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+}
+
+.loginEmail:hover{
+    border-color: orange;
+}
+
+.loginEmail:focus{
+    border: 0.15rem solid orange;
+}
+
+.loginPassword{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.6rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+}
+
+.loginPassword:hover{
+    border-color: orange;
+}
+
+.loginPassword:focus{
+    border: 0.15rem solid orange;
+}
+
+.loginSubmit{
+    margin-top: 2.5rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    transition: all 0.2s;
+    background-color: rgb(252, 198, 99);
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.loginSubmit:hover{
+    background-color: orange;
+    cursor: pointer;
+}
+
+.loginBtnRegister{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    transition: all 0.2s;
+    background-color: rgb(252, 198, 99);
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.loginBtnRegister:hover{
+    background-color: orange;
+    cursor: pointer;
+}
+
+.loginMiddleText{
+    cursor: default;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+@media (max-width: 600px){
+    .Login{
+        top: 5rem;
+        left: 50vw;
+        transform: translate(-50%, 0);
+        z-index: 100000;
+        padding: 1rem;
+    }
+}

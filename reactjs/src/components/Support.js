@@ -9,7 +9,7 @@ function Support() {
   return (
     <div className="support">
       <div className="supportTitle">EatMoreFood help and support</div> 
-      <img className="image" alt="EatMoreFOod support" src={img} />
+      <img className="supportImage" alt="EatMoreFOod support" src={img} />
 
       <div className="supportContent">
         <div className="supportContentTitle">Lorem Ipsum</div>

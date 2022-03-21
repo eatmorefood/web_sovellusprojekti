@@ -1,11 +1,22 @@
-@media (max-width: 1200px){
-    .icon {
-        height: 35px;
-        margin-right: 2rem;
-        margin-left: 3rem;
+@media (max-width: 600px){
+    .userIcon{
+        height: 2.5rem;
+        padding-right: 1rem;
         cursor: pointer;
     }
+    
+    .btnDiv {
+        display: none;
+    }
+}
 
+@media (min-width:600px) and (max-width: 1200px){
+    .userIcon{
+        height: 2.5rem;
+        padding-right: 2rem;
+        cursor: pointer;
+    }
+    
     .btnDiv {
         display: none;
     }
@@ -21,11 +32,11 @@
         align-items: center;
     }
 
-    .icon{
+    .userIcon{
         display: none;
     }
 
-    .login{
+    .loginBtnHeader{
         border: 1px solid;
         background-color: transparent;
         padding: 10px;
@@ -34,14 +45,14 @@
         transition: all 0.5s;
     }
 
-    .login span{
+    .loginBtnHeader span{
         cursor: pointer;
         display: inline-block;
         position: relative;
         transition: 0.5s;
     }
     
-    .login span:after {
+    .loginBtnHeader span:after {
         content: '🔑';
         position: absolute;
         opacity: 0;
@@ -50,16 +61,16 @@
         transition: 0.5s;
     }
     
-    .login:hover span {
+    .loginBtnHeader:hover span {
         padding-right: 25px;
     }
     
-    .login:hover span:after {
+    .loginBtnHeader:hover span:after {
         opacity: 1;
         right: 0;
     }
 
-    .signup{
+    .signupBtnHeader{
         border: 1px solid;
         background-color: transparent;
         padding: 10px;
@@ -68,14 +79,14 @@
         transition: all 0.5s;
     }
 
-    .signup span{
+    .signupBtnHeader span{
         cursor: pointer;
         display: inline-block;
         position: relative;
         transition: 0.5s;
     }
     
-    .signup span:after {
+    .signupBtnHeader span:after {
         content: '🔗';
         position: absolute;
         opacity: 0;
@@ -84,11 +95,11 @@
         transition: 0.5s;
     }
     
-    .signup:hover span {
+    .signupBtnHeader:hover span {
         padding-right: 25px;
     }
     
-    .signup:hover span:after{
+    .signupBtnHeader:hover span:after{
         opacity: 1;
         right: 0;
     }

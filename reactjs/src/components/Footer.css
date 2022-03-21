@@ -2,7 +2,7 @@
     height: 2.3rem;
 }
 
-.title{
+.footerTitle{
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 1rem;
@@ -11,28 +11,28 @@
     flex-direction: column;
 }
 
-.gap{
+.footerRightGap{
     padding-top: 0.5rem;
 }
 
-a:link{
+.footerLink:link{
     text-decoration: none;
     cursor: pointer;
     color: black;
 }
 
-a:hover{
+.footerLink:hover{
     color: orange;
     text-decoration: none;
 }
 
-a:visited{
+.footerLink:visited{
     text-decoration: none;
     cursor: pointer;
     color: black;
 }
 
-a:visited:hover{
+.footerLink:visited:hover{
     text-decoration: none;
     cursor: pointer;
     color: orange;

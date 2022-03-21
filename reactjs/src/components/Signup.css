@@ -1,0 +1,124 @@
+.Signup{
+    display: block;
+    position: relative;
+    top: 1rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.signupContent{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signupTitle{
+    cursor: default;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.signupSubTitle{
+    cursor: default;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.signupForm{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: none;
+}
+
+.signupPassword{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.6rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+}
+
+.signupPassword:hover{
+    border-color: orange;
+}
+
+.signupPassword:focus{
+    border: 0.15rem solid orange;
+}
+
+.signupField{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.6rem;
+    margin-bottom: 1.3rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+}
+
+.signupField:hover{
+    border-color: orange;
+}
+
+.signupNaField:focus{
+    border: 0.15rem solid orange;
+}
+
+.signupSubmit{
+    margin-top: 0.5rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    transition: all 0.2s;
+    background-color: rgb(252, 198, 99);
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.signupSubmit:hover{
+    background-color: orange;
+    cursor: pointer;
+}
+
+.signupMiddleText{
+    cursor: default;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+.signupTC{
+    cursor: default;
+    margin-top: 2rem;
+    font-size: 0.63rem;
+    text-align: center;
+}
+
+.signupTClink{
+    color: orange;
+}
+
+.signupTClink:hover{
+    color: rgb(255, 102, 0);
+}
+
+.signupTClink:visited{
+    color: orange;
+}
+
+@media (max-width: 600px){
+    .Signup{
+        left: 50vw;
+        transform: translate(-50%, 0);
+    }
+}

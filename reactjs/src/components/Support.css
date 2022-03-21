@@ -28,7 +28,7 @@
     margin-bottom: 1.8rem;
 }
 
-.image{
+.supportImage{
     height: 545px;
     width: 100%;
     object-fit: cover;
@@ -74,12 +74,13 @@
 @media (min-width: 1800px) {
     .supportTitle{
         font-size: 45px;
+        padding-bottom: 5rem;
         position: relative;
         width: 1700px;
         margin: 0px auto;
     }
 
-    .image{
+    .supportImage{
         margin-top: -3.5rem;
     }
 }
