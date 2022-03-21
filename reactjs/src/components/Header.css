@@ -12,7 +12,7 @@
     justify-content: space-between;
 }
 
-.logo{
+.logoLarge{
     font-size: 25px;
     font-weight: 600;
     cursor: pointer;
@@ -40,7 +40,7 @@
     width: 20vw;
 }
 
-form {
+.headerSearchForm {
     margin-left: 2rem;
     margin-right: 2rem;
     background-color: #f7f5f5;
@@ -51,7 +51,7 @@ form {
     max-width: 100%;
 }
 
-input {
+.searchInput {
     all: unset;
     font: 16px system-ui;
     color: black;
@@ -79,8 +79,17 @@ button {
     cursor: pointer;
 }
 
-@media(max-width: 600px) {
-    .logo{
+@media(max-width: 600px){
+    .searchInput {
+        all: unset;
+        font: 11px system-ui;
+        color: black;
+        padding: 6px 10px;
+    }
+}
+
+@media(max-width:800px) {
+    .logoLarge{
         display: none;
     }
 
@@ -89,13 +98,9 @@ button {
         border: 1px solid lightgrey;
         border-radius: 2rem;
     }
-
-    input {
-        font: 11px system-ui;
-    }
 }
 
-@media(min-width:600px) and (max-width: 1800px) {
+@media(min-width:800px) and (max-width: 1800px) {
     .logoSmall{
         display: none;
     }
@@ -148,12 +153,12 @@ button {
         width: 33.333%;
     }
     
-    form {
+    .headerSearchForm {
         margin-left: 0rem;
         margin-right: 0rem;
     }
     
-    input {
+    .searchInput {
         font: 16px system-ui;
     }
 }
