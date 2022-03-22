@@ -1,29 +1,79 @@
-import React from "react";
+import React, { Component } from "react";
 import './Signup.css';
+import UserDetails from './UserDetails.js';
+import Confirmation from './Confirmation.js';
+import CreatePassword from './CreatePassword.js';
+import Success from './Success.js';
 
-function Signup( ){
-  
+//This is the main "controller" and body of the multiphase signup form
+export default class Signup extends Component{
 
-  return (
-    <div className="Signup">
-      <div className="signupContent">
-        <div className="signupTitle">Hello! Nice to meet you &#128516;</div>
-        <div className="signupSubTitle">Create a new EatMoreFood account below.</div>
-        <form method="post" className="signupForm">
-          <input type="text" className="signupField" name="fname" placeholder="first name" autoComplete="off"/>
-          <input type="text" className="signupField" name="lname" placeholder="last name" autoComplete="off"/>
+  state = {
+    step: 1,
+    fname: "",
+    lname: "",
+    email: "",
+    phone: "",
+    address: "",
+    password:"",
+  }
 
-          <input type="text" className="signupField" name="email" placeholder="email" autoComplete="off"/>
-          <input type="number" className="signupField" name="phone" placeholder="mobile number" autoComplete="off"/>
-          <input type="adr" className="signupField" name="address" placeholder="street address" autoComplete="off"/>
+  prevStep = () => {  //go back to previous step
+    let { step } = this.state;
+    this.setState({ step: step - 1 });
+  }
 
-          <input type="password" className="signupPassword" name="password" placeholder="password" autoComplete="off"/>
-          <p className="signupTC">By creating an account you accept our <a className="signupTClink" href="/disclaimer" target="_blank" rel="noopener noreferrer">Disclaimer</a>.</p>
-          <input type="submit" className="signupSubmit" value="Create account" />
-      </form>  
-      </div>
-    </div>
-  );
+  nextStep = () => {  //proceed to the next step
+    let { step } = this.state;
+    this.setState({ step: step + 1 });
+  }
+
+  handleChange = input => e => {   //Handle fields change
+    this.setState({ [input]: e.target.value });
+  }
+
+  validateSignup = input => e => {   //Handle fields change
+    this.setState({ [input]: e.target.value });
+  }
+
+  render() {
+    const { step } = this.state;
+    const { fname, lname, email, phone, address, password } = this.state;
+    const values = { fname, lname, email, phone, address, password };
+    
+    switch(step) {
+      case 1: 
+        return (
+          <UserDetails
+            nextStep={ this.nextStep }
+            handleChange={ this.handleChange }
+            values={ values }
+          />
+        )
+        case 2: 
+          return (
+            <Confirmation 
+              prevStep={ this.prevStep }
+              nextStep={ this.nextStep }
+              values={ values }
+            />
+          )
+      case 3: 
+        return (
+          <CreatePassword
+            prevStep={ this.prevStep }
+            nextStep={ this.nextStep }
+            handleChange={ this.handleChange }
+            validateSignup={ this.validateSignup }
+            values={ values }
+          />
+        )
+        case 4: 
+          return (
+            <Success />
+          )
+      default: 
+          //do nothing
+    }
+  }
 }
-
-export default Signup;

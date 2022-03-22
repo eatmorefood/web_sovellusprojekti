@@ -11,6 +11,15 @@
     padding: 2rem
 }
 
+.animateLoginZoom {
+    animation: zoomanimation 0.4s;
+}
+
+@keyframes zoomanimation {
+    from {transform: scale(0) translate(-50%);} 
+    to {transform: scale(1) translate(-50%);}
+}
+
 .closeLogin{
     display: block;
     position: fixed;

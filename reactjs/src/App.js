@@ -15,21 +15,20 @@ import Disclaimer from './components/Disclaimer.js';
 function App() {
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
-  const [loginState, setLoginState] = useState(false); //state for wether user is logged in or not
 
   let loginScreen = ""; //initialize login screen as non-visible
-  if( loginVisible === true && loginState === false ) { //login screen visible, displayLogin = button in login screen to close itself
+  if( loginVisible === true ) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login displayLogin={ toggleLogin } />;
   }
 
   useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
     const app = document.getElementById("blurrableContent");
-    if( loginVisible === true && loginState === false ) {
+    if( loginVisible === true) {
       app.style.filter = "blur(8px)";
       app.style.background = "lightgrey";      
       document.body.style.overflow = "hidden";
       
-    } else if( loginVisible === false && loginState === false ) { //restores normal page view when login screen not visible
+    } else if( loginVisible === false) { //restores normal page view when login screen not visible
       app.style.removeProperty("background");
       app.style.removeProperty("filter"); 
       document.body.style.removeProperty("overflow"); 
