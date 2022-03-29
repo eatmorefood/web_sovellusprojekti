@@ -1,6 +1,6 @@
 import React from "react";
 import './Support.css';
-import img from '../images/support.png'
+import img from '../../images/support.png'
 
 function Support() {
 

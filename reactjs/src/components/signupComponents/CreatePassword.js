@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect } from 'react';
-import './Signup.css';
-import eye_open from '../images/password_eye.png';
-import eye_closed from '../images/password_eye_closed.png';
+import '../Signup.css';
+import eye_open from '../../images/password_eye.png';
+import eye_closed from '../../images/password_eye_closed.png';
 
 //This is part 3/4 of the multiphase signup form
-const CreatePassword = ({ validateSignup, handleChange, values }) => {
+const CreatePassword = ({ handleSignup, handleChange, values }) => {
 
     useEffect(() => { //automatically scrolls to the top of the page, useful for mobile users
         window.scrollTo(0, 0)
@@ -95,7 +95,7 @@ const CreatePassword = ({ validateSignup, handleChange, values }) => {
         <div className="Signup">
             <div className="signupContent">
                 <div className="signupTitle">Almost ready!</div>
-                <div className="signupSubTitle">Just create a password.</div>
+                <div className="signupSubTitle">Now you just need a password.</div>
 
                     <form className="passwordForm">
                     <input
@@ -120,7 +120,7 @@ const CreatePassword = ({ validateSignup, handleChange, values }) => {
                     <p id="number" className="invalid">A <b>number</b></p>
                     <p id="length" className="invalid">Minimum <b>6 characters</b></p>
                 </div>
-                <button id="signupSubmit" onClick={ () => validateSignup() }>Create an account</button>
+                <button id="signupSubmit" onClick={ handleSignup }>Create an account</button>
             </div>
         </div>
     );

@@ -1,21 +1,24 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import './Signup.css';
-import UserDetails from './UserDetails.js';
-import Confirmation from './Confirmation.js';
-import CreatePassword from './CreatePassword.js';
-import Success from './Success.js';
+import UserDetails from './signupComponents/UserDetails.js';
+import Confirmation from './signupComponents/Confirmation.js';
+import CreatePassword from './signupComponents/CreatePassword.js';
+import Success from './signupComponents/Success.js';
+import Constants from '../Constants.json';
 
 //This is the main "controller" and body of the multiphase signup form
 export default class Signup extends Component{
 
   state = {
+    signupProcessState: "idle",
     step: 1,
     fname: "",
     lname: "",
     email: "",
     phone: "",
     address: "",
-    password:"",
+    password:""
   }
 
   prevStep = () => {  //go back to previous step
@@ -32,8 +35,28 @@ export default class Signup extends Component{
     this.setState({ [input]: e.target.value });
   }
 
-  validateSignup = input => e => {   //Handle fields change
-    this.setState({ [input]: e.target.value });
+  handleSignup = async (event) => {
+    this.setState({ step: 4 }); //switches to processing view
+
+    event.preventDefault();
+    console.log(event);
+    try {
+      const result = await axios.post(Constants.API_ADDRESS + "/signup",
+      {
+        fname: this.state.fname,
+        lname: this.state.lname,
+        email: this.state.email,
+        phone: this.state.phone,
+        address: this.state.address,
+        password: this.state.password
+      });
+      console.log(result); //do something with the result
+      this.setState({ step: 5 })
+    } catch(error) {
+      console.log(error);
+      this.setState({ step: 1 })
+      alert("Account creation failed, please try again :/");
+    }
   }
 
   render() {
@@ -50,28 +73,36 @@ export default class Signup extends Component{
             values={ values }
           />
         )
-        case 2: 
-          return (
-            <Confirmation 
-              prevStep={ this.prevStep }
-              nextStep={ this.nextStep }
-              values={ values }
-            />
-          )
+      case 2: 
+        return (
+          <Confirmation 
+            prevStep={ this.prevStep }
+            nextStep={ this.nextStep }
+            values={ values }
+          />
+        )
       case 3: 
         return (
           <CreatePassword
             prevStep={ this.prevStep }
             nextStep={ this.nextStep }
             handleChange={ this.handleChange }
-            validateSignup={ this.validateSignup }
+            handleSignup={ this.handleSignup }
             values={ values }
           />
         )
-        case 4: 
-          return (
-            <Success />
-          )
+      case 4: 
+        return (
+          <div className="processingSignup">
+            <h2>Creating account</h2>
+            <div>Please wait... &#9749;</div>
+            <div className="processRoller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          </div>
+        )
+      case 5: 
+      return (
+        <Success/>
+      )
       default: 
           //do nothing
     }
