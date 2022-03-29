@@ -14,19 +14,19 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
                 <div className="signupSubTitle">Is this information correct?</div>
                 <div className="confirmationBox">
                     <p>First name</p>
-                    <div>{values.fname}</div>
+                    <div className="confirmationContainer">{values.fname}</div>
                     <p>Last name</p>
-                    <div>{values.lname}</div>
+                    <div className="confirmationContainer">{values.lname}</div>
                     <p>Email address</p>
-                    <div>{values.email}</div>
+                    <div className="confirmationContainer">{values.email}</div>
                     <p>Phone number</p>
-                    <div>{values.phone}</div>
+                    <div className="confirmationContainer">{values.phone}</div>
                     <p>Street address</p>
-                    <div>{values.address}</div>
+                    <div className="confirmationContainer">{values.address}</div>
                 </div>
                 <div className="confirmationBtns">
-                    <button id="confirmPrev" className="multiphaseFormBtn" onClick={ () => prevStep() }>Go back</button>
-                    <button id="confirmNext" className="multiphaseFormBtn" onClick={ () => nextStep() }>Yes</button>
+                    <button id="confirmPrev" className="multiphaseFormBtn" onClick={ () => prevStep() }>&#11160; No, take me back</button>
+                    <button id="confirmNext" className="multiphaseFormBtn" onClick={ () => nextStep() }>Yes, this is correct &#11162;</button>
                 </div>
             </div>
         </div>

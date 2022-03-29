@@ -1,39 +1,58 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { useEffect, useState, useRef } from 'react';
-import Header from './components/Header.js';
-import Footer from './components/Footer.js';
-import Search from './components/Search.js';
-import Home from './components/Home.js';
-import Support from './components/Support.js';
-import Businesses from './components/Businesses.js';
+import Header from './components/header/Header.js';
+import Footer from './components/footer/Footer.js';
+import Discover from './components/Discover.js';
+import Support from './components/staticPages/Support.js';
+import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/Login.js';
-import NotFound from './components/NotFound.js';
+import NotFound from './components/staticPages/NotFound.js';
 import Signup from './components/Signup.js';
-import Disclaimer from './components/Disclaimer.js';
+import Disclaimer from './components/staticPages/Disclaimer.js';
+import Profile from './components/Profile.js';
+
+const importJWTFromBrowser = window.localStorage.getItem('token');
 
 function App() {
+  
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
+  const [userJWT, setUserJWT] = useState(importJWTFromBrowser);
 
-  let loginScreen = ""; //initialize login screen as non-visible
-  if( loginVisible === true ) { //login screen visible, displayLogin = button in login screen to close itself
-    loginScreen = <Login displayLogin={ toggleLogin } />;
+  let loginScreen = <></>; //initialize login screen as non-visible
+  let noAuthRoutes = <><Route path='/signup' element={<Signup />} /></>
+  let authRoutes = <></>;
+
+  if(userJWT != null){
+    noAuthRoutes = <></>
+    authRoutes = <><Route path='/profile' element={<Profile jwt={ userJWT }/>} /></>
+    loginScreen = <></>;
+  } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
+    loginScreen = <Login login={ receivedJWT => {
+                          setUserJWT(receivedJWT)
+                          window.localStorage.setItem('token', receivedJWT)
+                          }}
+                          displayLogin={ toggleLogin } />;
   }
-
-  useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
+  
+  /*useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
     const app = document.getElementById("blurrableContent");
     if( loginVisible === true) {
       app.style.filter = "blur(8px)";
-      app.style.background = "lightgrey";      
+      app.style.background = "lightgrey";
+      app.style.pointerEvents = "none";
+      app.style.cursor = "pointer"; 
       document.body.style.overflow = "hidden";
       
     } else if( loginVisible === false) { //restores normal page view when login screen not visible
       app.style.removeProperty("background");
       app.style.removeProperty("filter"); 
+      app.style.removeProperty("pointerEvents");
+      app.style.removeProperty("pointer");
       document.body.style.removeProperty("overflow"); 
     }
-  });
+  });*/
 
   function toggleLogin() { //function to switch login screen visibility status
     setLoginVisible(!loginVisible);
@@ -53,28 +72,29 @@ function App() {
     }
   }, [loginVisible]);
 
-
   return (
     
     <div className="App">
-      <Header displayLogin={ toggleLogin }/>
+      <Router>
       <div id="loginMain" ref={ref}>
         { loginScreen }
       </div>
       <div id="blurrableContent"> 
-
+        <Header userLoggedIn={ userJWT != null }
+                jwt={ userJWT }
+                displayLogin={ toggleLogin }
+                logout={ () => {setUserJWT(null)
+                window.localStorage.removeItem('token')}}/>
         <div id="appContent">
-          <Router>
             <Routes>
-              <Route path='/' element={<Search />} />
-              <Route path='/home' element={<Home />} />
+              <Route path='/' element={<Discover />} />
+              { noAuthRoutes }
+              { authRoutes }
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />
-              <Route path='/signup' element={<Signup />} />
               <Route path='/disclaimer' element={<Disclaimer />} />
               <Route path='/*' element={<NotFound />} />
             </Routes>  
-          </Router>
         </div>
 
         <footer className="footer">
@@ -82,6 +102,7 @@ function App() {
         </footer>
 
       </div>
+      </Router>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './Signup.css';
+import '../Signup.css';
 
 //This is part 1/4 of the multiphase signup form
 const UserDetails = ({ nextStep, handleChange, values }) => {
@@ -13,7 +13,8 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
         <div className="signupContent">
             <div className="signupTitle">Hello! Nice to meet you &#128516;</div>
             <div className="signupSubTitle">Create a new EatMoreFood account below.</div>
-            <form className="signupForm" onSubmit={ () => nextStep() }>
+            <form className="signupForm" onSubmit={ nextStep }>
+                <div className="signupInputTitle">First name:</div>
                 <input
                     type="text"
                     className="signupField"
@@ -22,9 +23,10 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     onChange={handleChange('fname')}
                     defaultValue={values.fname}
                     autoComplete="off"
-                    maxLength="35"
+                    maxLength="40"
                     required
                 />
+                <div className="signupInputTitle">Last name:</div>
                 <input
                     type="text"
                     className="signupField"
@@ -33,9 +35,10 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     onChange={handleChange('lname')}
                     defaultValue={values.lname}
                     autoComplete="off"
-                    maxLength="35"
+                    maxLength="40"
                     required
                 />
+                <div className="signupInputTitle">Email:</div>
                 <input
                     type="email"
                     className="signupField"
@@ -44,9 +47,10 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     onChange={handleChange('email')}
                     defaultValue={values.email}
                     autoComplete="off"
-                    maxLength="35"
+                    maxLength="50"
                     required
                 />
+                <div className="signupInputTitle">Phone number:</div>
                 <input
                     type="tel"
                     onKeyPress={(event) => { //deprecated, should find another solution
@@ -60,9 +64,10 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     onChange={handleChange('phone')}
                     defaultValue={values.phone}
                     autoComplete="off"
-                    maxLength="35"
+                    maxLength="20"
                     required
                 />
+                <div className="signupInputTitle">Address:</div>
                 <input
                     type="text"
                     className="signupField"
@@ -74,7 +79,7 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     maxLength="35"
                     required
                 />
-                <button type="submit" className="multiphaseFormBtn">Next</button>
+                <button value="submit" className="multiphaseFormBtn">Next</button>
             </form>
 
         </div>

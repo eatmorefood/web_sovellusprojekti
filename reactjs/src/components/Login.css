@@ -38,7 +38,7 @@
 
 .loginContent{
     padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -65,7 +65,7 @@
     border: none;
 }
 
-.loginEmail{
+#loginEmail{
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
     padding-left: 0.6rem;
@@ -75,15 +75,15 @@
     font-size: 1.3rem;
 }
 
-.loginEmail:hover{
-    border-color: orange;
+#loginEmail:hover{
+    border-color: orange !important;
 }
 
-.loginEmail:focus{
-    border: 0.15rem solid orange;
+#loginEmail:focus{
+    border: 2px solid black !important;
 }
 
-.loginPassword{
+#loginPassword{
     padding-top: 0.8rem;
     padding-bottom: 0.8rem;
     padding-left: 0.6rem;
@@ -92,12 +92,12 @@
     font-size: 1.3rem;
 }
 
-.loginPassword:hover{
-    border-color: orange;
+#loginPassword:hover{
+    border-color: orange !important;
 }
 
-.loginPassword:focus{
-    border: 0.15rem solid orange;
+#loginPassword:focus{
+    border: 2px solid black !important;
 }
 
 .loginSubmit{
@@ -141,8 +141,16 @@
     cursor: default;
     text-align: center;
     font-weight: 700;
-    margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+#loginErrorMessage{
+    visibility: hidden;
+    color: red;
+    margin-bottom: 0.5rem;
+    margin-top: -1rem;
+    font-weight: 600;
 }
 
 @media (max-width: 600px){
@@ -152,5 +160,6 @@
         transform: translate(-50%, 0);
         z-index: 100000;
         padding: 1rem;
+        width: 85vw;
     }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './Signup.css';
+import '../Signup.css';
 
 //This is part 4/4 of the multiphase signup form
 const Success = () => {
@@ -8,11 +8,16 @@ const Success = () => {
     window.scrollTo(0, 0)
   }, []);
 
+  setTimeout(function() {
+    window.location.replace('/');
+  }, 3500);
+
   return (
-    <div>
-      <h1>You are done!</h1>
+    <div className="signupSuccessView">
+      <h1>Account created! &#129395;</h1>
+      <p>redirecting..</p>
     </div>
   )
 }
 
-export default Success
+export default Success;
