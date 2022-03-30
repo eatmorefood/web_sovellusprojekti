@@ -4,7 +4,7 @@ const login={
 
     findId: function(email, callback) {
       await db.connect();
-        return await db.query('select idcustomer from customers where email = $1;',
+        return await db.query('select idcustomer from customer where email = $1;',
         [email], callback); 
     },
 
@@ -16,7 +16,7 @@ const login={
 
     getData: function(userId, callback) {
       await db.connect();
-      return  db.query('select idcustomer, fname, lname, email from customers where idcustomer = $1;',
+      return  db.query('select idcustomer, fname, lname, email from customer where idcustomer = $1;',
       [userId], callback); 
     }
   };
