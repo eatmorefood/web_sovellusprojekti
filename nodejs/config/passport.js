@@ -19,7 +19,7 @@ module.exports = function(passport) {
         const client = await pool.connect();
         try {
             await client.query('begin');
-            var accCredentials = await JSON.stringify(client.query('select c."idcustomer" as idcustomer, u."password" as password from "customers" c, "userc" u where c."email" = ($1) and c."idcustomer" = u."idcustomer";',
+            var accCredentials = await JSON.stringify(client.query('select c."idcustomer" as idcustomer, u."password" as password from "customer" c, "userc" u where c."email" = ($1) and c."idcustomer" = u."idcustomer";',
             [email], (err, result) => {
                 if(err){
                     res.status(500);
@@ -42,7 +42,7 @@ module.exports = function(passport) {
                         if(valid) {
                             //console.log('password correct');
 
-                            var accData = JSON.stringify(client.query('select "idcustomer", "fname", "lname", "email" from "customers" where "idcustomer" = $1;',
+                            var accData = JSON.stringify(client.query('select "idcustomer", "fname", "lname", "email" from "customer" where "idcustomer" = $1;',
                             [result.rows[0].idcustomer], (err, results) => {
                                 if(err){
                                     res.status(500);
