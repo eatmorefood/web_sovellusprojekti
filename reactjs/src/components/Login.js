@@ -3,8 +3,10 @@ import './Login.css';
 import axios from 'axios';
 import closeBtn from '../images/closeBtnCircle.png';
 import Constants from '../Constants.json';
+import { useNavigate } from "react-router-dom";
 
-function Login( props ){
+function Login( props ){ 
+  let navigate = useNavigate();
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -17,10 +19,11 @@ function Login( props ){
           password: event.target.password.value
         }
       });
-      console.log(result); //do something with the result
+      if(window.location.pathname.indexOf("signup") > -1){
+        navigate('/');
+      }
       const receivedJWT = result.data.jwt;
       props.login(receivedJWT);
-      //navigate('/', { replace: true });
 
     } catch(error) {
       var body = document.getElementById("loginErrorMessage");

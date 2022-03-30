@@ -21,17 +21,14 @@ function Header( props ) {
   loggedInlname = decodedToken.user.lname;
   fnameChar = loggedInfname.charAt(0).toUpperCase();
   lnameChar = loggedInlname.charAt(0).toUpperCase();
-  console.log(decodedToken);
-  console.log(loggedInfname);
-  console.log(loggedInlname);
   }
 
   function myFunction() { //function to show header language dropdown list
     let q = document.getElementById("myDropdown");
-    let w = document.getElementById("arrow");
+    let w = document.getElementById("arrowLanguage");
     if(q.style.display === "none"){
       q.style.display = "block";
-      q.style.transform = "rotateX(180deg)"
+      w.style.transform = "rotateX(180deg)"
     } else {
       q.style.display = "none";
       w.style.removeProperty("transform");
@@ -50,14 +47,22 @@ function Header( props ) {
     }
   }
     
-  window.onclick = function(event) { // Function to close the language dropdown if the user clicks outside of the dropdown element
-    if (props.jwt == null && document.getElementById("myDropdown").classList.contains('show')) {
-      document.getElementById("myDropdown").remove('show');
-      document.getElementById("arrow").classList.remove("arrowPosition"); //language button's arrow changes direction
-    } else if (props.jwt != null && document.getElementById("userDropdown").classList.contains('show')){
-      if (!event.target.matches('loggedInUserIcon')) {
-        document.getElementById("userDropdown").classList.remove('show');
-        document.getElementById("loggedInArrow").classList.remove("arrowPosition");
+  window.onclick = function(event) { //close the language dropdown if the user clicks outside of the dropdown element
+    if (props.jwt === null && document.getElementById("myDropdown").style.display === 'block') {
+      let a = document.getElementById('dropdownLanguage');
+      let b = document.getElementById('dropbtnLanguage');
+      let c = document.getElementById('arrowLanguage');
+      if(!a.contains(event.target) && !b.contains(event.target) && !c.contains(event.target)){
+        myFunction();
+      }
+    } 
+    if (props.jwt !== null && document.getElementById("userDropdown").style.display === 'block'){ //close logged in user icon dropdown if clicked outside dropdown or the user icon
+      let a = document.getElementById('loggedInHeaderBtns');
+      let b = document.getElementById('userNameCharacters');
+      let c = document.getElementById('loggedInArrow');
+      let d = document.getElementById('userDropdown');
+      if (!a.contains(event.target) && !b.contains(event.target) && !c.contains(event.target) && !d.contains(event.target)) {
+        toggleUserDropdown();
       }
     }
   }
@@ -105,17 +110,19 @@ function Header( props ) {
         <div className="headerRight">
           {props.userLoggedIn ?
             <div id="loggedInHeaderBtns" onClick={() => toggleUserDropdown()}>
-              <div id="loggedInUserIcon" >{ fnameChar }{ lnameChar }</div>
-              <img id="loggedInArrow" src={arrowDown} alt=""/>
-              <div id="userDropdown" className="userDropdownContent">
-                <Link to="/profile" style={{ textDecoration: 'none' }}>
-                  <div>Profile<br></br>
-                    <span>{ loggedInfname } { loggedInlname }</span>
-                  </div>
-                </Link>
-                <Link to="/" style={{ textDecoration: 'none' }}>
-                  <div onClick={() => props.logout()}>Log out</div>
-                </Link>
+              <div id="loggedInUserIcon" ><span id="userNameCharacters">{ fnameChar }{ lnameChar }</span></div>
+              <img id="loggedInArrow" src={arrowDown} alt="" />
+              <div className="userDropdownContainer">
+                <div id="userDropdown" className="userDropdownContent">
+                  <Link to="/profile" style={{ textDecoration: 'none' }}>
+                    <div>Profile<br></br>
+                      <span>{ loggedInfname } { loggedInlname }</span>
+                    </div>
+                  </Link>
+                  <Link to="/" style={{ textDecoration: 'none' }}>
+                    <div onClick={() => props.logout()}>Log out</div>
+                  </Link>
+                </div>
               </div>
             </div>
             :
@@ -130,11 +137,11 @@ function Header( props ) {
                 <span>Sign up</span>
               </button>
               
-              <div className="dropdown">
-                <button onClick={() => myFunction()} className="dropbtn">Language
-                  <img id="arrow" src={arrowDown} alt="" height="10" width="10" />
+              <div id="dropdownLanguage">
+                <button onClick={() => myFunction()} id="dropbtnLanguage">Language
+                  <img id="arrowLanguage" src={arrowDown} alt="" height="10" width="10" />
                 </button>
-                <div id="myDropdown" className="dropdown-content" >
+                <div id="myDropdown" onClick={() => myFunction()}>
                     <option>English</option>
                     <option onClick={() => alert("Sorry, Finnish is not available at the moment")}>Finnish</option>
                 </div>
