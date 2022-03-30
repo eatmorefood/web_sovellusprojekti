@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import axios from 'axios';
 import './Signup.css';
 import UserDetails from './signupComponents/UserDetails.js';
@@ -8,10 +8,10 @@ import Success from './signupComponents/Success.js';
 import Constants from '../Constants.json';
 
 //This is the main "controller" and body of the multiphase signup form
-export default class Signup extends Component{
+export default class Signup extends React.Component {
 
   state = {
-    signupProcessState: "idle",
+    jwt: null,
     step: 1,
     fname: "",
     lname: "",
@@ -39,9 +39,9 @@ export default class Signup extends Component{
     this.setState({ step: 4 }); //switches to processing view
 
     event.preventDefault();
-    console.log(event);
+    //console.log(event);
     try {
-      const result = await axios.post(Constants.API_ADDRESS + "/signup",
+      /*const result =*/ await axios.post(Constants.API_ADDRESS + "/signup",
       {
         fname: this.state.fname,
         lname: this.state.lname,
@@ -50,10 +50,27 @@ export default class Signup extends Component{
         address: this.state.address,
         password: this.state.password
       });
-      console.log(result); //do something with the result
-      this.setState({ step: 5 })
+
+      //console.log(result);
+      try {
+        const saveUserData = await axios.post(Constants.API_ADDRESS + "/jwtLogin",
+        null,
+        {
+          auth: {
+            username: this.state.email,
+            password: this.state.password
+          }
+        });
+
+        //console.log(saveUserData); //do something with the result
+        this.state.jwt = saveUserData.data.jwt;
+        this.setState({ step: 5 })
+    } catch (e) {
+      this.setState({ step: 1 })
+      alert("Account creation failed, please try again :/");
+    }
     } catch(error) {
-      console.log(error);
+      //console.log(error);
       this.setState({ step: 1 })
       alert("Account creation failed, please try again :/");
     }
@@ -101,7 +118,7 @@ export default class Signup extends Component{
         )
       case 5: 
       return (
-        <Success/>
+        <Success logMeIn = {() => this.props.login(this.state.jwt) }/>
       )
       default: 
           //do nothing

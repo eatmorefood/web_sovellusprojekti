@@ -18,7 +18,7 @@ function Profile(props) {
             })
             setUserTodos(results.data);
         } catch(error) {
-            console.log(error);
+            console.log("something went wrong");
         }
     }
 

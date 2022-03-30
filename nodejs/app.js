@@ -2,12 +2,10 @@ const express = require('express');
 const app = express();
 var port = 8080;
 const passport = require('passport');
-const BasicStrategy = require('passport-http').BasicStrategy;
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy,
       ExtractJwt = require('passport-jwt').ExtractJwt;
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
 const cors = require('cors');
 
 app.use(bodyParser.json()); //whenever request body has type of json, this will activate
@@ -23,7 +21,6 @@ const jwtOptions ={
 }
 
 passport.use(new JwtStrategy(jwtOptions, function(jwt_payload, done){
-  console.log('JWT is valid')
   //console.log('payload: ')
   //console.log(jwt_payload)
 
@@ -36,8 +33,6 @@ app.get('/', (req, res) => { //public resource, JUST A TEST => can be deleted
 
 app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, res) => {
   //check username and password already done through passport
-
-  //console.log(req)
 
   //generate jwt
   const payload = { 
@@ -62,9 +57,6 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
 })
 
 app.get('/jwt-protected', passport.authenticate('jwt', { session: false }), (req, res) => { //just a test, can be deleted
-  //console.log(req.user);
-  console.log("user ID from JWT is: " + req.user.user.id);
-
   res.json('Hello ' + req.user.user.fname + ' JWT PROTECTED CONTENT')
 })
 

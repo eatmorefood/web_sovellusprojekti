@@ -21,7 +21,10 @@ function App() {
   const [userJWT, setUserJWT] = useState(importJWTFromBrowser);
 
   let loginScreen = <></>; //initialize login screen as non-visible
-  let noAuthRoutes = <><Route path='/signup' element={<Signup />} /></>
+  let noAuthRoutes = <><Route path='/signup' element={<Signup login={ receivedJWT => {
+                                                              setUserJWT(receivedJWT)
+                                                              window.localStorage.setItem('token', receivedJWT)
+                                                              }}/>} /></>
   let authRoutes = <></>;
 
   if(userJWT != null){
@@ -29,8 +32,7 @@ function App() {
     authRoutes = <><Route path='/profile' element={<Profile jwt={ userJWT }/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
-    loginScreen = <Login login={ receivedJWT => {
-                          setUserJWT(receivedJWT)
+    loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
                           window.localStorage.setItem('token', receivedJWT)
                           }}
                           displayLogin={ toggleLogin } />;
