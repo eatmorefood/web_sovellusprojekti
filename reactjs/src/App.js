@@ -1,16 +1,16 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {Routes, Route } from "react-router-dom";
 import { useEffect, useState, useRef } from 'react';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
 import Discover from './components/Discover.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
-import Login from './components/Login.js';
+import Login from './components/customerAuth/Login.js';
 import NotFound from './components/staticPages/NotFound.js';
-import Signup from './components/Signup.js';
+import Signup from './components/customerAuth/Signup.js';
 import Disclaimer from './components/staticPages/Disclaimer.js';
-import Profile from './components/Profile.js';
+import Profile from './components/profileComponents/Profile.js';
 
 const importJWTFromBrowser = window.localStorage.getItem('token');
 
@@ -22,14 +22,14 @@ function App() {
 
   let loginScreen = <></>; //initialize login screen as non-visible
   let noAuthRoutes = <><Route path='/signup' element={<Signup login={ receivedJWT => {
-                                                              setUserJWT(receivedJWT)
-                                                              window.localStorage.setItem('token', receivedJWT)
-                                                              }}/>} /></>
+                              setUserJWT(receivedJWT)
+                              window.localStorage.setItem('token', receivedJWT)
+                              }}/>} /></>
   let authRoutes = <></>;
 
   if(userJWT != null){
     noAuthRoutes = <></>
-    authRoutes = <><Route path='/profile' element={<Profile jwt={ userJWT }/>} /></>
+    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -77,7 +77,7 @@ function App() {
   return (
     
     <div className="App">
-      <Router>
+      {/*<Router>*/}
       <div id="loginMain" ref={ref}>
         { loginScreen }
       </div>
@@ -104,7 +104,7 @@ function App() {
         </footer>
 
       </div>
-      </Router>
+      {/*</Router>*/}
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React from "react";
 import axios from 'axios';
 import './Signup.css';
-import UserDetails from './signupComponents/UserDetails.js';
-import Confirmation from './signupComponents/Confirmation.js';
-import CreatePassword from './signupComponents/CreatePassword.js';
-import Success from './signupComponents/Success.js';
-import Constants from '../Constants.json';
+import UserDetails from '../signupComponents/UserDetails.js';
+import Confirmation from '../signupComponents/Confirmation.js';
+import CreatePassword from '../signupComponents/CreatePassword.js';
+import Success from '../signupComponents/Success.js';
+import Constants from '../../Constants.json';
 
 //This is the main "controller" and body of the multiphase signup form
 export default class Signup extends React.Component {
