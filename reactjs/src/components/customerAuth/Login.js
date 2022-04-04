@@ -1,8 +1,8 @@
 import React from 'react';
 import './Login.css';
 import axios from 'axios';
-import closeBtn from '../images/closeBtnCircle.png';
-import Constants from '../Constants.json';
+import closeBtn from '../../images/closeBtnCircle.png';
+import Constants from '../../Constants.json';
 import { useNavigate } from "react-router-dom";
 
 function Login( props ){ 

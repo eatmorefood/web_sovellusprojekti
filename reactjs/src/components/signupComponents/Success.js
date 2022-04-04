@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import '../Signup.css';
+import '../customerAuth/Signup.css';
 
 //This is part 4/4 of the multiphase signup form
 function Success({ logMeIn }) {

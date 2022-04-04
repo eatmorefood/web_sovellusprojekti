@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import '../Signup.css';
+import '../customerAuth/Signup.css';
 
 //This is part 1/4 of the multiphase signup form
 const UserDetails = ({ nextStep, handleChange, values }) => {

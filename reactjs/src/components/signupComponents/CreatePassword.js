@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from 'react';
-import '../Signup.css';
+import '../customerAuth/Signup.css';
 import eye_open from '../../images/password_eye.png';
 import eye_closed from '../../images/password_eye_closed.png';
 
