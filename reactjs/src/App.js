@@ -69,7 +69,7 @@ function App() {
   useEffect(() => { //get all restaurants 
     const fetchQueryResults = async () => {
       try {
-        const results = await axios.get(Constants.API_ADDRESS + '/restaurants');
+        const results = await axios.get(Constants.API_ADDRESS + '/restaurant');
         setAllRestaurants(results.data);
       } catch(error) {
         console.log("something went wrong");
