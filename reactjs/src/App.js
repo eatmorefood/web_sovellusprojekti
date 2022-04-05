@@ -1,9 +1,12 @@
 import './App.css';
 import {Routes, Route } from "react-router-dom";
 import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
+import Constants from './Constants.json';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
 import Discover from './components/Discover.js';
+import Restaurant from './components/restaurant/Restaurant.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/customerAuth/Login.js';
@@ -19,6 +22,9 @@ function App() {
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
   const [userJWT, setUserJWT] = useState(importJWTFromBrowser);
+  let [allRestaurants, setAllRestaurants] = useState([]);
+
+//========================================= CONDITIONAL RENDERING ==================================================
 
   let loginScreen = <></>; //initialize login screen as non-visible
   let noAuthRoutes = <><Route path='/signup' element={<Signup login={ receivedJWT => {
@@ -29,7 +35,9 @@ function App() {
 
   if(userJWT != null){
     noAuthRoutes = <></>
-    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }/>} /></>
+    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }
+                                                              logout={ () => {setUserJWT(null)
+                                                              window.localStorage.removeItem('token')}}/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -56,9 +64,19 @@ function App() {
     }
   });*/
 
-  function toggleLogin() { //function to switch login screen visibility status
-    setLoginVisible(!loginVisible);
-  }
+//========================================= USE EFFECTS ==================================================
+
+  useEffect(() => { //get all restaurants 
+    const fetchQueryResults = async () => {
+      try {
+        const results = await axios.get(Constants.API_ADDRESS + '/restaurants');
+        setAllRestaurants(results.data);
+      } catch(error) {
+        console.log("something went wrong");
+      }
+    }
+    fetchQueryResults();
+  }, []);
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -74,6 +92,14 @@ function App() {
     }
   }, [loginVisible]);
 
+//========================================= FUNCTIONS ==================================================
+
+  function toggleLogin() { //function to switch login screen visibility status
+    setLoginVisible(!loginVisible);
+  }
+
+//========================================= EXPORT APP MAIN FRAME ==================================================
+
   return (
     
     <div className="App">
@@ -83,6 +109,7 @@ function App() {
       </div>
       <div id="blurrableContent"> 
         <Header userLoggedIn={ userJWT != null }
+                allRestaurants={ allRestaurants }
                 jwt={ userJWT }
                 displayLogin={ toggleLogin }
                 logout={ () => {setUserJWT(null)
@@ -92,6 +119,7 @@ function App() {
               <Route path='/' element={<Discover />} />
               { noAuthRoutes }
               { authRoutes }
+              <Route path='/restaurant/:name' component={ Restaurant } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />
               <Route path='/disclaimer' element={<Disclaimer />} />
@@ -104,7 +132,6 @@ function App() {
         </footer>
 
       </div>
-      {/*</Router>*/}
     </div>
   );
 }

@@ -18,7 +18,7 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
                     <p>Last name</p>
                     <div className="confirmationContainer">{values.lname}</div>
                     <p>Email address</p>
-                    <div className="confirmationContainer">{values.email}</div>
+                    <div className="confirmationContainer">{values.email.toLowerCase()}</div>
                     <p>Phone number</p>
                     <div className="confirmationContainer">{values.phone}</div>
                     <p>Street address</p>
