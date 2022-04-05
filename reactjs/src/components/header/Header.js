@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SearchPopup from '../search/SearchPopup.js';
 import './Header.css';
 import './HeaderButtons.css';
 import jwt_decode from 'jwt-decode';
@@ -9,6 +10,18 @@ import logo_small from '../../images/logo_small.png';
 import { Link } from "react-router-dom";
 
 function Header( props ) {
+  const [query, setQuery] = useState('');
+  let SearchResultElement = <></>;
+
+  if(query.replace(/\s/g, '').length){
+    SearchResultElement = <><SearchPopup query={ query } allRestaurants={ props.allRestaurants } emptyPopupSearch={ emptyPopupSearch } /></>
+  }
+
+  const handleQueryChange = (event) => {
+    event.preventDefault();
+    setQuery(event.target.value);
+  }
+
   let decodedToken = "";
   let loggedInfname = "";
   let loggedInlname = "";
@@ -45,6 +58,10 @@ function Header( props ) {
       z.style.display = "none";
       arr.style.removeProperty("transform");
     }
+  }
+
+  function emptyPopupSearch() {
+    setQuery('');
   }
     
   window.onclick = function(event) { //close the language dropdown if the user clicks outside of the dropdown element
@@ -96,6 +113,7 @@ function Header( props ) {
               name="q"
               placeholder="Search..."
               autoComplete="off"
+              onChange = { handleQueryChange }
             />
             <button>
               <svg viewBox="0 0 1024 1024">
@@ -152,6 +170,8 @@ function Header( props ) {
         </div> {/* header right section ends */}
 
       </div>
+
+    { SearchResultElement }
     </div>
     );
 }

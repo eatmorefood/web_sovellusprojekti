@@ -39,38 +39,35 @@ export default class Signup extends React.Component {
     this.setState({ step: 4 }); //switches to processing view
 
     event.preventDefault();
-    //console.log(event);
     try {
-      /*const result =*/ await axios.post(Constants.API_ADDRESS + "/signup",
+      
+      await axios.post(Constants.API_ADDRESS + "/signup",
       {
         fname: this.state.fname,
         lname: this.state.lname,
-        email: this.state.email,
+        email: this.state.email.toLowerCase(),
         phone: this.state.phone,
         address: this.state.address,
         password: this.state.password
       });
 
-      //console.log(result);
       try {
         const saveUserData = await axios.post(Constants.API_ADDRESS + "/jwtLogin",
         null,
         {
           auth: {
-            username: this.state.email,
+            username: this.state.email.toLowerCase(),
             password: this.state.password
           }
         });
 
-        //console.log(saveUserData); //do something with the result
         this.state.jwt = saveUserData.data.jwt;
         this.setState({ step: 5 })
-    } catch (e) {
-      this.setState({ step: 1 })
-      alert("Account creation failed, please try again :/");
-    }
+      } catch (e) {
+        this.setState({ step: 1 })
+        alert("Failed to login after account creation");
+      }
     } catch(error) {
-      //console.log(error);
       this.setState({ step: 1 })
       alert("Account creation failed, please try again :/");
     }

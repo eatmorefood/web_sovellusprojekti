@@ -4,7 +4,6 @@ const passport = require('passport');
 const customer = require('../models/customer_model');
 
 router.get('/profile-data/:ID', passport.authenticate('jwt', { session: false }), function (req, res) {
-    console.log(req.params.ID)
     customer.getProfileData(req.params.ID, function(err, dbResult) {
         if (err) {
             console.log(err);

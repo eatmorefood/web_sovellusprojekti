@@ -54,24 +54,11 @@ function Profile(props) {
                 <div className="customerProfileOptionBorder"/>
             </div>
 
-
-            {/*<div>{ decodedToken.user.email }</div>
-
-            <button onClick={ loadDataWithJWT }>click me</button>
-
-            <table>
-                { userTodos.map(t =>
-                    <tr>
-                        <td>{t.data}</td>
-                    </tr>
-                    ) }
-                </table>*/}
-        
             <Routes>
                 <Route path='/' element={<Navigate to='/profile/personal-info' replace />} />  
                 <Route path='/personal-info' element={<Personalinfo userToken={ decodedToken } userJWT={ props.jwt } />} />
                 <Route path='/order-history' element={<Orderhistory />} />
-                <Route path='/settings' element={<Settings />} />
+                <Route path='/settings' element={<Settings userToken={ decodedToken } userJWT={ props.jwt } logout={ props.logout } />} />
                 <Route path='/*' element={<Navigate to="/profile/personal-info" replace/>} />
             </Routes>  
         </div>        
