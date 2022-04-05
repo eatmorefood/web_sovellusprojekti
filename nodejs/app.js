@@ -15,6 +15,8 @@ require('./config/passport')(passport);
 
 const signupRouter = require('./routes/signup.js');
 const customerRouter = require('./routes/customer.js');
+const businessRouter = require('./routes/business.js');
+const signupbusinessRouter = require('./routes/signupbusiness.js');
 
 const jwtOptions ={
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -59,6 +61,8 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
 
 app.use('/signup', signupRouter);
 app.use('/customer', customerRouter);
+app.use('/business', businessRouter);
+app.use('/signupbusiness', signupbusinessRouter);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

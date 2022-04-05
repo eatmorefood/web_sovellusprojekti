@@ -13,11 +13,12 @@ export default class Signup extends React.Component {
   state = {
     jwt: null,
     step: 1,
-    fname: "",
-    lname: "",
     email: "",
-    phone: "",
+    name: "",
     address: "",
+    open: "",
+    type: "",
+    pricelevel: "",
     password:""
   }
 
@@ -41,13 +42,14 @@ export default class Signup extends React.Component {
     event.preventDefault();
     //console.log(event);
     try {
-      /*const result =*/ await axios.post(Constants.API_ADDRESS + "/signup",
+      /*const result =*/ await axios.post(Constants.API_ADDRESS + "/signupbusiness",
       {
-        fname: this.state.fname,
-        lname: this.state.lname,
         email: this.state.email,
-        phone: this.state.phone,
+        name: this.state.name,
         address: this.state.address,
+        open: this.state.open,
+        type: this.state.type,
+        pricelevel: this.state.pricelevel,
         password: this.state.password
       });
 
