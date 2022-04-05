@@ -22,7 +22,7 @@ function App() {
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
   const [userJWT, setUserJWT] = useState(importJWTFromBrowser);
-  let [allRestaurants, setAllRestaurants] = useState([]);
+  const [allRestaurants, setAllRestaurants] = useState([]);
 
 //========================================= CONDITIONAL RENDERING ==================================================
 
@@ -70,7 +70,7 @@ function App() {
     const fetchQueryResults = async () => {
       try {
         const results = await axios.get(Constants.API_ADDRESS + '/restaurant');
-        setAllRestaurants(results.data);
+        setAllRestaurants(results.data.restaurant);
       } catch(error) {
         console.log("something went wrong");
       }
@@ -119,6 +119,15 @@ function App() {
               <Route path='/' element={<Discover />} />
               { noAuthRoutes }
               { authRoutes }
+
+            {/*
+              <div className="productContainer">
+                      { allRestaurants.map(p => <Restaurant name={p.name} category={p.type} pricelevel={p.pricelevel} />)}  
+              </div>
+
+                */}
+
+
               <Route path='/restaurant/:name' component={ Restaurant } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />

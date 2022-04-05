@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 var port = 8080;
+var path = require('path');
+const helmet = require('helmet');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy,
@@ -10,12 +12,13 @@ const cors = require('cors');
 
 app.use(bodyParser.json()); //whenever request body has type of json, this will activate
 app.use(cors());
+app.use(helmet());
 
 require('./config/passport')(passport);
 
 const signupRouter = require('./routes/signup.js');
 const customerRouter = require('./routes/customer.js');
-const restaurantRouter = require('./routes/restaurants.js');
+var restaurantRouter = require('./routes/restaurant');
 
 const jwtOptions ={
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -65,3 +68,5 @@ app.use('/restaurant', restaurantRouter);
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 })
+
+module.exports = app;
