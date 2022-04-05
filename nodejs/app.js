@@ -60,7 +60,7 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
 
 app.use('/signup', signupRouter);
 app.use('/customer', customerRouter);
-app.use('/restaurants', restaurantRouter);
+app.use('/restaurant', restaurantRouter);
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
