@@ -15,7 +15,7 @@ function Login( props ){
       null,
       {
         auth: {
-          username: event.target.email.value,
+          username: event.target.email.value.toLowerCase(),
           password: event.target.password.value
         }
       });

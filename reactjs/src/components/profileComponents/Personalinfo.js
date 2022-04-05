@@ -23,7 +23,7 @@ const Personalinfo = (props) => {
       }
     }
     loadProfileDataWithJWT();
-  }, [props]); //dependency array includes only prop => triggers useEffect only when component mounts
+  }, [props]); //dependency array includes only props => triggers useEffect only when component mounts
 
   return (
     <div className="personalinfo">
@@ -37,7 +37,7 @@ const Personalinfo = (props) => {
               <div>{ userData.email }</div>
             </div>
             <div className="personalinfoSection1RightBottomLeft">
-            <div className="personalinfoSubTitle">Phone number</div>
+            <div className="personalinfoSubTitle">Mobile number</div>
               <div>{ userData.phonenumber }</div>
             </div>
           </div>
