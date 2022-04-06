@@ -19,6 +19,7 @@ function Profile(props) {
         }
     });
 
+    
     function switchView(param){ //switch user profile navigation bar active element style depending on which page is opened by click
         let x = document.getElementById('customerProfilePersonalInfo');
         let y = document.getElementById('customerProfileOrderHistory');

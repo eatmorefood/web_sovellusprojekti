@@ -59,6 +59,31 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
   res.json({ jwt: generatedJWT }); //react app should store this
 })
 
+//restaurant
+app.post('/jwtBusinessLogin', passport.authenticate('business', { session: false }), (req, res) => {
+  //check username and password already done through passport
+
+  //generate jwt
+  const payload = { 
+    user: {
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name,
+    }
+  };
+
+  const secretKey = "mySecrectKey"; //dont have it in the code above
+
+  const options = {
+    expiresIn: '1d'
+  };
+
+  const generatedJWT = jwt.sign(payload, secretKey, options);
+
+  //send jwt as a response
+  res.json({ jwt: generatedJWT }); //react app should store this
+})
+
 app.use('/signup', signupRouter);
 app.use('/customer', customerRouter);
 app.use('/business', businessRouter);

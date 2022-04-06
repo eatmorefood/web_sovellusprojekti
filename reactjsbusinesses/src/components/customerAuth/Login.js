@@ -11,7 +11,7 @@ function Login( props ){
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = await axios.post(Constants.API_ADDRESS + "/jwtLogin",
+      const result = await axios.post(Constants.API_ADDRESS + "/jwtBusinessLogin",
       null,
       {
         auth: {

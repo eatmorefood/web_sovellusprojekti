@@ -55,7 +55,7 @@ export default class Signup extends React.Component {
 
       //console.log(result);
       try {
-        const saveUserData = await axios.post(Constants.API_ADDRESS + "/jwtLogin",
+        const saveUserData = await axios.post(Constants.API_ADDRESS + "/jwtBusinessLogin",
         null,
         {
           auth: {
