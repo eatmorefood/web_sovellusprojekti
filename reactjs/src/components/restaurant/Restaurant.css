@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+
+
+.restaurantName{
+    font-family: 'Fredoka one', sans-serif;
+    font-size: 4rem;
+    color: white;
+    text-shadow: -0px -0px 20px black;
+    position: absolute;
+    top: 22rem;
+    left: 3rem;
+}
+
+.restaurantContainerType{
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    color: white;
+    text-shadow: -0px -2px 10px black;
+
+}
+
+.restaurantImage{
+    height: 500px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.restaurantDataContainer{
+    padding-top: 3rem;
+    padding-left: 1.7rem;
+    padding-right: 1.7rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.restaurantDataContainerLeft{
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurantDataContainerCenter{
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurantDataContainerRight{
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.restaurantDataTitle{
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.restaurantDataSubtitle{
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.restaurantDataAddress{
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.restaurantDataOpeningtimes{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    font-size: 14px;
+}
+
+.restaurantDataGreytext{
+    color: grey;
+}
+
+@media (max-width: 600px){
+    .restaurantName{
+        left: 1rem;
+        font-size: 3rem;
+    }
+
+    .restaurantImage{
+        height: 400px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .restaurantDataContainer {
+        width: 1600px;
+        margin: 0px auto;
+    }
+
+    .restaurantName{
+        position: relative;
+        width: 1700px;
+        margin: 0px auto;
+        top: 20rem;
+    }
+
+    .restaurantImage{
+        margin-top: -5rem;
+    }
+}
+
+
+

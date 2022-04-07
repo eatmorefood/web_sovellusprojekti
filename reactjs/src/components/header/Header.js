@@ -62,6 +62,7 @@ function Header( props ) {
 
   function emptyPopupSearch() {
     setQuery('');
+    document.getElementById('query').value = '';
   }
     
   window.onclick = function(event) { //close the language dropdown if the user clicks outside of the dropdown element
