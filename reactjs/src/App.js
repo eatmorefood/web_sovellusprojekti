@@ -7,6 +7,7 @@ import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
 import Discover from './components/Discover.js';
 import Restaurant from './components/restaurant/Restaurant.js';
+import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/customerAuth/Login.js';
@@ -119,7 +120,8 @@ function App() {
               <Route path='/' element={<Discover />} />
               { noAuthRoutes }
               { authRoutes }
-              <Route path='/restaurant/:name' component={ Restaurant } />
+              <Route path='/restaurant/:id' element={ <Restaurant /> } />
+              <Route path='/search' element={ <Search /> } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />
               <Route path='/disclaimer' element={<Disclaimer />} />

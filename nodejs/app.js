@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 var port = 8080;
@@ -8,8 +9,9 @@ const JwtStrategy = require('passport-jwt').Strategy,
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-app.use(bodyParser.json()); //whenever request body has type of json, this will activate
 app.use(cors());
+app.use(bodyParser.json()); //parse requests of content-type: application/json
+app.use(bodyParser.urlencoded({ extended: true })); //parse requests of content-type: application/x-www-form-urlencoded 
 
 require('./config/passport')(passport);
 
@@ -23,9 +25,6 @@ const jwtOptions ={
 }
 
 passport.use(new JwtStrategy(jwtOptions, function(jwt_payload, done){
-  //console.log('payload: ')
-  //console.log(jwt_payload)
-
   done(null, jwt_payload);
 }))
 
@@ -61,6 +60,14 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
 app.use('/signup', signupRouter);
 app.use('/customer', customerRouter);
 app.use('/restaurant', restaurantRouter);
+
+app.use((err, req, res, next) => { //general error handler
+  res.status(500).json({
+    error: err,
+    message: 'Internal server error!',
+  })
+  next()
+})
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

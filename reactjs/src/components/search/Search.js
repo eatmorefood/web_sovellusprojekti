@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
-import axios from 'axios';
-import Constants from '../../Constants.json';
-import './Restaurant.css'
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation} from "react-router-dom";
+import './Search.css'
 
-function Restaurant(){
-  const [restaurantData, setRestaurantData] = useState([]);
-  let { id } = useParams();
+function Search(){
+    const [restaurantData, setRestaurantData] = useState([]);
+    const navigate = useNavigate();
 
-  useEffect(() => { //get restaurant data
-    const fetchQueryResults = async () => {
-      try {
-        const results = await axios.get(Constants.API_ADDRESS + '/restaurant/' + id);
-        setRestaurantData(results.data);
-      } catch(error) {
-        console.log("something went wrong");
-      }
-    }
+    const { search } = useLocation();
+    const urlQuery = new URLSearchParams(search);
+    const stateParam = urlQuery.get('q');
 
-    fetchQueryResults();
-  }, [id]);
+
+    useEffect(() => {
+        console.log(stateParam)
+
+        if(!stateParam){ //if there's no query, navigate to main page
+            navigate('/');
+        }
+    }, []);
 
     return (
         <>{restaurantData.map((item) => {
@@ -58,4 +56,4 @@ function Restaurant(){
         })}</>
     )
 };
-export default Restaurant;
+export default Search;

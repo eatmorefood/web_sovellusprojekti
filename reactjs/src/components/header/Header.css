@@ -1,6 +1,6 @@
 .header {
     position: fixed;
-    width: 100vw;
+    width: 100%;
     background-color: white;
     border-bottom: 1px solid lightgrey;
     z-index: 1;
@@ -24,7 +24,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 1rem;
 }
 
 .headerMiddle {
@@ -37,7 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 20vw;
+
 }
 
 .headerSearchForm {
@@ -85,6 +84,16 @@ button {
         font: 11px system-ui;
         color: black;
         padding: 6px 10px;
+    }
+
+    .headerContent{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .headerSearchForm {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 }
 
