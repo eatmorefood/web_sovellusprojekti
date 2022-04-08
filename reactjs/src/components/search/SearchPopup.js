@@ -24,7 +24,9 @@ function SearchPopup(props) {
         props.allRestaurants.filter(item => {
             if (props.query === '') {
                 return null;
-            } else if (item.name.toLowerCase().includes(props.query.toLowerCase()) || item.address.toLowerCase().includes(props.query.toLowerCase())) {
+            } else if (item.name.toLowerCase().includes(props.query.toLowerCase()) ||
+                        item.type.toLowerCase().includes(props.query.toLowerCase()) ||
+                        item.address.toLowerCase().includes(props.query.toLowerCase())) {
                 SearchPopupVariables = <>
                     <Link to={`/search/?q=${props.query}`} style={{ textDecoration: 'none' }}>
                         <div className="SearchPopupShowAll" onClick={() => props.emptyPopupSearch()}>Show all results</div>

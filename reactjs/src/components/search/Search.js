@@ -31,7 +31,9 @@ function Search(props){
                 if (stateParam === '') {
                     navigate('/');
                     return null;
-                } else if (item.name.toLowerCase().includes(stateParam.toLowerCase()) || item.address.toLowerCase().includes(stateParam.toLowerCase())) {
+                } else if (item.name.toLowerCase().includes(stateParam.toLowerCase()) ||
+                            item.type.toLowerCase().includes(stateParam.toLowerCase()) ||
+                            item.address.toLowerCase().includes(stateParam.toLowerCase())) {
                     return item;
                 } else {
                     return null;
