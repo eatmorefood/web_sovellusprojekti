@@ -22,12 +22,13 @@
 }
 
 .restaurantImage{
-    height: 500px;
+    height: 520px;
     width: 100%;
     object-fit: cover;
 }
 
 .restaurantDataContainer{
+    margin: 0px auto;
     padding-top: 3rem;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
@@ -105,7 +106,7 @@
     }
 
     .restaurantImage{
-        margin-top: -5rem;
+        margin-top: -8rem;
     }
 }
 

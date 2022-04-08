@@ -121,7 +121,7 @@ function App() {
               { noAuthRoutes }
               { authRoutes }
               <Route path='/restaurant/:id' element={ <Restaurant /> } />
-              <Route path='/search' element={ <Search /> } />
+              <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />
               <Route path='/disclaimer' element={<Disclaimer />} />

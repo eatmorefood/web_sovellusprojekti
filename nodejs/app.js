@@ -18,6 +18,7 @@ require('./config/passport')(passport);
 const signupRouter = require('./routes/signup.js');
 const customerRouter = require('./routes/customer.js');
 const restaurantRouter = require('./routes/restaurants.js');
+const mealRouter = require('./routes/meal.js');
 
 const jwtOptions ={
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -60,6 +61,7 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
 app.use('/signup', signupRouter);
 app.use('/customer', customerRouter);
 app.use('/restaurant', restaurantRouter);
+app.use('/meal', mealRouter);
 
 app.use((err, req, res, next) => { //general error handler
   res.status(500).json({

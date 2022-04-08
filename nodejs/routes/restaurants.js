@@ -3,7 +3,21 @@ const router = express.Router();
 const restaurant = require('../models/restaurant_model');
 const { storage } = require('../config/cloudinary');
 const multer = require('multer');
-const multer_upload = multer({ storage });
+
+const multer_upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+      if (
+          !file.mimetype.includes("image/png") &&
+          !file.mimetype.includes("image/jpg") &&
+          !file.mimetype.includes("image/jpeg")
+      ) {
+          console.log("file type not allowed")
+          return cb(null, false);
+      }
+      cb(null, true);
+  }
+});
 
 router.get('/:id?', function (req, res) {
   if(req.params.id){ //get single restaurant by id, if id exist in params
@@ -38,17 +52,19 @@ router.get('/:id?', function (req, res) {
 });
 
 router.put('/imageupload', multer_upload.single('image'), async (req, res) => { //update restaurant image
-  console.log("req.body.id: " + req.body.id)
-  console.log("req.file: " + req.file);
-  console.log("req.file.path: " + req.file.path)
+
+  if(!req.body.id || !req.file){
+    console.log("Request data missing or invalid file type");
+    return res.status(400).send({
+        message: "Error! Please fill all form data and check file type",
+        success: false
+    });
+  }
 
   let params = {
     id: req.body.id,
     image_url: req.file.path
   }
-
-  console.log("params.id before sent: " + params.id)
-  console.log("params.id before sent: " + params.image_url)
   
   restaurant.modifyIcon(params, function(err, dbResult) {
     if (err) {

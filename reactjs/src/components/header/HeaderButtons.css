@@ -1,7 +1,6 @@
 #loggedInHeaderBtns{
     display: flex;
     flex-direction: row;
-    margin-right: 3vw;
     cursor: pointer;
 }
 
@@ -36,25 +35,36 @@
     display: none;
     position: absolute;
     top: 4.2rem;
+    margin-left: -80px;
     background-color: #f1f1f1;
-    min-width: 150px;
-    overflow: auto;
     box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.4);
-    z-index: 100;
     border-radius: 6px;
-    right: 2rem;
 }
 
-#userDropdown div{
+.userDropdownOptionProfile{
     padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
     padding-left: 0.8rem;
-    padding-right: 5rem;
+    padding-bottom: 0.8rem;
     color: black;
     text-decoration: none;
     display: block;
-    border-bottom: 1px solid lightgrey;
     font-size: 18px;
+    border-bottom: 1px solid grey;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.userDropdownOptionLogout{
+    padding-top: 0.8rem;
+    padding-left: 0.8rem;
+    padding-right: 5rem;
+    padding-bottom: 0.8rem;
+    color: black;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
 }
 
 #userDropdown span{
@@ -74,7 +84,6 @@
 @media (max-width: 600px){
     .userIcon{
         height: 2.5rem;
-        padding-right: 2rem;
         cursor: pointer;
     }
     
@@ -82,12 +91,12 @@
         display: none;
     }
 
-    #loggedInHeaderBtns{
-        margin-right: 2vw;
-    }
-
     #loggedInArrow{
         display: none;
+    }
+
+    .userDropdownContent{
+        margin-left: -100px;
     }
 }
 
@@ -100,10 +109,6 @@
     
     .btnDiv {
         display: none;
-    }
-
-    #loggedInHeaderBtns{
-        margin-right: 3vw;
     }
 }
 
@@ -230,5 +235,11 @@
     #arrowLanguage{
         margin-left: 5px;
         transition: all 0.3s;
+    }
+}
+
+@media (max-width: 1800px){
+    #loggedInArrow{
+        padding-right: 2rem;
     }
 }

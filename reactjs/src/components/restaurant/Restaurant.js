@@ -6,20 +6,33 @@ import './Restaurant.css'
 
 function Restaurant(){
   const [restaurantData, setRestaurantData] = useState([]);
+  const [restaurantFoods, setRestaurantFoods] = useState([]);
   let { id } = useParams();
 
   useEffect(() => { //get restaurant data
-    const fetchQueryResults = async () => {
+    const fetchRestaurantData = async () => {
       try {
         const results = await axios.get(Constants.API_ADDRESS + '/restaurant/' + id);
         setRestaurantData(results.data);
       } catch(error) {
-        console.log("something went wrong");
+        console.log("Failed to fetch restaurant data");
       }
     }
 
-    fetchQueryResults();
+    const fetchRestaurantFoods = async () => {
+        try {
+          const results = await axios.get(Constants.API_ADDRESS + '/meal/byrestaurant/' + id);
+          setRestaurantFoods(results.data);
+        } catch(error) {
+          console.log("Failed to fetch restaurant foods");
+        }
+      }
+
+    fetchRestaurantData();
+    fetchRestaurantFoods();
   }, [id]);
+
+  console.log(restaurantFoods) // "restaurantFoods" -> tähän tulee array kaikista ravintolan tuotteista
 
     return (
         <>{restaurantData.map((item) => {
