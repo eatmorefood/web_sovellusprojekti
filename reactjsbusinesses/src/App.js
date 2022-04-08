@@ -27,7 +27,10 @@ function App() {
                               }}/>} /></>
   let authRoutes = <></>;
 
+  console.log(importJWTFromBrowser);
+
   if(userJWT != null){
+    //console.log("userjwt log");
     noAuthRoutes = <></>
     authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }/>} /></>
     loginScreen = <></>;

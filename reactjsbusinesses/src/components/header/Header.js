@@ -11,17 +11,14 @@ import { Link } from "react-router-dom";
 
 function Header( props ) {
   let decodedToken = "";
-  let loggedInfname = "";
-  let loggedInlname = "";
-  let fnameChar = "";
-  let lnameChar = "";
+  let loggedInName = "";
+  let nameChar = "";
+
 
   if(props.jwt != null){
   decodedToken = jwt_decode(props.jwt);
-  loggedInfname = decodedToken.user.fname;
-  loggedInlname = decodedToken.user.lname;
-  fnameChar = loggedInfname.charAt(0).toUpperCase();
-  lnameChar = loggedInlname.charAt(0).toUpperCase();
+  loggedInName = decodedToken.user.name;
+  nameChar = loggedInName.charAt(0).toUpperCase();
   }
 
   function myFunction() { //function to show header language dropdown list
@@ -115,13 +112,13 @@ function Header( props ) {
         <div className="headerRight">
           {props.userLoggedIn ?
             <div id="loggedInHeaderBtns" onClick={() => toggleUserDropdown()}>
-              <div id="loggedInUserIcon" ><span id="userNameCharacters">{ fnameChar }{ lnameChar }</span></div>
+              <div id="loggedInUserIcon" ><span id="userNameCharacters">{ nameChar }</span></div>
               <img id="loggedInArrow" src={arrowDown} alt="" />
               <div className="userDropdownContainer">
                 <div id="userDropdown" className="userDropdownContent">
                   <Link to="/profile" style={{ textDecoration: 'none' }}>
                     <div>Profile<br></br>
-                      <span>{ loggedInfname } { loggedInlname }</span>
+                      <span>{ loggedInName }</span>
                     </div>
                   </Link>
                   <Link to="/" style={{ textDecoration: 'none' }}>
