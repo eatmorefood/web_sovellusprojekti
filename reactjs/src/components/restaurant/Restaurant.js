@@ -1,30 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Constants from '../../Constants.json';
 import './Restaurant.css'
+import './RestaurantFood.css'
+import SrcollToTop from '../functional/ScrollToTop.js'
 
 function Restaurant(){
-  const [restaurantData, setRestaurantData] = useState([]);
-  let { id } = useParams();
+    const [restaurantData, setRestaurantData] = useState([]);
+    const [restaurantFoods, setRestaurantFoods] = useState([]);
+    let [foodCategories, setFoodCategories] = useState([]);
+    let { id } = useParams();
+    const navigate = useNavigate();
+    let foodNotFoundMessage = <></>
 
-  useEffect(() => { //get restaurant data
-    const fetchQueryResults = async () => {
-      try {
-        const results = await axios.get(Constants.API_ADDRESS + '/restaurant/' + id);
-        setRestaurantData(results.data);
-      } catch(error) {
-        console.log("something went wrong");
-      }
+//===================== HANDLES CATEGORY CLICKING AND SCROLLING TO CLICKED FOOD CATEGORY =========================
+    const refs = restaurantFoods.reduce((item, value) => { 
+        item[value.category] = React.createRef();
+        return item;
+    }, {});
+
+    const handleClick = category =>
+    refs[category].current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+    });
+
+//================================================================================================================
+
+    useEffect(() => { //on render do the following...
+        if(/^\d+$/.test(id) === false){ //if restaurant ID in path contains other than numbers
+            navigate('/notfound'); //redirect to not found
+        }
+
+        const fetchRestaurantData = async () => { //gets restaurant data
+            try {
+                const results = await axios.get(Constants.API_ADDRESS + '/restaurant/' + id);
+                if(!Array.isArray(results.data) || !results.data.length){
+                    // *above if -statement* checks if restaurant was found (api request has data), otherwise redirect to not found page
+                    navigate('/notfound'); //redirect to not found
+                } else {
+                    setRestaurantData(results.data); //save restaurant data if restaurant found
+
+                    const fetchRestaurantFoods = async () => { //get food items for restaurant
+                        try {
+                            const results = await axios.get(Constants.API_ADDRESS + '/meal/byrestaurant/' + id);
+                            setRestaurantFoods(results.data); //save food items if found
+                            setFoodCategories(results.data.map(({ category }) => category)); //get all food categories and save them into an array
+                        } catch(error) {
+                        console.log("Failed to fetch restaurant foods");
+                        }
+                    }
+                    fetchRestaurantFoods();
+                }
+            } catch(error) { //if fails to fetch restaurant data
+                console.log("Failed to fetch restaurant data");
+            }
+        }
+
+        fetchRestaurantData(); //this actually calls the axios await -> gets restaurant data on render
+    }, [id, navigate]);
+
+    if(!Array.isArray(restaurantFoods) || !restaurantFoods.length){ //if restaurant food items are not found..
+        foodNotFoundMessage = <><div>Sorry!<br></br>We could not find any food items for this restaurant.</div></>
     }
 
-    fetchQueryResults();
-  }, [id]);
+    console.log("track re render")
 
     return (
-        <>{restaurantData.map((item) => {
+        <>{restaurantData.map((item, index) => {
             return (
-                <div className="restaurantMainContainer" key={item.idrestaurant}>   
+                <div className="restaurantMainContainer" key={index}>   
                     <div className="restaurantName">
                         <div>{item.name}</div>   
                         <div className="restaurantContainerType">{item.type}</div>
@@ -33,15 +79,64 @@ function Restaurant(){
                     
                     <div className="restaurantDataContainer">
                         <div className="restaurantDataContainerLeft">
-                            <div>Categories</div>
+                            <div id="categoriesStickyScrollable">
+                                <h3>Categories</h3>
+                                
+                                <div className="restaurantDataContainerLeftCategories" >
+                                {
+                                
+                                    foodCategories.map((category, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <div className="restaurantDataContainerLeftCategoryTitle"
+                                                    onClick={() => handleClick(category)}>{ category }</div>
+                                            </div>
+                                        )
+                                    })
+                                    
+                                }
+                                </div>
+                            </div>
                         </div>
 
                         <div className="restaurantDataContainerCenter">
-                            center: <br></br><br></br>
-                            basically render all restaurant products here as a list jjh jh jh jh jh jh  kkj k jk jk jk j kj k j k j kj kj k j kj kj  basically render all restaurant products here as a list jjh jh jh jh jh jh  kkj k jk jk jk j kj k j k j kj kj k j kj kj  
+                            { foodNotFoundMessage }
+                            {
+                                foodCategories.map((category, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <div className="restaurantFoodItemCategoryTitle"
+                                                ref={refs[category]}>{ category }</div>
+                                            <div className="restaurantFoodCategoryDivider"/>
+                                        <div>{
+                                        restaurantFoods.filter(item => {
+                                            if (item.category.toLowerCase().includes(category.toLowerCase())) {
+                                                return item;
+                                            } else {
+                                                return null;
+                                            }
+                                        }).map((item, index) => (
+                                            <div id="restaurantFoodItem" key={index}>
+                                                <div className="restaurantFoodItemContainer" >
+                                                    <div className="restaurantFoodItemContainerLeft">
+                                                        <img className="restaurantFoodItemPhoto" src={item.image} alt="" loading="eager"/>
+                                                    </div>
+                                                    <div className="restaurantFoodItemContainerRight">
+                                                        <div className="restaurantFoodItemName">{item.name}</div>
+                                                        <div className="restaurantFoodItemDescription">{item.description}</div>
+                                                        <div className="restaurantFoodItemPrice">{item.price}€</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                        </div>
+                                    </div>
+                                )})
+                            }
                         </div>
 
-                        <div className="restaurantDataContainerRight">
+                        <div id="restaurantDataContainerRight">
+                        <SrcollToTop />
                             <div className="restaurantDataTitle">Restaurant details</div>
                             <div className="restaurantDataSubtitle">Address</div>
                             <div className='restaurantDataAddress'>{item.address}</div><br></br>

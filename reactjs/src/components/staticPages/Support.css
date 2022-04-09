@@ -81,6 +81,7 @@
     }
 
     .supportImage{
-        margin-top: -3.5rem;
+        margin-top: -8.45rem;
+        z-index: -10000;
     }
 }

@@ -44,7 +44,7 @@ function Login( props ){
   }
 
   return (
-    <div className="Login animateLoginZoom">
+    <div className="Login">
       <img className="closeLogin" src={closeBtn} onClick={ props.displayLogin } alt="x" />
       <div className="loginContent">
         <div className="loginTitle">Log in or create account</div>
