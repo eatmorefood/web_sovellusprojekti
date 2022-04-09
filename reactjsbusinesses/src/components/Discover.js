@@ -6,7 +6,7 @@ function Discover() {
   return (
     <div className="discover">
 
-        <div>This is main page (Discover.js)</div>
+        <div>This is logged out main page (Discover.js)</div>
         <img className="haha" alt="" src={muffin}></img>
 
     </div>

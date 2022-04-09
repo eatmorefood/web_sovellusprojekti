@@ -10,7 +10,8 @@ import Login from './components/customerAuth/Login.js';
 import NotFound from './components/staticPages/NotFound.js';
 import Signup from './components/customerAuth/Signup.js';
 import Disclaimer from './components/staticPages/Disclaimer.js';
-import Profile from './components/profileComponents/Profile.js';
+import BusinessProfile from './components/profileComponents/BusinessProfile.js';
+import MenuPage from './components/MenuPage.js';
 
 const importJWTFromBrowser = window.localStorage.getItem('token');
 
@@ -27,12 +28,15 @@ function App() {
                               }}/>} /></>
   let authRoutes = <></>;
 
+  let mainPageRoutes =<Route path='/' element={<Discover userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />;
+
   console.log(importJWTFromBrowser);
 
   if(userJWT != null){
     //console.log("userjwt log");
+    mainPageRoutes = <Route path='/' element={<MenuPage userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />
     noAuthRoutes = <></>
-    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }/>} /></>
+    authRoutes = <><Route path='/profile/*' element={<BusinessProfile jwt={ userJWT }/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -92,7 +96,7 @@ function App() {
                 window.localStorage.removeItem('token')}}/>
         <div id="appContent">
             <Routes>
-              <Route path='/' element={<Discover />} />
+              { mainPageRoutes }
               { noAuthRoutes }
               { authRoutes }
               <Route path='/support' element={<Support />} />
