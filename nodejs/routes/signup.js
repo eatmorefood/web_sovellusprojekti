@@ -41,6 +41,8 @@ function (req, res) {
     const salt = bcrypt.genSaltSync(10);
     const passwordHash = bcrypt.hashSync(req.body.password, salt);
 
+    const date = new Date();
+
     const newUser = {
         id: uuidv4(),
         fname: req.body.fname,
@@ -48,6 +50,7 @@ function (req, res) {
         email: req.body.email,
         phone: req.body.phone,
         address: req.body.address,
+        creationdate: date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear(),
         password: passwordHash //password needs to be hashed
     }
 

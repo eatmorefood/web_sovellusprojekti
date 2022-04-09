@@ -15,7 +15,7 @@ function Login( props ){
       null,
       {
         auth: {
-          username: event.target.email.value,
+          username: event.target.email.value.toLowerCase(),
           password: event.target.password.value
         }
       });
@@ -44,7 +44,7 @@ function Login( props ){
   }
 
   return (
-    <div className="Login animateLoginZoom">
+    <div className="Login">
       <img className="closeLogin" src={closeBtn} onClick={ props.displayLogin } alt="x" />
       <div className="loginContent">
         <div className="loginTitle">Log in or create account</div>

@@ -1,9 +1,13 @@
 import './App.css';
 import {Routes, Route } from "react-router-dom";
 import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
+import Constants from './Constants.json';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
 import Discover from './components/Discover.js';
+import Restaurant from './components/restaurant/Restaurant.js';
+import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/customerAuth/Login.js';
@@ -19,6 +23,9 @@ function App() {
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
   const [userJWT, setUserJWT] = useState(importJWTFromBrowser);
+  let [allRestaurants, setAllRestaurants] = useState([]);
+
+//========================================= CONDITIONAL RENDERING ==================================================
 
   let loginScreen = <></>; //initialize login screen as non-visible
   let noAuthRoutes = <><Route path='/signup' element={<Signup login={ receivedJWT => {
@@ -29,7 +36,9 @@ function App() {
 
   if(userJWT != null){
     noAuthRoutes = <></>
-    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }/>} /></>
+    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }
+                                                              logout={ () => {setUserJWT(null)
+                                                              window.localStorage.removeItem('token')}}/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -38,27 +47,35 @@ function App() {
                           displayLogin={ toggleLogin } />;
   }
   
-  /*useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
+  useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
     const app = document.getElementById("blurrableContent");
-    if( loginVisible === true) {
-      app.style.filter = "blur(8px)";
+    if(loginVisible === true && userJWT === null) {
+      app.style.filter = "blur(4px)";
       app.style.background = "lightgrey";
       app.style.pointerEvents = "none";
-      app.style.cursor = "pointer"; 
       document.body.style.overflow = "hidden";
       
-    } else if( loginVisible === false) { //restores normal page view when login screen not visible
-      app.style.removeProperty("background");
-      app.style.removeProperty("filter"); 
-      app.style.removeProperty("pointerEvents");
-      app.style.removeProperty("pointer");
+    } else if(loginVisible === false || userJWT !== null) { //restores normal page view when login screen not visible
+      app.style.filter = "none";
+      app.style.background = "none";
+      app.style.pointerEvents = "all";
       document.body.style.removeProperty("overflow"); 
     }
-  });*/
+  },[loginVisible, userJWT]);
 
-  function toggleLogin() { //function to switch login screen visibility status
-    setLoginVisible(!loginVisible);
-  }
+//========================================= USE EFFECTS ==================================================
+
+  useEffect(() => { //get all restaurants 
+    const fetchQueryResults = async () => {
+      try {
+        const results = await axios.get(Constants.API_ADDRESS + '/restaurant');
+        setAllRestaurants(results.data);
+      } catch(error) {
+        console.log("something went wrong");
+      }
+    }
+    fetchQueryResults();
+  }, []);
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -74,15 +91,23 @@ function App() {
     }
   }, [loginVisible]);
 
+//========================================= FUNCTIONS ==================================================
+
+  function toggleLogin() { //function to switch login screen visibility status
+    setLoginVisible(!loginVisible);
+  }
+
+//========================================= EXPORT APP MAIN FRAME ==================================================
+
   return (
     
     <div className="App">
-      {/*<Router>*/}
       <div id="loginMain" ref={ref}>
         { loginScreen }
       </div>
       <div id="blurrableContent"> 
         <Header userLoggedIn={ userJWT != null }
+                allRestaurants={ allRestaurants }
                 jwt={ userJWT }
                 displayLogin={ toggleLogin }
                 logout={ () => {setUserJWT(null)
@@ -92,6 +117,8 @@ function App() {
               <Route path='/' element={<Discover />} />
               { noAuthRoutes }
               { authRoutes }
+              <Route path='/restaurant/:id' element={ <Restaurant /> } />
+              <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />
               <Route path='/disclaimer' element={<Disclaimer />} />
@@ -104,7 +131,6 @@ function App() {
         </footer>
 
       </div>
-      {/*</Router>*/}
     </div>
   );
 }

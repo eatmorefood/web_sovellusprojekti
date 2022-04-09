@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SearchPopup from '../search/SearchPopup.js';
 import './Header.css';
 import './HeaderButtons.css';
 import jwt_decode from 'jwt-decode';
@@ -9,6 +10,18 @@ import logo_small from '../../images/logo_small.png';
 import { Link } from "react-router-dom";
 
 function Header( props ) {
+  const [query, setQuery] = useState('');
+  let SearchResultElement = <></>;
+
+  if(query.replace(/\s/g, '').length){
+    SearchResultElement = <><SearchPopup query={ query } allRestaurants={ props.allRestaurants } emptyPopupSearch={ emptyPopupSearch } /></>
+  }
+
+  const handleQueryChange = (event) => {
+    event.preventDefault();
+    setQuery(event.target.value);
+  }
+
   let decodedToken = "";
   let loggedInfname = "";
   let loggedInlname = "";
@@ -45,6 +58,11 @@ function Header( props ) {
       z.style.display = "none";
       arr.style.removeProperty("transform");
     }
+  }
+
+  function emptyPopupSearch() {
+    setQuery('');
+    document.getElementById('query').value = '';
   }
     
   window.onclick = function(event) { //close the language dropdown if the user clicks outside of the dropdown element
@@ -96,6 +114,7 @@ function Header( props ) {
               name="q"
               placeholder="Search..."
               autoComplete="off"
+              onChange = { handleQueryChange }
             />
             <button>
               <svg viewBox="0 0 1024 1024">
@@ -109,18 +128,18 @@ function Header( props ) {
             
         <div className="headerRight">
           {props.userLoggedIn ?
-            <div id="loggedInHeaderBtns" onClick={() => toggleUserDropdown()}>
-              <div id="loggedInUserIcon" ><span id="userNameCharacters">{ fnameChar }{ lnameChar }</span></div>
-              <img id="loggedInArrow" src={arrowDown} alt="" />
-              <div className="userDropdownContainer">
+            <div className="userDropdownContainer">
+              <div id="loggedInHeaderBtns" onClick={() => toggleUserDropdown()}>
+                <div id="loggedInUserIcon" ><span id="userNameCharacters">{ fnameChar }{ lnameChar }</span></div>
+                <img id="loggedInArrow" src={arrowDown} alt="" />
                 <div id="userDropdown" className="userDropdownContent">
                   <Link to="/profile" style={{ textDecoration: 'none' }}>
-                    <div>Profile<br></br>
+                    <div className="userDropdownOptionProfile">Profile<br></br>
                       <span>{ loggedInfname } { loggedInlname }</span>
                     </div>
                   </Link>
                   <Link to="/" style={{ textDecoration: 'none' }}>
-                    <div onClick={() => props.logout()}>Log out</div>
+                    <div className="userDropdownOptionLogout" onClick={() => props.logout()}>Log out</div>
                   </Link>
                 </div>
               </div>
@@ -152,6 +171,8 @@ function Header( props ) {
         </div> {/* header right section ends */}
 
       </div>
+
+    { SearchResultElement }
     </div>
     );
 }

@@ -1,15 +1,15 @@
 .header {
-    position: fixed;
-    width: 100vw;
+    width: 100%;
     background-color: white;
     border-bottom: 1px solid lightgrey;
-    z-index: 1;
+    z-index: 10000;
 }
 
 .headerContent {
     height: 65px;
     display: flex;
     justify-content: space-between;
+    z-index: 10000;
 }
 
 .logoLarge{
@@ -24,20 +24,22 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 1rem;
+    width: 33.333%;
+    padding-left: 2rem;
 }
 
 .headerMiddle {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0px auto;
 }
 
 .headerRight {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 20vw;
+    width: 33.333%;
 }
 
 .headerSearchForm {
@@ -86,6 +88,20 @@ button {
         color: black;
         padding: 6px 10px;
     }
+
+    .headerContent{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .headerSearchForm {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .headerLeft {
+        padding-left: 0.5rem;
+    }
 }
 
 @media(max-width:800px) {
@@ -104,20 +120,6 @@ button {
     .logoSmall{
         display: none;
     }
-
-    .headerLeft {
-        width: 33.333%;
-        min-width: 300px;
-        padding-left: 2rem;
-    }
-
-    .headerMiddle {
-        width: 33.333%;
-    }
-
-    .headerRight {
-        width: 33.333%;
-    }
 }
 
 @media (min-width: 1800px) {
@@ -125,40 +127,13 @@ button {
         display: none;
     }
 
+    .headerLeft {
+        padding-left: 0rem;
+    }
+
     .headerContent {
         width: 1700px;
         margin: 0px auto;
         align-items: center;
-    }
-    
-    .headerLeft {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        width: 33.333%;
-    }
-
-    .headerMiddle {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 33.333%;
-    }
- 
-    .headerRight {
-        display: flex;
-        align-items: center;  
-        justify-content: flex-end; 
-        width: 33.333%;
-    }
-    
-    .headerSearchForm {
-        margin-left: 0rem;
-        margin-right: 0rem;
-    }
-    
-    .searchInput {
-        font: 16px system-ui;
     }
 }

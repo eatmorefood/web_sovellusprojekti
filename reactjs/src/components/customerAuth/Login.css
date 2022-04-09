@@ -4,20 +4,17 @@
     background-color: white;
     border-radius: 1rem;
     border: 1px solid grey;
-    top: 7rem;
-    left: 50%;
-    transform: translate(-50%, 0);
     z-index: 100000;
-    padding: 2rem
-}
-
-.animateLoginZoom {
+    padding: 2rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     animation: zoomanimation 0.4s;
 }
 
 @keyframes zoomanimation {
-    from {transform: scale(0) translate(-50%);} 
-    to {transform: scale(1) translate(-50%);}
+    from {transform: scale(0) translate(-50%, -50%);} 
+    to {transform: scale(1) translate(-50%, -50%);}
 }
 
 .closeLogin{
@@ -155,11 +152,7 @@
 
 @media (max-width: 600px){
     .Login{
-        top: 5rem;
-        left: 50vw;
-        transform: translate(-50%, 0);
-        z-index: 100000;
         padding: 1rem;
-        width: 85vw;
+        width: 80vw;
     }
 }
