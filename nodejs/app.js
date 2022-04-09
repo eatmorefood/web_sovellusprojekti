@@ -17,8 +17,11 @@ require('./config/passport')(passport);
 
 const signupRouter = require('./routes/signup.js');
 const customerRouter = require('./routes/customer.js');
+const businessRouter = require('./routes/business.js');
+const signupbusinessRouter = require('./routes/signupbusiness.js');
 const restaurantRouter = require('./routes/restaurants.js');
 const mealRouter = require('./routes/meal.js');
+
 
 const jwtOptions ={
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -58,8 +61,35 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
   res.json({ jwt: generatedJWT }); //react app should store this
 })
 
+//restaurant
+app.post('/jwtBusinessLogin', passport.authenticate('business', { session: false }), (req, res) => {
+  //check username and password already done through passport
+
+  //generate jwt
+  const payload = { 
+    user: {
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name,
+    }
+  };
+
+  const secretKey = "mySecrectKey"; //dont have it in the code above
+
+  const options = {
+    expiresIn: '1d'
+  };
+
+  const generatedJWT = jwt.sign(payload, secretKey, options);
+
+  //send jwt as a response
+  res.json({ jwt: generatedJWT }); //react app should store this
+})
+
 app.use('/signup', signupRouter);
 app.use('/customer', customerRouter);
+app.use('/business', businessRouter);
+app.use('/signupbusiness', signupbusinessRouter);
 app.use('/restaurant', restaurantRouter);
 app.use('/meal', mealRouter);
 
