@@ -2,13 +2,14 @@
     width: 100%;
     background-color: white;
     border-bottom: 1px solid lightgrey;
-    z-index: 1;
+    z-index: 10000;
 }
 
 .headerContent {
     height: 65px;
     display: flex;
     justify-content: space-between;
+    z-index: 10000;
 }
 
 .logoLarge{

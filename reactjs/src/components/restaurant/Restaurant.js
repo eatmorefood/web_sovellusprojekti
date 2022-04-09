@@ -4,6 +4,7 @@ import axios from 'axios';
 import Constants from '../../Constants.json';
 import './Restaurant.css'
 import './RestaurantFood.css'
+import SrcollToTop from '../functional/ScrollToTop.js'
 
 function Restaurant(){
     const [restaurantData, setRestaurantData] = useState([]);
@@ -28,10 +29,14 @@ function Restaurant(){
 //================================================================================================================
 
     useEffect(() => { //on render do the following...
+        if(/^\d+$/.test(id) === false){ //if restaurant ID in path contains other than numbers
+            navigate('/notfound'); //redirect to not found
+        }
+
         const fetchRestaurantData = async () => { //gets restaurant data
             try {
                 const results = await axios.get(Constants.API_ADDRESS + '/restaurant/' + id);
-                if(!Array.isArray(results.data) || !results.data.length) {
+                if(!Array.isArray(results.data) || !results.data.length){
                     // *above if -statement* checks if restaurant was found (api request has data), otherwise redirect to not found page
                     navigate('/notfound'); //redirect to not found
                 } else {
@@ -59,7 +64,9 @@ function Restaurant(){
     if(!Array.isArray(restaurantFoods) || !restaurantFoods.length){ //if restaurant food items are not found..
         foodNotFoundMessage = <><div>Sorry!<br></br>We could not find any food items for this restaurant.</div></>
     }
-      
+
+    console.log("track re render")
+
     return (
         <>{restaurantData.map((item, index) => {
             return (
@@ -72,20 +79,23 @@ function Restaurant(){
                     
                     <div className="restaurantDataContainer">
                         <div className="restaurantDataContainerLeft">
-                            <h3>Categories</h3>
-                            <div className="restaurantDataContainerLeftCategories" >
-                            {
-                            
-                                foodCategories.map((category, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <div className="restaurantDataContainerLeftCategoryTitle"
-                                                onClick={() => handleClick(category)}>{ category }</div>
-                                        </div>
-                                    )
-                                })
+                            <div id="categoriesStickyScrollable">
+                                <h3>Categories</h3>
                                 
-                            }
+                                <div className="restaurantDataContainerLeftCategories" >
+                                {
+                                
+                                    foodCategories.map((category, index) => {
+                                        return (
+                                            <div key={index}>
+                                                <div className="restaurantDataContainerLeftCategoryTitle"
+                                                    onClick={() => handleClick(category)}>{ category }</div>
+                                            </div>
+                                        )
+                                    })
+                                    
+                                }
+                                </div>
                             </div>
                         </div>
 
@@ -126,6 +136,7 @@ function Restaurant(){
                         </div>
 
                         <div id="restaurantDataContainerRight">
+                        <SrcollToTop />
                             <div className="restaurantDataTitle">Restaurant details</div>
                             <div className="restaurantDataSubtitle">Address</div>
                             <div className='restaurantDataAddress'>{item.address}</div><br></br>

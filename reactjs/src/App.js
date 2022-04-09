@@ -47,23 +47,21 @@ function App() {
                           displayLogin={ toggleLogin } />;
   }
   
-  /*useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
+  useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
     const app = document.getElementById("blurrableContent");
-    if( loginVisible === true) {
-      app.style.filter = "blur(8px)";
+    if(loginVisible === true && userJWT === null) {
+      app.style.filter = "blur(4px)";
       app.style.background = "lightgrey";
       app.style.pointerEvents = "none";
-      app.style.cursor = "pointer"; 
       document.body.style.overflow = "hidden";
       
-    } else if( loginVisible === false) { //restores normal page view when login screen not visible
-      app.style.removeProperty("background");
-      app.style.removeProperty("filter"); 
-      app.style.removeProperty("pointerEvents");
-      app.style.removeProperty("pointer");
+    } else if(loginVisible === false || userJWT !== null) { //restores normal page view when login screen not visible
+      app.style.filter = "none";
+      app.style.background = "none";
+      app.style.pointerEvents = "all";
       document.body.style.removeProperty("overflow"); 
     }
-  });*/
+  },[loginVisible, userJWT]);
 
 //========================================= USE EFFECTS ==================================================
 
@@ -104,7 +102,6 @@ function App() {
   return (
     
     <div className="App">
-      {/*<Router>*/}
       <div id="loginMain" ref={ref}>
         { loginScreen }
       </div>

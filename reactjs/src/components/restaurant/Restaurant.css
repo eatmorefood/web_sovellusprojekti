@@ -21,14 +21,16 @@
 }
 
 .restaurantImage{
+    position: relative;
     height: 520px;
     width: 100%;
     object-fit: cover;
+    z-index: -10000;
 }
 
 .restaurantDataContainer{
     margin: 0px auto;
-    padding-top: 3rem;
+    padding-top: 4rem;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
     display: flex;
@@ -42,6 +44,11 @@
     flex-direction: column;
     gap: 1rem;
     text-transform: uppercase;
+}
+
+#categoriesStickyScrollable{
+    position: sticky;
+    top: 3rem;
 }
 
 .restaurantDataContainerLeftCategories{
@@ -89,12 +96,14 @@
 .restaurantDataContainerCenter{
     display: flex;
     flex-direction: column;
+    margin-top: -2rem;
 }
 
 #restaurantDataContainerRight{
     display: flex;
     flex-direction: column;
     min-width: 200px;
+    margin-top: 1.2rem;
 }
 
 .restaurantDataTitle{
@@ -158,6 +167,11 @@
         display: flex;
         flex-direction: column;
         gap: 0rem;
+    }
+
+    #categoriesStickyScrollable{
+        position: relative;
+        top: 0;
     }
     
     .restaurantDataContainerLeftCategories{
