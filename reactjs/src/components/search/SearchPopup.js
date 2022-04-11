@@ -37,8 +37,8 @@ function SearchPopup(props) {
                 return null;
             }
         }
-        ).slice(0, 5).map((item, index) => (
-            <div id="SearchPopupItem" key={index}>
+        ).slice(0, 5).map((item) => (
+            <div id="SearchPopupItem" key={item.idrestaurant}>
                 <div className="SearchPopupItemContainer" onClick={() => SearchItemClicked(item)}>
                     <img className="searchPopupItemPhoto" src={item.image} alt="" loading="eager"/>
                     <div className="SearchPopupItemInnerContainer">

@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
 
-
 .restaurantName{
     font-family: 'Fredoka one', sans-serif;
     font-size: 4rem;
@@ -192,7 +191,7 @@
         position: relative;
         width: 1700px;
         margin: 0px auto;
-        top: 20rem;
+        top: 18rem;
     }
 
     .restaurantImage{
