@@ -39,9 +39,9 @@ function Search(props){
                     return null;
                 }
             }
-            ).map((item, index) => (
-                <Link className="SearchResultsItemLink" to={`/restaurant/${item.idrestaurant}`}>
-                    <div id="SearchResultItemCard" key={index} onClick={() => SearchItemClicked(item)} >
+            ).map((item => (
+                <Link className="SearchResultsItemLink" to={`/restaurant/${item.idrestaurant}`} key={item.idrestaurant}>
+                    <div id="SearchResultItemCard" onClick={() => SearchItemClicked(item)} >
                         <img className="searchResultItemPhoto" src={item.image} alt="" loading="eager"/>
                         <div className="SearchResultItemInnerContainer">
                             <div className="SearchResultItemRestaurantName">{item.name}</div>
@@ -55,7 +55,7 @@ function Search(props){
                         </div>
                     </div>
                 </Link>
-            ))
+            )))
         }</div>
     </div>);
 };

@@ -2,17 +2,66 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Constants from '../../Constants.json';
-import './Restaurant.css'
-import './RestaurantFood.css'
-import SrcollToTop from '../functional/ScrollToTop.js'
+import './Restaurant.css';
+import './RestaurantFood.css';
+import SrcollToTop from '../functional/ScrollToTop.js';
+import SingleFoodItem from './SingleFoodItem.js';
+import HandleClickOutside from "../functional/HandleCLickOutside.js";
 
-function Restaurant(){
-    const [restaurantData, setRestaurantData] = useState([]);
-    const [restaurantFoods, setRestaurantFoods] = useState([]);
-    let [foodCategories, setFoodCategories] = useState([]);
+function Restaurant({ jwt }){ //displays single restaurant page
     let { id } = useParams();
     const navigate = useNavigate();
-    let foodNotFoundMessage = <></>
+
+    const [restaurantData, setRestaurantData] = useState([]); //stores specific restaurant's data
+    const [restaurantFoods, setRestaurantFoods] = useState([]); //stores all foods for specific restaurant
+    let [foodCategories, setFoodCategories] = useState([]); //stores all food categories
+    const {ref, displayFoodPopup, setDisplayFoodPopup} = HandleClickOutside(false);; //display / hide single restaurant item when clicked
+    const [foodPopupItemData, setFoodPopupItemData] = useState([null]); //stores clicked single food itme's data
+    //const [userJWT, setUserJWT] = useState(jwt);
+
+    //console.log(userJWT)
+    console.log("track re render")  
+
+    let singleFoodItemPopup = <></>;
+    let foodNotFoundMessage = <></>;
+
+//===================== HANDLES HIDING / DISPLAYING SINGLE FOOD ITEM CARD WHEN CLICKED =========================
+    if(displayFoodPopup === true){ //if restaurant food items are not found..
+        singleFoodItemPopup = <div ref={ref}><SingleFoodItem itemData={foodPopupItemData}
+                                                             closeBtn={() => setDisplayFoodPopup(!displayFoodPopup)}/></div>;
+
+        let app = document.getElementById("restaurantMainContainer"); //this block of code adjusts popup background
+        let a = document.getElementById("header");
+        let b = document.getElementById("footer");
+        app.style.filter = "blur(10px)";
+        app.style.pointerEvents = "none";     
+        a.style.filter = "blur(10px)";
+        a.style.pointerEvents = "none";
+        b.style.filter = "blur(10px)";
+        b.style.pointerEvents = "none";
+        document.body.style.overflow = "hidden";
+    } else if(displayFoodPopup === false){
+        document.body.style.removeProperty("overflow"); 
+    }
+
+    window.onclick = () => {
+        if(displayFoodPopup === false){ //this block of code adjusts app background back to normal when popup not visible
+            let app = document.getElementById("restaurantMainContainer");
+            let a = document.getElementById("header");
+            let b = document.getElementById("footer");
+            app.style.filter = "none";
+            app.style.pointerEvents = "all";     
+            a.style.filter = "none";
+            a.style.pointerEvents = "all";
+            b.style.filter = "none";
+            b.style.pointerEvents = "all"; 
+        }
+    }
+
+    const OpenFoodPopup = (item) => { //executes when single food item is clicked
+        setFoodPopupItemData(item)
+        setDisplayFoodPopup(true);
+    };
 
 //===================== HANDLES CATEGORY CLICKING AND SCROLLING TO CLICKED FOOD CATEGORY =========================
     const refs = restaurantFoods.reduce((item, value) => { 
@@ -27,7 +76,6 @@ function Restaurant(){
     });
 
 //================================================================================================================
-
     useEffect(() => { //on render do the following...
         if(/^\d+$/.test(id) === false){ //if restaurant ID in path contains other than numbers
             navigate('/notfound'); //redirect to not found
@@ -63,14 +111,15 @@ function Restaurant(){
 
     if(!Array.isArray(restaurantFoods) || !restaurantFoods.length){ //if restaurant food items are not found..
         foodNotFoundMessage = <><div>Sorry!<br></br>We could not find any food items for this restaurant.</div></>
-    }
+    } 
 
-    console.log("track re render")
-
+//================================================= RENDER =================================================
     return (
         <>{restaurantData.map((item, index) => {
             return (
-                <div className="restaurantMainContainer" key={index}>   
+                <div key={index}>
+                <div id="singleRestItemPopupBox" >{ singleFoodItemPopup }</div>
+                <div id="restaurantMainContainer">
                     <div className="restaurantName">
                         <div>{item.name}</div>   
                         <div className="restaurantContainerType">{item.type}</div>
@@ -115,20 +164,22 @@ function Restaurant(){
                                             } else {
                                                 return null;
                                             }
-                                        }).map((item, index) => (
-                                            <div id="restaurantFoodItem" key={index}>
-                                                <div className="restaurantFoodItemContainer" >
-                                                    <div className="restaurantFoodItemContainerLeft">
-                                                        <img className="restaurantFoodItemPhoto" src={item.image} alt="" loading="eager"/>
+                                        }).map((item => (
+                                            <div id="restaurantFoodItem"
+                                                key={item.idfood}
+                                                onClick={() => OpenFoodPopup(item)}>
+                                                <div id="restaurantFoodItemContainer" >
+                                                    <div id="restaurantFoodItemContainerLeft">
+                                                        <img id="restaurantFoodItemPhoto" src={item.image} alt="" loading="eager"/>
                                                     </div>
-                                                    <div className="restaurantFoodItemContainerRight">
-                                                        <div className="restaurantFoodItemName">{item.name}</div>
-                                                        <div className="restaurantFoodItemDescription">{item.description}</div>
-                                                        <div className="restaurantFoodItemPrice">{item.price}€</div>
+                                                    <div id="restaurantFoodItemContainerRight">
+                                                        <div id="restaurantFoodItemName">{item.name}</div>
+                                                        <div id="restaurantFoodItemDescription">{item.description}</div>
+                                                        <div id="restaurantFoodItemPrice">{item.price}€</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        ))}
+                                        )))}
                                         </div>
                                     </div>
                                 )})
@@ -149,8 +200,9 @@ function Restaurant(){
                         </div>
                     </div>
                 </div>
-            );
+            </div>);
         })}</>
     )
 };
+
 export default Restaurant;

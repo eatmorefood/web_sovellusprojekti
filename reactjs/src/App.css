@@ -6,7 +6,7 @@
     transition: all 5s;
 }
 
-.footer {
+#footer {
     margin-top: 5rem;
     height: 250px;
     background-color: rgb(252, 241, 225);

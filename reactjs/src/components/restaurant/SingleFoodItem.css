@@ -1,0 +1,162 @@
+.singleFoodItemPopup{
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid black;
+    animation: zoomanimation 0.3s;
+}
+
+@keyframes zoomanimation {
+    from {transform: scale(0) translate(-50%, -50%);} 
+    to {transform: scale(1) translate(-50%, -50%);}
+}
+
+.singleFoodItemPopupContainerTop{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.singleFoodItemPopupPhoto{
+    padding-top: 0.5rem;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10rem;
+}
+
+.singleFoodItemPopupContainerCenter{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    justify-content: space-around;
+    gap: 6px;
+}
+
+.singleFoodItemPopupName{
+    font-weight: 500;
+}
+
+.singleFoodItemPopupDescription{
+    color: grey;
+}
+
+.singleFoodItemPopupPrice{
+    font-size: 1rem;
+    color: rgb(255, 102, 0);
+}
+
+.singleFoodItemPopupContainerBottom{
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem;
+    justify-content: 3fr 7fr;
+    gap: 1rem;
+    font-weight: 500;
+}
+
+.singleFoodItemPopupQuantity{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: rgb(255, 237, 206);
+    border-radius: 0.5rem;
+}
+
+.singleFoodItemPopupQuantityButton{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 10rem;
+    background-color: white;
+}
+
+.singleFoodItemPopupQuantityButton:hover{
+    background-color: rgb(240, 154, 56);
+}
+
+.singleFoodItemPopupQuantityAmount{
+
+}
+
+.singleFoodItemPopupAddToCart{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background-color: rgb(253, 167, 68);
+    border-radius: 0.5rem;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.singleFoodItemPopupAddToCart:hover{
+    background-color: rgb(255, 135, 80);
+}
+
+@media (max-width: 600px) {
+    .singleFoodItemPopupContainer{
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem; 
+        padding-top: 1.5rem;      
+    }
+    
+    .singleFoodItemPopupContainerLeft{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: none;
+        max-height: none;
+    }
+    
+    .singleFoodItemPopupPhoto{
+        width: 150px;
+        height: 150px;
+        border-radius: 90rem;
+    }
+    
+    .singleFoodItemPopupContainerRight{
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        justify-content: space-around;
+        gap: 6px;
+    }
+}
+
+.singleFoodItemPopupCloseBtn{
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    height: 2rem;
+    background-color: rgb(255, 237, 206);
+    border-radius: 10rem;
+    transition: all 0.1s;
+}
+
+.singleFoodItemPopupCloseBtn:hover{
+    background-color: rgb(253, 167, 68);
+}
+
+@media (max-width: 850px){
+    .singleFoodItemPopup{
+        width: 90vw;
+    }
+}

@@ -10,6 +10,11 @@ const customer={
     getProfileData: function(ID, callback) { 
         return db.query('select * from "customer" where "idcustomer" = $1;',
         [ID], callback);
+    },
+
+    findExistingEmail: function(checkEmail, callback) { 
+        return db.query('select "email" from "customer" where "email" = $1;',
+        [checkEmail], callback);
     }
 
 }
