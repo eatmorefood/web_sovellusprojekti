@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import jwt_decode from 'jwt-decode';
 import {Routes, Route, Navigate, Link} from "react-router-dom";
-import Personalinfo from './Personalinfo';
+import Personalinfo from './BusinessInfo';
 import Orderhistory from './Orderhistory';
 import Settings from './Settings';
 import './Profile.css';
 
-function Profile(props) {
+function BusinessProfile(props) {
     const decodedToken = jwt_decode(props.jwt); //decodes & stores jwt token for use when trying to access paths requiring auth
 
     useEffect(() => { //switch user profile navigation bar active element style depending on which page is accessed via url
@@ -21,9 +21,9 @@ function Profile(props) {
 
     
     function switchView(param){ //switch user profile navigation bar active element style depending on which page is opened by click
-        let x = document.getElementById('customerProfilePersonalInfo');
-        let y = document.getElementById('customerProfileOrderHistory');
-        let z = document.getElementById('customerProfileSettings'); 
+        let x = document.getElementById('businessProfilePersonalInfo');
+        let y = document.getElementById('businessProfileOrderHistory');
+        let z = document.getElementById('businessProfileSettings'); 
 
         if(param === 'x'){
             x.classList.add('profileStatusActive');
@@ -43,16 +43,16 @@ function Profile(props) {
     }
 
     return (
-        <div className="customerProfile">
+        <div className="businessProfile">
             <h1>Profile</h1>
-            <div className="customerProfileOptions">
-                <div className="customerProfileOptionBorder"/>
-                <div><Link to="/profile/personal-info" id="customerProfilePersonalInfo" onClick={ () => switchView('x') }>Personal information</Link></div>
-                <div className="customerProfileOptionBorder"/>
-                <div><Link to="/profile/order-history" id="customerProfileOrderHistory" onClick={ () => switchView('y') }>Order history</Link></div>
-                <div className="customerProfileOptionBorder"/>
-                <div><Link to="/profile/settings" id="customerProfileSettings" onClick={ () => switchView('z') }>Settings</Link></div>
-                <div className="customerProfileOptionBorder"/>
+            <div className="businessProfileOptions">
+                <div className="businessProfileOptionBorder"/>
+                <div><Link to="/profile/personal-info" id="businessProfilePersonalInfo" onClick={ () => switchView('x') }>Business information</Link></div>
+                <div className="businessProfileOptionBorder"/>
+                <div><Link to="/profile/order-history" id="businessProfileOrderHistory" onClick={ () => switchView('y') }>Order history</Link></div>
+                <div className="businessProfileOptionBorder"/>
+                <div><Link to="/profile/settings" id="businessProfileSettings" onClick={ () => switchView('z') }>Settings</Link></div>
+                <div className="businessProfileOptionBorder"/>
             </div>
 
 
@@ -72,11 +72,11 @@ function Profile(props) {
                 <Route path='/' element={<Navigate to='/profile/personal-info' replace />} />  
                 <Route path='/personal-info' element={<Personalinfo userToken={ decodedToken } userJWT={ props.jwt } />} />
                 <Route path='/order-history' element={<Orderhistory />} />
-                <Route path='/settings' element={<Settings />} />
+                <Route path='/settings' element={<Settings userToken={ decodedToken } userJWT={ props.jwt } logout={ props.logout } />} />
                 <Route path='/*' element={<Navigate to="/profile/personal-info" replace/>} />
             </Routes>  
         </div>        
     );
 }
 
-export default Profile;
+export default BusinessProfile;
