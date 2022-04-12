@@ -47,7 +47,7 @@ function BusinessProfile(props) {
             <h1>Profile</h1>
             <div className="businessProfileOptions">
                 <div className="businessProfileOptionBorder"/>
-                <div><Link to="/profile/personal-info" id="businessProfilePersonalInfo" onClick={ () => switchView('x') }>Personal information</Link></div>
+                <div><Link to="/profile/personal-info" id="businessProfilePersonalInfo" onClick={ () => switchView('x') }>Business information</Link></div>
                 <div className="businessProfileOptionBorder"/>
                 <div><Link to="/profile/order-history" id="businessProfileOrderHistory" onClick={ () => switchView('y') }>Order history</Link></div>
                 <div className="businessProfileOptionBorder"/>
