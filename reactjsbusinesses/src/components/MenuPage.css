@@ -1,3 +1,14 @@
 .businessTitle{
     text-align: center;
 }
+
+.menuContainer{
+    border-spacing: 0px;
+    grid-auto-flow: row;
+    align-items: center;
+}
+
+.menuContainer td{
+    border: 1px;
+    border-style: solid;
+}
