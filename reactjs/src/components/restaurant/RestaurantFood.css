@@ -1,0 +1,97 @@
+.restaurantFoodItemCategoryTitle{
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 3rem;
+}
+
+#restaurantFoodItemContainer{
+    cursor: pointer;
+    display: flex;
+    gap: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0px 8px 0 rgba(113, 113, 113, 0.438),
+                0 3px 15px 0 rgba(66, 66, 66, 0.548);
+    transition: all .2s;
+    max-height: 150px;
+}
+
+#restaurantFoodItemContainer:hover{
+    box-shadow: 0 0px 8px 3px rgba(255, 187, 41, 0.705),
+                0 0px 20px 3px rgba(252, 189, 107, 0.767);
+    -ms-transform: scale(1.005);
+    -webkit-transform: scale(1.005);
+    transform: scale(1.005); 
+}
+
+#restaurantFoodItemContainerLeft{
+    max-width: 200px;
+    max-height: 150px;
+}
+
+#restaurantFoodItemPhoto{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#restaurantFoodItemContainerRight{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    justify-content: space-around;
+    gap: 6px;
+}
+
+#restaurantFoodItemName{
+    font-weight: 500;
+}
+
+#restaurantFoodItemDescription{
+    color: grey;
+}
+
+#restaurantFoodItemPrice{
+    font-size: 1rem;
+    color: rgb(255, 102, 0);
+}
+
+.restaurantFoodCategoryDivider{
+    border-top: 1px solid rgb(218, 218, 218);
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+@media (max-width: 600px) {
+    #restaurantFoodItemContainer{
+        flex-direction: column;
+        max-height: none;
+        gap: 1rem;
+        padding: 1rem; 
+        padding-top: 1.5rem;      
+    }
+    
+    #restaurantFoodItemContainerLeft{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: none;
+        max-height: none;
+    }
+    
+    #restaurantFoodItemPhoto{
+        width: 150px;
+        height: 150px;
+        border-radius: 90rem;
+    }
+    
+    #restaurantFoodItemContainerRight{
+        display: flex;
+        flex-direction: column;
+        padding: 0.5rem;
+        justify-content: space-around;
+        gap: 6px;
+    }
+}

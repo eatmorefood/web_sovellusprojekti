@@ -7,6 +7,7 @@ import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
 import Discover from './components/restaurant/Discover.js';
 import Restaurant from './components/restaurant/Restaurant.js';
+import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/customerAuth/Login.js';
@@ -34,7 +35,7 @@ function App() {
   let authRoutes = <></>;
 
   if(userJWT != null){
-    noAuthRoutes = <></>
+    noAuthRoutes = <></>;
     authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }
                                                               logout={ () => {setUserJWT(null)
                                                               window.localStorage.removeItem('token')}}/>} /></>
@@ -46,23 +47,21 @@ function App() {
                           displayLogin={ toggleLogin } />;
   }
   
-  /*useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
+  useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
     const app = document.getElementById("blurrableContent");
-    if( loginVisible === true) {
-      app.style.filter = "blur(8px)";
+    if(loginVisible === true && userJWT === null) {
+      app.style.filter = "blur(4px)";
       app.style.background = "lightgrey";
       app.style.pointerEvents = "none";
-      app.style.cursor = "pointer"; 
       document.body.style.overflow = "hidden";
       
-    } else if( loginVisible === false) { //restores normal page view when login screen not visible
-      app.style.removeProperty("background");
-      app.style.removeProperty("filter"); 
-      app.style.removeProperty("pointerEvents");
-      app.style.removeProperty("pointer");
+    } else if(loginVisible === false || userJWT !== null) { //restores normal page view when login screen not visible
+      app.style.filter = "none";
+      app.style.background = "none";
+      app.style.pointerEvents = "all";
       document.body.style.removeProperty("overflow"); 
     }
-  });*/
+  },[loginVisible, userJWT]);
 
 //========================================= USE EFFECTS ==================================================
 
@@ -115,7 +114,6 @@ function App() {
   return (
     
     <div className="App">
-      {/*<Router>*/}
       <div id="loginMain" ref={ref}>
         { loginScreen }
       </div>
@@ -139,8 +137,8 @@ function App() {
 
               { noAuthRoutes }
               { authRoutes }
-
-              <Route path='/restaurant/:name' component={ Restaurant } />
+              <Route path='/restaurant/:id' element={ <Restaurant jwt={ userJWT }/> } />
+              <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />
               <Route path='/disclaimer' element={<Disclaimer />} />
@@ -148,7 +146,7 @@ function App() {
             </Routes>  
         </div>
 
-        <footer className="footer">
+        <footer id="footer">
           <Footer />
         </footer>
 

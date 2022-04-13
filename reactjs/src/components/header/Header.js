@@ -62,6 +62,7 @@ function Header( props ) {
 
   function emptyPopupSearch() {
     setQuery('');
+    document.getElementById('query').value = '';
   }
     
   window.onclick = function(event) { //close the language dropdown if the user clicks outside of the dropdown element
@@ -85,7 +86,7 @@ function Header( props ) {
   }
 
   return (
-    <div className="header">
+    <div id="header">
       <div className="headerContent">
 
         <div className="headerLeft">
@@ -127,18 +128,18 @@ function Header( props ) {
             
         <div className="headerRight">
           {props.userLoggedIn ?
-            <div id="loggedInHeaderBtns" onClick={() => toggleUserDropdown()}>
-              <div id="loggedInUserIcon" ><span id="userNameCharacters">{ fnameChar }{ lnameChar }</span></div>
-              <img id="loggedInArrow" src={arrowDown} alt="" />
-              <div className="userDropdownContainer">
+            <div className="userDropdownContainer">
+              <div id="loggedInHeaderBtns" onClick={() => toggleUserDropdown()}>
+                <div id="loggedInUserIcon" ><span id="userNameCharacters">{ fnameChar }{ lnameChar }</span></div>
+                <img id="loggedInArrow" src={arrowDown} alt="" />
                 <div id="userDropdown" className="userDropdownContent">
                   <Link to="/profile" style={{ textDecoration: 'none' }}>
-                    <div>Profile<br></br>
+                    <div className="userDropdownOptionProfile">Profile<br></br>
                       <span>{ loggedInfname } { loggedInlname }</span>
                     </div>
                   </Link>
                   <Link to="/" style={{ textDecoration: 'none' }}>
-                    <div onClick={() => props.logout()}>Log out</div>
+                    <div className="userDropdownOptionLogout" onClick={() => props.logout()}>Log out</div>
                   </Link>
                 </div>
               </div>

@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 var port = 8080;
@@ -11,15 +12,19 @@ const JwtStrategy = require('passport-jwt').Strategy,
 const bodyParser = require('body-parser');
 
 
-app.use(bodyParser.json()); //whenever request body has type of json, this will activate
 app.use(cors());
-app.use(helmet());
+app.use(bodyParser.json()); //parse requests of content-type: application/json
+app.use(bodyParser.urlencoded({ extended: true })); //parse requests of content-type: application/x-www-form-urlencoded 
 
 require('./config/passport')(passport);
 
 const signupRouter = require('./routes/signup.js');
 const customerRouter = require('./routes/customer.js');
-var restaurantRouter = require('./routes/restaurant');
+const businessRouter = require('./routes/business.js');
+const signupbusinessRouter = require('./routes/signupbusiness.js');
+const restaurantRouter = require('./routes/restaurants.js');
+const mealRouter = require('./routes/meal.js');
+
 
 const jwtOptions ={
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -27,9 +32,6 @@ const jwtOptions ={
 }
 
 passport.use(new JwtStrategy(jwtOptions, function(jwt_payload, done){
-  //console.log('payload: ')
-  //console.log(jwt_payload)
-
   done(null, jwt_payload);
 }))
 
@@ -62,9 +64,45 @@ app.post('/jwtLogin', passport.authenticate('basic', { session: false }), (req, 
   res.json({ jwt: generatedJWT }); //react app should store this
 })
 
+//restaurant
+app.post('/jwtBusinessLogin', passport.authenticate('business', { session: false }), (req, res) => {
+  //check username and password already done through passport
+
+  //generate jwt
+  const payload = { 
+    user: {
+      id: req.user.id,
+      email: req.user.email,
+      name: req.user.name,
+    }
+  };
+
+  const secretKey = "mySecrectKey"; //dont have it in the code above
+
+  const options = {
+    expiresIn: '1d'
+  };
+
+  const generatedJWT = jwt.sign(payload, secretKey, options);
+
+  //send jwt as a response
+  res.json({ jwt: generatedJWT }); //react app should store this
+})
+
 app.use('/signup', signupRouter);
 app.use('/customer', customerRouter);
+app.use('/business', businessRouter);
+app.use('/signupbusiness', signupbusinessRouter);
 app.use('/restaurant', restaurantRouter);
+app.use('/meal', mealRouter);
+
+app.use((err, req, res, next) => { //general error handler
+  res.status(500).json({
+    error: err,
+    message: 'Internal server error!',
+  })
+  next()
+})
 
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)

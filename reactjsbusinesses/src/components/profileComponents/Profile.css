@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+
+.businessProfile{
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.businessProfile h1{
+    font-weight: 100;
+    font-size: 2.5rem;
+    font-family: 'Fredoka One';
+}
+
+.businessProfileOptions{
+    font-size: 1.2rem;
+    display: flex;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgb(230, 227, 227);
+    padding-bottom: 0.1rem;
+    width: 95%;
+}
+
+#businessProfilePersonalInfo{
+    margin-top: -2rem;
+    padding-bottom: 0.45rem;
+    position: absolute;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+#businessProfileOrderHistory{
+    margin-top: -2rem;
+    padding-bottom: 0.45rem;
+    position: absolute;
+    margin-left: 14rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+#businessProfileSettings{
+    margin-top: -2rem;
+    padding-bottom: 0.45rem;
+    position: absolute;
+    margin-left: 23.6rem;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+
+.profileStatusActive{
+    font-weight: 600;
+    border-bottom: solid 2px black; 
+}
+
+@media (max-width: 600px) {    
+    .businessProfileOptions{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1.5rem;
+        border-bottom: none;
+        gap: 0.6rem;
+    }
+    
+    #businessProfilePersonalInfo{
+        position: relative;
+        padding-bottom: 0rem;
+    }
+    
+    #businessProfileOrderHistory{
+        position: relative;
+        margin-left: 0;
+        margin-top: 0rem;
+        padding-bottom: 0rem;
+    }
+    
+    #businessProfileSettings{
+        position: relative;
+        margin-left: 0;
+        margin-top: 2rem;
+        padding-bottom: 0rem;
+    }
+
+    .businessProfileOptionBorder{
+        border: 1px solid rgb(230, 227, 227);
+        background-color: rgb(230, 227, 227);
+        width: 100%;
+        margin-left: 0px !important;
+    }
+
+    .profileStatusActive{
+        font-weight: 600;
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 1800px) {
+    .businessProfile {
+        width: 1610px;
+        margin: 0px auto;
+        margin-top: 2rem;
+        align-items: center;
+    }
+}

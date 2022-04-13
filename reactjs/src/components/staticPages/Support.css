@@ -65,7 +65,7 @@
 }
 
 @media (min-width: 600px) and (max-width: 1800px){
-.supportTitle{
+    .supportTitle{
         left: 2.5rem;
         font-size: 40px;
     }
@@ -81,6 +81,7 @@
     }
 
     .supportImage{
-        margin-top: -3.5rem;
+        margin-top: -8.45rem;
+        z-index: -10000;
     }
 }

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+
+.supportContent{
+    max-width: 1000px;
+    margin: 100px auto 0;
+    margin-top: 80px;
+    margin-right: auto;
+    padding: 0 8rem;
+}
+
+.supportContentTitle{
+    font-weight: 700;
+    font-family: 'Dosis', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2.4rem;
+}
+
+.supportContentSubtitle{
+    font-weight: 500;
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
+}
+
+.supportContentText{
+    margin-bottom: 1.8rem;
+}
+
+.supportImage{
+    height: 545px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.supportTitle{
+    font-family: 'Fredoka One', cursive;
+    top: 19rem;
+    left: 1rem;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+}
+
+@media (max-width: 600px){
+    .supportContent{
+        margin-top: 30px;
+        padding: 0 1.5rem;
+    }
+
+    .supportContentTitle{
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .supportContentSubtitle{
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .supportContentText{
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1800px){
+.supportTitle{
+        left: 2.5rem;
+        font-size: 40px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .supportTitle{
+        font-size: 45px;
+        padding-bottom: 5rem;
+        position: relative;
+        width: 1700px;
+        margin: 0px auto;
+    }
+
+    .supportImage{
+        margin-top: -3.5rem;
+    }
+}
