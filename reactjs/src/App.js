@@ -36,9 +36,10 @@ function App() {
 
   if(userJWT != null){
     noAuthRoutes = <></>
-    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }
+    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }                                                                                                                          
                                                               logout={ () => {setUserJWT(null)
-                                                              window.localStorage.removeItem('token')}}/>} /></>
+                                                              window.localStorage.removeItem('token')}}
+                                                              restaurants={allRestaurants}/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)

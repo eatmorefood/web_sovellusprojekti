@@ -15,7 +15,7 @@ const Orderhistory = (props) => {
                 'Authorization': 'Bearer ' + props.userJWT
             }
         })
-        setUserData(results.data.rows[0]);
+        setUserData(results.data.rows);
       } catch(error) {
           console.log("something went wrong");
       }
@@ -23,27 +23,39 @@ const Orderhistory = (props) => {
     loadProfileDataWithJWT();
   }, [props]); //dependency array includes only props => triggers useEffect only when component mounts
 
+ // console.log(JSON.stringify(userData))
+
+  const getname = (id) => {
+    if(props.restaurants){
+      let result = props.restaurants.find(i => i.idrestaurant == id)
+      return result.name
+    }
+  }
+
   return (
-        <div className="personalinfo"> 
+    <>{userData.map((item) => {
+      return ( 
+        <div className="orderinfo"key={item.idorders}> 
           <div className="personalinfoSection1">
             <div className="personalinfoSection1Right">
               <div className="personalinfoSection1RightBottom">
                 <div className="personalinfoSection1RightBottomLeft">
                 <div className="personalinfoSubTitle">Restaurant</div>
-                  <div>{ userData.price }€</div>
+                  <div>{ getname(item.idrestaurant) }</div>
                 </div>
                 <div className="personalinfoSection1RightBottomLeft">
                   <div className="personalinfoSubTitle">Orderdate</div>
-                  <div>{ userData.orderdate }</div>
+                  <div>{ item.orderdate }</div>
                 </div>
                 <div className="personalinfoSection1RightBottomLeft">
                 <div className="personalinfoSubTitle">Price</div>
-                  <div>{ userData.price }€</div>
+                  <div>{ item.price }€</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    )})}</>
     )
 };
 
