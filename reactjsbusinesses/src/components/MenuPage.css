@@ -8,6 +8,10 @@
     align-items: center;
 }
 
+.newMeal:hover{
+    cursor: pointer;
+}
+
 .foodImage{
     width: 100px;
 }
@@ -67,6 +71,23 @@
     font-size: 1.3rem;
 }
 
+.editField:hover{
+    border-color: orange;
+}
+
+.editFieldDesc{
+    padding-top: 0.5rem;
+    padding-bottom: 7rem;
+    padding-left: 0.6rem;
+    margin-bottom: 1.3rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+}
+
+.editFieldDesc:hover{
+    border-color: orange;
+}
 
 .editMenuTitle{
     margin-bottom: 5px;

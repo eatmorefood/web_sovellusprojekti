@@ -3,6 +3,7 @@ const router = express.Router();
 const meal = require('../models/meal_model');
 const { storage } = require('../config/cloudinary');
 const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
 
 const multer_upload = multer({
     storage,
@@ -60,6 +61,62 @@ router.get('/byid/:id?', function (req, res) {
         throw new Error('no restaurant ID given');
     };
 });
+
+router.post('/',
+function (req, res) {
+    if('name' in req.body == false){
+        res.status(400);
+        res.json({status: "Missing restaurant name from request body"});
+        return;
+    }
+    
+
+    const newMeal = {
+        idfood: req.body.idfood,
+        name: req.body.name,
+        category: req.body.category,
+        description: req.body.description,
+        price: req.body.price,
+        idrestaurant: req.body.idrestaurant,
+        image: req.body.image
+    }
+
+    console.log(newMeal.idfood);
+
+    try{
+
+    
+    if(newMeal.idfood)
+    {
+        var result = 
+    meal.update(newMeal, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.status(201).json({status: "meal updated"});
+            console.log("meal updated with id: " + newMeal.idfood);
+        }
+    });
+    console.log(result);
+}
+
+    else{
+        console.log("New food");
+        newMeal.idfood = uuidv4();
+        meal.add(newMeal, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.status(201).json({status: "meal created"});
+                console.log("meal created with id: " + newMeal.idfood);
+            }
+        });
+    }
+}
+catch(exception){
+    console.log(exception);
+}
+}),
 
 router.put('/imageupload', multer_upload.single('image'), async (req, res) => { //update food image
 

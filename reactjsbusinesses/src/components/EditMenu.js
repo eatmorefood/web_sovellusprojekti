@@ -4,13 +4,13 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import './MenuPage.css';
 import Constants from '../Constants.json';
-import editbtn from '../images/editbtn.png';
 
 
 function EditMenu ( props ) {
+  //const EditMenu = ({ handleChange }) => {
   const [userData, setUserData] = useState([]);
   let { id } = useParams();
-  console.log(id);
+  //console.log(id);
 
     let decodedToken = "";
     let loggedInName = "";
@@ -20,9 +20,18 @@ function EditMenu ( props ) {
     loggedInName = decodedToken.user.name;
     }
 
-    useEffect(() => {
+    const handleChange = input => e => {   //Handle fields change
+      //this.setUserData({ [input]: e.target.value });
+      userData[input] = e.target.value;
+    }
+    console.log("decode");
+    console.log(decodedToken);
+    useEffect(() => {          
+
       const loadProfileDataWithJWT = async () => { //load user data to show here
         try {
+
+
             
 
 
@@ -32,7 +41,7 @@ function EditMenu ( props ) {
                   'Authorization': 'Bearer ' + props.jwt
               }
           })
-          console.log(results.data);
+          //console.log(results.data);
           if (results.data && results.data.length > 0)
           {
           setUserData(results.data[0]);
@@ -42,20 +51,41 @@ function EditMenu ( props ) {
           console.log(error);
             console.log("something went wrong");
         }
-      }
-      loadProfileDataWithJWT();
-    }, [props]);
-    console.log("Userdata");
-    console.log(userData);
+      }    
+        if(id != "new")
+      {
 
-    function editMenu ( props )
-    {
-      console.log(userData);
-      console.log("Edited");
+      loadProfileDataWithJWT();
+    }
+    else{
+      console.log("new");
+    }
+    }, [props]);
+
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+
+      if(!userData.idfood)
+      {
+        userData.idrestaurant = decodedToken.user.id;
+      }
+      try {
+        /*const result =*/ await axios.post(Constants.API_ADDRESS + "/meal",
+        {
+          idfood: userData.idfood,
+          name: userData.name,
+          category: userData.category,
+          description: userData.description,
+          price: userData.price,
+          idrestaurant: userData.idrestaurant,
+          image: userData.image
+        });}
+        catch(error){
+          console.log(error);
+          alert('Tallennus epäonnistui');
+        }
     }
 
-
-    console.log(userData);
     
   return (
     <div className="menupage">
@@ -64,22 +94,70 @@ function EditMenu ( props ) {
         </div>
         <div>This is EditMenu.js</div>
         <div className="editContent">
-        <div><img className="editBtn" src={editbtn} onClick={editMenu}/></div>
         <div className="editTitle">Edit your food: </div>
         <div className="editSubTitle">Click save to save the changes.</div>
         
-        <form className="editForm" onSubmit={ console.log("Submit") }>
+        <form className="editForm" onSubmit={ handleSubmit }>
                 <div className="editMenuTitle">Name:</div>
                 <input
-                    type="name"
+                    type="text"
                     className="editField"
                     name="name"
                     placeholder="name"
+                    onChange={handleChange('name')}
                     defaultValue={userData.name}
                     autoComplete="off"
                     maxLength="50"
                     required
                 />
+                <div className="editMenuTitle">Description:</div>
+                <input
+                    type="text"
+                    className="editFieldDesc"
+                    name="description"
+                    placeholder="description"
+                    onChange={handleChange('description')}
+                    defaultValue={userData.description}
+                    autoComplete="off"
+                    maxLength="50"
+                    required
+                />
+                <div className="editMenuTitle">Category:</div>
+                <input
+                    type="text"
+                    className="editField"
+                    name="category"
+                    placeholder="category"
+                    onChange={handleChange('category')}
+                    defaultValue={userData.category}
+                    autoComplete="off"
+                    maxLength="50"
+                    required
+                />
+                <div className="editMenuTitle">Price:</div>
+                <input
+                    type="text"
+                    className="editField"
+                    name="price"
+                    placeholder="price"
+                    onChange={handleChange('price')}
+                    defaultValue={userData.price}
+                    autoComplete="off"
+                    maxLength="50"
+                    required
+                />
+                <div className="editMenuTitle">Image path:</div>
+                <input
+                    type="text"
+                    className="editField"
+                    name="image"
+                    placeholder="image"
+                    onChange={handleChange('image')}
+                    autoComplete="off"
+                    maxLength="50"
+                    required
+                />
+                <input type="submit"></input>
         
         </form>
         </div>

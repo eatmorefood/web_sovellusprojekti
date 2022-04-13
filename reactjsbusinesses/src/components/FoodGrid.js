@@ -9,7 +9,7 @@ export default function FoodGrid (props) {
     let navigation = useNavigate(); 
 
 
-    function test(obj)
+    function navigate(obj)
     {
         return function ()
         {
@@ -25,7 +25,7 @@ export default function FoodGrid (props) {
             <td>{obj.category}</td>
             <td>{obj.price}€</td>
             <td><img className="foodImage" src={obj.image}/></td>
-            <td><img className="editBtn" src={editbtn} onClick={test(obj)}/></td>
+            <td><img className="editBtn" src={editbtn} onClick={navigate(obj)}/></td>
         </tr>)
 
 

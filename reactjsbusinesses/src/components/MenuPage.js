@@ -7,6 +7,7 @@ import Constants from '../Constants.json';
 import FoodGrid from './FoodGrid'
 import editbtn from '../images/editbtn.png';
 import EditMenu from './EditMenu.js';
+import {useNavigate} from "react-router-dom";
 
 
 function MenuPage ( props ) {
@@ -54,6 +55,17 @@ function MenuPage ( props ) {
 
     console.log(userData);
 
+    let navigation = useNavigate();
+
+    function navigate()
+    {
+        return function ()
+        {
+            let path = "editmenu/new"; 
+            navigation(path);
+        }
+    }
+
     
   return (
     <div className="menupage">
@@ -64,6 +76,7 @@ function MenuPage ( props ) {
         <img className="haha" alt="" src={muffin}></img>
 
         <div className="grid"><FoodGrid arrOfFood={userData}/></div>
+        <div className="newMeal" onClick={navigate()}>Add new meal</div>
         
 
 
