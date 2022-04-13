@@ -1,38 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const orders = require('../models/orders_model');
+const passport = require('passport');
 
-router.get('/:id?', function (req, res) {
-    if(req.params.id){
-      let ordersId = req.params.id;
-  
-      orders.getByName(ordersId, function (err, dbResult) {
-        if (err) {
+
+router.get('/:ID', passport.authenticate('jwt', { session: false }), function (req, res) {
+  orders.getByCustomer(req.params.ID, function(err, dbResult) {
+      if (err) {
           console.log(err);
         } else {
-          let data = dbResult;
-          try{
-            res.json(data.rows)
-          } catch(err){
-            res.send("nothing found")
-          }
+          res.json(dbResult);
         }
-      });
-    } else { 
-      orders.getAllorders(function(err, dbResult) {
-        if (err) {
-          console.log(err);
-        } else {
-          let data = dbResult;
-          try{
-            res.json(data.rows)
-          } catch(err){
-            res.send("nothing found")
-          }
-        }
-      });
-    }   
-  });
+  })
+});
+
 
 
 module.exports=router;

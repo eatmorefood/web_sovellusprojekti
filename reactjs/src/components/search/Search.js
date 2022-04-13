@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useLocation, Link} from "react-router-dom";
 import './Search.css'
 
-function Search(){
-    const [restaurantData, setRestaurantData] = useState([]);
+function Search(props){
     const navigate = useNavigate();
 
     const { search } = useLocation();
@@ -17,43 +16,47 @@ function Search(){
         if(!stateParam){ //if there's no query, navigate to main page
             navigate('/');
         }
-    }, []);
+    }, [navigate, stateParam]);
+
+    function SearchItemClicked(params) { //direct to restaurant page when user clicks search result
+        const restaurantPath = params.idrestaurant;
+        navigate(`/restaurant/${restaurantPath}`);
+    }
 
     return (
-        <>{restaurantData.map((item) => {
-            return (
-                <div className="restaurantMainContainer" key={item.idrestaurant}>   
-                    <div className="restaurantName">
-                        <div>{item.name}</div>   
-                        <div className="restaurantContainerType">{item.type}</div>
-                    </div>               
-                    <img className="restaurantImage" src={ item.image }  alt="" loading="eager"/>                    
-                    
-                    <div className="restaurantDataContainer">
-                        <div className="restaurantDataContainerLeft">
-                            <div>Categories</div>
+    <div id="SearchResultsMain">
+        <h1>Search results for "<span>{stateParam}</span>"</h1>
+        <div id="SearchResultsContainer">{
+            props.allRestaurants.filter(item => {
+                if (stateParam === '') {
+                    navigate('/');
+                    return null;
+                } else if (item.name.toLowerCase().includes(stateParam.toLowerCase()) ||
+                            item.type.toLowerCase().includes(stateParam.toLowerCase()) ||
+                            item.address.toLowerCase().includes(stateParam.toLowerCase())) {
+                    return item;
+                } else {
+                    return null;
+                }
+            }
+            ).map((item, index) => (
+                <Link className="SearchResultsItemLink" to={`/restaurant/${item.idrestaurant}`}>
+                    <div id="SearchResultItemCard" key={index} onClick={() => SearchItemClicked(item)} >
+                        <img className="searchResultItemPhoto" src={item.image} alt="" loading="eager"/>
+                        <div className="SearchResultItemInnerContainer">
+                            <div className="SearchResultItemRestaurantName">{item.name}</div>
+                            <div className="SearchResultItemRestaurantType">{item.type}</div>
                         </div>
-
-                        <div className="restaurantDataContainerCenter">
-                            center: <br></br><br></br>
-                            basically render all restaurant products here as a list jjh jh jh jh jh jh  kkj k jk jk jk j kj k j k j kj kj k j kj kj  basically render all restaurant products here as a list jjh jh jh jh jh jh  kkj k jk jk jk j kj k j k j kj kj k j kj kj  
-                        </div>
-
-                        <div className="restaurantDataContainerRight">
-                            <div className="restaurantDataTitle">Restaurant details</div>
-                            <div className="restaurantDataSubtitle">Address</div>
-                            <div className='restaurantDataAddress'>{item.address}</div><br></br>
-                            <div className="restaurantDataSubtitle">Opening times</div>
-                            <div className='restaurantDataOpeningtimes'>
-                                <div>**specify weekdays**</div>
-                                <div className='restaurantDataGreytext'>{item.open}</div>
-                            </div>
-                            
+                        <div className="SearchResultItemDivider" />
+                        <div className="SearchResultItemInnerBottomContainer">
+                            <div className="SearchResultItemRestaurantPriceLevel">{item.pricelevel}</div>
+                            <div className="SearchResultItemMiddledot">·</div>
+                            <div className="SearchResultItemRestaurantAddress">{item.address}</div>
                         </div>
                     </div>
-                </div>
-            );
-        })}</>
-    )
+                </Link>
+            ))
+        }</div>
+    </div>);
 };
 export default Search;

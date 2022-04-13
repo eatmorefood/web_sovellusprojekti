@@ -1,0 +1,103 @@
+.logoFooter{
+    height: 2.3rem;
+}
+
+.businesslogo{
+    height: 2.3rem
+}
+
+.footerTitle{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+}
+
+.footerRightGap{
+    padding-top: 0.5rem;
+}
+
+.footerLink:link{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.footerLink:hover{
+    color: orange;
+    text-decoration: none;
+}
+
+.footerLink:visited{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.footerLink:visited:hover{
+    text-decoration: none;
+    cursor: pointer;
+    color: orange;
+}
+
+.footerInner{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 0px auto;
+    padding-left: 2rem;
+}
+
+.footerTop{
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.footerBottom{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+@media (max-width: 600px){
+    .footerInner{
+        display: flex;
+        flex-direction: column;
+        width: auto;
+        margin: 0px auto;
+        padding-left: 2rem;
+    }
+
+    .footerTop{
+        padding-top: 2rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .footerBottom{
+        display: flex;
+        flex-direction: row;
+        gap: 3rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1800px) {
+    .footerBottom{
+        gap: 20rem;
+    }
+}
+
+@media (min-width: 1800px) {
+    .footerInner{
+        width: 1700px;
+    }
+
+    .footerTop{
+        padding-bottom: 1rem;
+    }
+
+    .footerBottom{
+        gap: 20rem;
+    }
+}

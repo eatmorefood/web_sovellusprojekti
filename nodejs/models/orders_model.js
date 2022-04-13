@@ -7,7 +7,7 @@ const orders={
         callback);
     },
 
-    getByName: function(id, callback) { 
+    getByCustomer: function(id, callback) { 
         return db.query('select * from "orders" where "idcustomer" = $1',
         [id], callback);
     }
