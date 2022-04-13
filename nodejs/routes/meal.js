@@ -40,6 +40,27 @@ router.get('/byrestaurant/:id?', function (req, res) {
     };
 });
 
+router.get('/byid/:id?', function (req, res) {
+    if(req.params.id){ //get all foods for a restaurant by restaurant ID
+        let foodId = req.params.id;
+    
+        meal.getById(foodId, function (err, dbResult) {
+        if (err) {
+            console.log(err);
+        } else {
+            let data = dbResult;
+            try{
+                res.json(data.rows)
+            } catch(err){
+                res.send("nothing found")
+            }
+        }
+        });
+    } else { //if no id in params, get all restaurants
+        throw new Error('no restaurant ID given');
+    };
+});
+
 router.put('/imageupload', multer_upload.single('image'), async (req, res) => { //update food image
 
     if(!req.body.idfood || !req.body.idrestaurant || !req.file){

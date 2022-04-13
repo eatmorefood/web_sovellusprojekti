@@ -5,6 +5,11 @@ const meal={
     getByRestaurant: function(id, callback) {
         return db.query('select * from "food" where "idrestaurant" = $1',
         [id], callback);
+    },
+
+    getById: function (id, callback) {
+        return db.query('select * from food where idfood = $1',
+        [id], callback);
     }
 }
           

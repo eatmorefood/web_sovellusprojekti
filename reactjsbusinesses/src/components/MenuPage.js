@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { Link } from "react-router-dom";
 import muffin from "../images/muffinDance.gif";
 import jwt_decode from 'jwt-decode';
 import './MenuPage.css';
 import Constants from '../Constants.json';
 import FoodGrid from './FoodGrid'
+import editbtn from '../images/editbtn.png';
+import EditMenu from './EditMenu.js';
 
 
 function MenuPage ( props ) {
@@ -19,8 +20,7 @@ function MenuPage ( props ) {
     decodedToken = jwt_decode(props.jwt);
     loggedInName = decodedToken.user.name;
     }
-    //console.log(props);
-    //console.log(loggedInName);
+
 
     useEffect(() => {
       const loadProfileDataWithJWT = async () => { //load user data to show here
@@ -46,7 +46,14 @@ function MenuPage ( props ) {
       loadProfileDataWithJWT();
     }, [props]);
 
+    function editMenu ( props )
+    {
+      console.log(userData);
+      console.log("Edited");
+    }
+
     console.log(userData);
+
     
   return (
     <div className="menupage">
@@ -57,7 +64,10 @@ function MenuPage ( props ) {
         <img className="haha" alt="" src={muffin}></img>
 
         <div className="grid"><FoodGrid arrOfFood={userData}/></div>
-    
+        
+
+
+
     </div>
 
     
