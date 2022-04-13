@@ -7,29 +7,112 @@ import './RestaurantFood.css';
 import SrcollToTop from '../functional/ScrollToTop.js';
 import SingleFoodItem from './SingleFoodItem.js';
 import HandleClickOutside from "../functional/HandleCLickOutside.js";
+import ShoppingCart from '../shoppingCart/ShoppingCart.js';
 
-function Restaurant({ jwt }){ //displays single restaurant page
+function Restaurant(props){ //displays single restaurant page
     let { id } = useParams();
     const navigate = useNavigate();
 
     const [restaurantData, setRestaurantData] = useState([]); //stores specific restaurant's data
     const [restaurantFoods, setRestaurantFoods] = useState([]); //stores all foods for specific restaurant
     let [foodCategories, setFoodCategories] = useState([]); //stores all food categories
-    const {ref, displayFoodPopup, setDisplayFoodPopup} = HandleClickOutside(false);; //display / hide single restaurant item when clicked
+    const {ref, displayFoodPopup, setDisplayFoodPopup} = HandleClickOutside(false); //display / hide single restaurant item when clicked
     const [foodPopupItemData, setFoodPopupItemData] = useState([null]); //stores clicked single food itme's data
-    //const [userJWT, setUserJWT] = useState(jwt);
-
-    //console.log(userJWT)
-    console.log("track re render")  
+    const {cartRef, cartVisibility, switchCartVisibility} = HandleClickOutside(false); //handles hiding / showing shopping cart
+    let [cart, setCart] = useState([]); //stores shopping cart items
+    const [userJWT, setUserJWT] = useState(props.jwt); //stores user JWT
 
     let singleFoodItemPopup = <></>;
     let foodNotFoundMessage = <></>;
+    let shoppingCartBar = <></>;
+    let shoppingCartPopup = <></>;
 
-//===================== HANDLES HIDING / DISPLAYING SINGLE FOOD ITEM CARD WHEN CLICKED =========================
-    if(displayFoodPopup === true){ //if restaurant food items are not found..
+    console.log("track re render")
+    
+//====================================== HANDLES SHOPPING CART ACTIONS =========================================
+    const getTotalSum = () => { //calculate total cart sum
+        let totalSum = 0;
+        for (let i = 0; i < cart.length; i++) {
+            totalSum += cart[i].singlePrice*cart[i].qty;
+        }
+        return totalSum.toFixed(2);
+    };
+
+    const totalQty = cart.reduce(function(prev, cur) { //calculate total quantity of cart items
+        return prev + cur.qty;
+    }, 0);   
+
+    if(Array.isArray(cart) && cart.length){ //if cart has content...
+        shoppingCartBar = <><div className="shoppingCartBarContent">
+                                <div className="shoppingCartBarTotalQuantity">{totalQty}</div>
+                                <div>Display order</div>
+                                <div className="shoppingCartBarTotalCost">{getTotalSum()}€</div>
+                            </div></>;
+    }
+
+    useEffect(() => { setUserJWT(props.jwt) }, [props.jwt]); //update user jwt on login
+
+    const AddItemToCart = (product) => {
+        if(userJWT === null){
+            alert("Please login first")
+        } else {
+            setDisplayFoodPopup(false)      
+            setCart([...cart, product]); //push new item to cart
+        }
+    }
+
+    const ModifyCartItem = (product) => {    
+        const prodIndex = cart.findIndex(obj => obj.id === product.id);
+        const updatedProdObj = { ...cart[prodIndex], qty: product.qty};
+
+        const updatedCart = [
+        ...cart.slice(0, prodIndex),
+        updatedProdObj,
+        ...cart.slice(prodIndex + 1),
+        ];
+
+        setCart(updatedCart);
+    }
+
+    const RemoveCartItem = (itemID) => {
+        const updatedCart = cart.filter((item) => item.id !== itemID);
+        setCart(updatedCart);
+    }
+
+    const ModifyCartItemQty = (item) => {   
+        const prodIndex = cart.findIndex(obj => obj.id === item.id);
+        const updatedProdObj = { ...cart[prodIndex], qty: item.qty};
+
+        const updatedCart = [
+        ...cart.slice(0, prodIndex),
+        updatedProdObj,
+        ...cart.slice(prodIndex + 1),
+        ];
+
+        setCart(updatedCart);
+    }
+
+    if(cartVisibility === true){ //if restaurant food items are not found..
+        shoppingCartPopup = <div ref={cartRef}><ShoppingCart cart={cart}
+                                                            closeBtn={() => switchCartVisibility(!cartVisibility)}
+                                                            totalSum={() => getTotalSum()}
+                                                            totalQty={totalQty}
+                                                            modifyQty={ModifyCartItemQty}
+                                                            removeCartItem={RemoveCartItem}/>
+                                                            </div>;
+    }
+
+//===================== HANDLES HIDING / DISPLAYING SINGLE FOOD ITEM CARD =================================
+    if(displayFoodPopup === true){
         singleFoodItemPopup = <div ref={ref}><SingleFoodItem itemData={foodPopupItemData}
-                                                             closeBtn={() => setDisplayFoodPopup(!displayFoodPopup)}/></div>;
+                                                             closeBtn={() => setDisplayFoodPopup(!displayFoodPopup)}
+                                                             addItemToCart={AddItemToCart}
+                                                             modifyCartItem={ModifyCartItem}
+                                                             cart={cart}/></div>;
+    }
 
+//============================================== HANDLES POPUP CARDS BACKGROUND ========================================
+    if(displayFoodPopup === true || cartVisibility === true){
         let app = document.getElementById("restaurantMainContainer"); //this block of code adjusts popup background
         let a = document.getElementById("header");
         let b = document.getElementById("footer");
@@ -40,12 +123,12 @@ function Restaurant({ jwt }){ //displays single restaurant page
         b.style.filter = "blur(10px)";
         b.style.pointerEvents = "none";
         document.body.style.overflow = "hidden";
-    } else if(displayFoodPopup === false){
+    } else if(displayFoodPopup === false && cartVisibility === false){
         document.body.style.removeProperty("overflow"); 
     }
 
     window.onclick = () => {
-        if(displayFoodPopup === false){ //this block of code adjusts app background back to normal when popup not visible
+        if(displayFoodPopup === false && cartVisibility === false){ //adjusts app background back to normal when popups are not visible
             let app = document.getElementById("restaurantMainContainer");
             let a = document.getElementById("header");
             let b = document.getElementById("footer");
@@ -118,12 +201,14 @@ function Restaurant({ jwt }){ //displays single restaurant page
         <>{restaurantData.map((item, index) => {
             return (
                 <div key={index}>
+                <div id="shoppingCartPopup" >{ shoppingCartPopup }</div>
                 <div id="singleRestItemPopupBox" >{ singleFoodItemPopup }</div>
                 <div id="restaurantMainContainer">
                     <div className="restaurantName">
                         <div>{item.name}</div>   
                         <div className="restaurantContainerType">{item.type}</div>
-                    </div>               
+                    </div>
+                    <div id="shoppingCartBar" onClick={() => switchCartVisibility(!cartVisibility)}>{ shoppingCartBar }</div>               
                     <img className="restaurantImage" src={ item.image }  alt="" loading="eager"/>                    
                     
                     <div className="restaurantDataContainer">
