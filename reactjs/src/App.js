@@ -5,7 +5,7 @@ import axios from 'axios';
 import Constants from './Constants.json';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
-import Discover from './components/Discover.js';
+import Discover from './components/restaurant/Discover.js';
 import Restaurant from './components/restaurant/Restaurant.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
@@ -66,6 +66,7 @@ function App() {
 
 //========================================= USE EFFECTS ==================================================
 
+  /*
   useEffect(() => { //get all restaurants 
     const fetchQueryResults = async () => {
       try {
@@ -77,6 +78,17 @@ function App() {
     }
     fetchQueryResults();
   }, []);
+  */
+  
+  useEffect(() => {
+    const getData = async () => {
+      const results = await axios.get('http://localhost:8080/restaurant')   // axios.get('https://localhost:3000/restaurant)  http://localhost:8080/restaurant
+
+      setAllRestaurants(results.data.restaurant);    // setRestaurants(results.data.restaurants) , 2.2.2022 30:00
+    }
+
+    getData();
+
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -116,17 +128,17 @@ function App() {
                 window.localStorage.removeItem('token')}}/>
         <div id="appContent">
             <Routes>
-              <Route path='/' element={<Discover />} />
+              
+              <Route path='/' element={ allRestaurants.map(p => <Discover name={p.name} category={p.type} pricelevel={p.pricelevel} />)} />
+
+{/*
+            <div className="productContainer">
+              { restaurants.map(p => <Discover name={p.name} category={p.type} pricelevel={p.pricelevel} />)}  
+            </div>
+              */}
+
               { noAuthRoutes }
               { authRoutes }
-
-            {/*
-              <div className="productContainer">
-                      { allRestaurants.map(p => <Restaurant name={p.name} category={p.type} pricelevel={p.pricelevel} />)}  
-              </div>
-
-                */}
-
 
               <Route path='/restaurant/:name' component={ Restaurant } />
               <Route path='/support' element={<Support />} />
@@ -143,6 +155,6 @@ function App() {
       </div>
     </div>
   );
-}
+})}
 
 export default App;

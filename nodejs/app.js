@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
 var port = 8080;
-var path = require('path');
+
 const helmet = require('helmet');
+const cors = require('cors');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy,
       ExtractJwt = require('passport-jwt').ExtractJwt;
 const bodyParser = require('body-parser');
-const cors = require('cors');
+
 
 app.use(bodyParser.json()); //whenever request body has type of json, this will activate
 app.use(cors());

@@ -27,7 +27,7 @@
     font-family: 'Dosis', sans-serif;
   }
   
-  .restaurant{
+  .dRestaurant{
     width: 260px;
     height: 150px;
     border: 1px solid black;
@@ -40,7 +40,7 @@
     align-items: center;
   }
   
-  .restaurant img{
+  .dRestaurant img{
     width: 320px;
     height: 132px;
     object-fit: cover;
