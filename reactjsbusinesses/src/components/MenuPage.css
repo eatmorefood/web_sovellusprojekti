@@ -16,6 +16,14 @@
     width: 100px;
 }
 
+.deleteBtn{
+    width: 100px;
+}
+
+.deleteBtn:hover{
+    cursor: pointer;
+}
+
 .menuContainer td{
     border: 1px;
     border-style: solid;

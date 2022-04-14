@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 const multer_upload = multer({
     storage,
     fileFilter: (req, file, cb) => {
+        console.log("Upload image");
         if (
             !file.mimetype.includes("image/png") &&
             !file.mimetype.includes("image/jpg") &&
@@ -62,11 +63,45 @@ router.get('/byid/:id?', function (req, res) {
     };
 });
 
-router.post('/',
+router.delete('/:id?', function (req, res)
+{
+    let foodId = req.params.id;
+
+    meal.delete(foodId, function (err)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else{
+            res.status(200).json({code: 200, message: 'Meal deleted'})
+        }
+    });
+})
+
+router.post('/', //update or create new meals
 function (req, res) {
     if('name' in req.body == false){
         res.status(400);
-        res.json({status: "Missing restaurant name from request body"});
+        res.json({status: "Missing meal name from request body"});
+        return;
+    }
+
+    if('category' in req.body == false){
+        res.status(400);
+        res.json({status: "Missing meal category from request body"});
+        return;
+    }
+
+    if('description' in req.body == false){
+        res.status(400);
+        res.json({status: "Missing meal description from request body"});
+        return;
+    }
+
+    if('price' in req.body == false){
+        res.status(400);
+        res.json({status: "Missing meal price from request body"});
         return;
     }
     
@@ -86,7 +121,7 @@ function (req, res) {
     try{
 
     
-    if(newMeal.idfood)
+    if(newMeal.idfood) //update if id exists
     {
         var result = 
     meal.update(newMeal, function(err) {
@@ -100,14 +135,15 @@ function (req, res) {
     console.log(result);
 }
 
-    else{
+    else{ //create new meal
         console.log("New food");
         newMeal.idfood = uuidv4();
         meal.add(newMeal, function(err) {
             if (err) {
                 console.log(err);
             } else {
-                res.status(201).json({status: "meal created"});
+                //res.json({idfood: newMeal.idfood});
+                res.status(201).json({status: "meal created", idfood: newMeal.idfood});
                 console.log("meal created with id: " + newMeal.idfood);
             }
         });
@@ -118,9 +154,9 @@ catch(exception){
 }
 }),
 
-router.put('/imageupload', multer_upload.single('image'), async (req, res) => { //update food image
-
-    if(!req.body.idfood || !req.body.idrestaurant || !req.file){
+router.put('/imageupload', multer_upload.single('file'), async (req, res) => { //update food image
+    console.log("Start image upload");
+    if(!req.body.idfood || !req.file){
         console.log("Request data missing or invalid file type");
         return res.status(400).send({
             message: "Error! Please fill all form data and check file type",
@@ -130,7 +166,6 @@ router.put('/imageupload', multer_upload.single('image'), async (req, res) => { 
 
     let params = {
         idfood: req.body.idfood,
-        idrestaurant: req.body.idrestaurant,
         image_url: req.file.path
     }
 

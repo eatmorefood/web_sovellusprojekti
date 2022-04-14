@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import './MenuPage.css';
 import Constants from '../Constants.json';
+import trashcan from '../images/delete.png';
 
 
 function EditMenu ( props ) {
@@ -14,6 +15,8 @@ function EditMenu ( props ) {
 
     let decodedToken = "";
     let loggedInName = "";
+
+    let navigation = useNavigate(); 
   
     if(props.jwt != null){
     decodedToken = jwt_decode(props.jwt);
@@ -24,16 +27,27 @@ function EditMenu ( props ) {
       //this.setUserData({ [input]: e.target.value });
       userData[input] = e.target.value;
     }
+
+    const handleImageChange = input => e => {
+      userData.image = e.target.files[0];
+    }
+
+    const handleDelete = async (e) => {
+      await axios.delete(Constants.API_ADDRESS + '/meal/' + id,
+      {
+        headers: {
+          'Authorization': 'Bearer ' + props.jwt
+      }
+      });
+      navigation("/");
+    }
+    
     console.log("decode");
     console.log(decodedToken);
     useEffect(() => {          
 
       const loadProfileDataWithJWT = async () => { //load user data to show here
         try {
-
-
-            
-
 
           const results = await axios.get(Constants.API_ADDRESS + '/meal/byid/' +  id,
           {
@@ -44,6 +58,7 @@ function EditMenu ( props ) {
           //console.log(results.data);
           if (results.data && results.data.length > 0)
           {
+            results.data[0].image = null;
           setUserData(results.data[0]);
           
           }
@@ -52,7 +67,7 @@ function EditMenu ( props ) {
             console.log("something went wrong");
         }
       }    
-        if(id != "new")
+        if(id !== "new")
       {
 
       loadProfileDataWithJWT();
@@ -70,16 +85,38 @@ function EditMenu ( props ) {
         userData.idrestaurant = decodedToken.user.id;
       }
       try {
-        /*const result =*/ await axios.post(Constants.API_ADDRESS + "/meal",
+        var result = await axios.post(Constants.API_ADDRESS + "/meal",
         {
           idfood: userData.idfood,
           name: userData.name,
           category: userData.category,
           description: userData.description,
           price: userData.price,
-          idrestaurant: userData.idrestaurant,
-          image: userData.image
-        });}
+          idrestaurant: userData.idrestaurant
+        });
+        console.log("Result");
+        console.log(result);
+        console.log(result.idfood);
+        console.log(result.data.idfood);
+        if(!userData.idfood)
+        {
+          userData.idfood = result.data.idfood;
+        }
+        console.log("image");
+        console.log(userData.image);
+        if(userData.image)
+        {
+          console.log("Update image");
+          const data = new FormData();
+          data.append('file', userData.image);
+          data.append('idfood', userData.idfood);
+          var result = await axios.put(Constants.API_ADDRESS + "/meal/imageupload",
+            data
+          );
+        }
+        alert('Tallennettu!');
+      }
+
         catch(error){
           console.log(error);
           alert('Tallennus epäonnistui');
@@ -148,16 +185,16 @@ function EditMenu ( props ) {
                 />
                 <div className="editMenuTitle">Image path:</div>
                 <input
-                    type="text"
+                    type="file"
                     className="editField"
                     name="image"
                     placeholder="image"
-                    onChange={handleChange('image')}
+                    onChange={handleImageChange('image')}
                     autoComplete="off"
                     maxLength="50"
-                    required
                 />
                 <input type="submit"></input>
+                <img className="deleteBtn" onClick={handleDelete} src={trashcan}/>
         
         </form>
         </div>
