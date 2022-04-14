@@ -18,6 +18,7 @@ function SingleFoodItem(props){ //displays single restaurant food item
     let product = { //create product object for shopping cart
             id: props.itemData.idfood,
             name: props.itemData.name,
+            description: props.itemData.description,
             singlePrice: props.itemData.price,
             qty: quantity
         };
