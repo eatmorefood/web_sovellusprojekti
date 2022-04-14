@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
+
+.checkoutGoBackBtn{
+    margin-top: 2rem;
+    position: absolute;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-shadow: -0px -0px 20px black;
+    cursor: pointer;
+    top: 4rem;
+    transition: all 0.2s;
+}
+
+.checkoutGoBackBtn:hover{
+    transform: scale(1.1);
+}
+
+.checkoutTitleContainer{
+    font-family: 'Fredoka one', sans-serif;
+    font-size: 4rem;
+    color: white;
+    text-shadow: -0px -0px 20px black;
+    position: absolute;
+    letter-spacing: .1em;
+    top: 22rem;
+}
+
+.checkoutContainer{
+    padding: 2rem;
+}
+
+.checkoutRestaurantName{
+    font-size: 1.9rem;
+    margin-top: 0.5rem;
+    font-family: 'Dosis';
+    font-weight: 900;
+    letter-spacing: .15em;
+    text-shadow: 0 -1px 0 #fff, 0 1px 2px #2e2e2e, 0 1px 2px #2c2c2c;
+}
+
+.checkoutImage{
+    position: relative;
+    height: 520px;
+    width: 100%;
+    object-fit: cover;
+    z-index: -10000;
+}
+
+.checkoutContentContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.checkoutContainerRight{
+    position: relative;
+    top: -4rem;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid rgb(211, 211, 211);
+    box-shadow: 0px 0px 15px 3px #d7d7d7;
+    border-radius: 7px;
+    width: 330px;
+    padding: 1.5rem;
+    gap: 1rem;
+}
+
+.checkoutContainerRightTitle{
+    font-family: 'Dosis';
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+
+.checkoutContainerRightTextFlex{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    font-size: 1.1rem;
+}
+
+.checkoutContainerRightTotalSum{
+    margin-top: 2rem;
+    font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+    .checkoutContentContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: auto;
+        gap: 3rem;
+        width: 85vw;
+        left: 0; 
+        right: 0; 
+        margin-left: auto; 
+        margin-right: auto; 
+    }
+
+    .checkoutContainerRight{
+        position: static;
+        top: auto;
+        box-shadow: none;
+        width: auto;
+    }
+}
+
+@media (min-width: 1800px) {
+    .checkoutContainer {
+        width: 1600px;
+        margin: 0px auto;
+    }
+}

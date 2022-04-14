@@ -6,7 +6,7 @@ import Constants from './Constants.json';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
 import Discover from './components/Discover.js';
-import Restaurant from './components/restaurant/Restaurant.js';
+import RestaurantPaths from './components/restaurant/RestaurantPaths.js';
 import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
@@ -117,7 +117,7 @@ function App() {
               <Route path='/' element={<Discover />} />
               { noAuthRoutes }
               { authRoutes }
-              <Route path='/restaurant/:id' element={ <Restaurant jwt={ userJWT }/> } />
+              <Route path='/restaurant/*' element={ <RestaurantPaths jwt={ userJWT } showLogin={toggleLogin} /> } />
               <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />

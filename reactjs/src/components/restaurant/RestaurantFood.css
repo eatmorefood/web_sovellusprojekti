@@ -1,8 +1,12 @@
+#restaurantFoodItem{
+    margin-bottom: 2rem;
+}
+
 .restaurantFoodItemCategoryTitle{
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: bold;
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 #restaurantFoodItemContainer{
@@ -13,7 +17,8 @@
     box-shadow: 0 0px 8px 0 rgba(113, 113, 113, 0.438),
                 0 3px 15px 0 rgba(66, 66, 66, 0.548);
     transition: all .2s;
-    max-height: 150px;
+    height: 130px;
+    max-width: 900px;
 }
 
 #restaurantFoodItemContainer:hover{
@@ -25,8 +30,8 @@
 }
 
 #restaurantFoodItemContainerLeft{
-    max-width: 200px;
-    max-height: 150px;
+    width: 200px;
+    height: 100%;
 }
 
 #restaurantFoodItemPhoto{
@@ -70,15 +75,18 @@
         max-height: none;
         gap: 1rem;
         padding: 1rem; 
-        padding-top: 1.5rem;      
+        padding-top: 1.5rem;
+        height: auto;  
     }
     
     #restaurantFoodItemContainerLeft{
         display: flex;
         justify-content: center;
         align-items: center;
-        max-width: none;
-        max-height: none;
+        max-width: auto;
+        max-height: auto;
+        width: auto;
+        height: auto;
     }
     
     #restaurantFoodItemPhoto{
@@ -93,5 +101,6 @@
         padding: 0.5rem;
         justify-content: space-around;
         gap: 6px;
+        overflow: hidden;
     }
 }
