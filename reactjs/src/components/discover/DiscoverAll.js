@@ -1,29 +1,31 @@
 import React from "react";
 import muffin from "../../images/muffinDance.gif";
-import allRestaurants from "../../App.js";
+import './DiscoverAll.css';
 
 
-function DiscoverAll() {
+function DiscoverAll(props) {
 
-  return (
-     
-    <div>
-      <p>
-        <img className="haha" alt="" src={muffin}></img>
-      </p>
-      <p>
-          <>{allRestaurants.map((item, index) => {
+  return (  
+      
+      
+          <>{props.allRestaurants.map((item, index) => {
               return (
-                  <div key={index}>
-                    <div>{item.name}</div>
-                  </div>
+                
+                <div className="restaurantContainer">
+                    
+                        <div className="restaurant">
+                            <div key={index}>
+                            <img src={ item.image }></img>
+                            <div>{item.name}</div>
+                            <div>{item.type}</div>
+                            <div>{item.pricelevel}</div>
+                        </div>
+                    </div>
+                 </div>
+        
               
             )}
-          )}</>
-      </p>
-     
-      
-    </div>
+          )}</> 
 
   );
 }

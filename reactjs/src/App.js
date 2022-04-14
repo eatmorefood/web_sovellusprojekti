@@ -118,7 +118,7 @@ function App() {
         <div id="appContent">
             <Routes>
               <Route path='/' element={<Discover />} />
-              <Route path='/allrestaurants' element={<DiscoverAll />} />
+              <Route path='/allrestaurants' element={<DiscoverAll allRestaurants={allRestaurants} />} />
               
               { noAuthRoutes }
               { authRoutes }
