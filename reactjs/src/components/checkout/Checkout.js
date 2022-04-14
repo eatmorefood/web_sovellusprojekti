@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import './Checkout.css';
 import DeliveryImg from '../../images/delivery.jpg';
+import PlusBtn from '../../images/plus.png';
 
 function Checkout(props) {
   let navigate = useNavigate();
@@ -52,7 +53,7 @@ function Checkout(props) {
     }
   }
 
-  //console.log(props.cart)
+console.log(props.cart)
 
   return (
     <div className="Checkout">
@@ -64,21 +65,45 @@ function Checkout(props) {
           <div className="checkoutRestaurantName">{restaurant[0].name}</div>
         </div>
         <div className="checkoutContentContainer">
-          <div className="checkoutContainerLeft">Hello 1</div>
+
+          <div className="checkoutContainerLeft">
+            <div className="checkoutDeliveryContainer">
+              <div className="checkoutContainerLeftTitle">Delivery address</div>
+              <div className="checkoutDeliveryContainerAddress">Address</div>
+            </div>
+            <div className="checkoutProductContainer">
+              <div className="checkoutContainerLeftTitle">Your products</div>
+              <div className="checkoutProductListContainer">
+                {
+                  props.cart.map((product) =>
+                    <div className="checkoutProductItem" key={product.id}>
+                      <div className="checkoutProductItemName"><span className="checkoutProductItemQty">{product.qty}x</span> {product.name}</div>
+                      <div className="checkoutProductItemDescription">{product.description}</div>
+                      <div className="checkoutProductItemPrice">{(product.singlePrice*product.qty).toFixed(2)} €</div>
+                    </div>
+                  )
+                }
+                <div className="checkoutProductListEdit" onClick={() => navigate(-1)}>
+                  <img src={PlusBtn} alt="+" height="30"/>
+                  <div>Add products</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="checkoutContainerRight">
             <div className="checkoutContainerRightTitle">Price in currency EUR</div>
             <div className="checkoutContainerRightTextFlex">
               <div>Subtotal ({totalQty()} {itemCountText()})</div>
-              <div>{getSubtotal()}€</div>
+              <div>{getSubtotal()} €</div>
             </div>
             <div className="checkoutContainerRightTextFlex">
               <div>Delivery</div>
-              <div>5.00€</div>
+              <div>5.00 €</div>
             </div>
             <div className="checkoutContainerRightTextFlex">
               <div>Service fee</div>
-              <div>0.30€</div>
+              <div>0.30 €</div>
             </div>
             <div className="checkoutContainerRightTextFlex">
             <div className="checkoutContainerRightTotalSum">Total cost</div>
