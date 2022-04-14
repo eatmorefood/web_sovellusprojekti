@@ -12,6 +12,8 @@ export default class Signup extends React.Component {
 
   state = {
     jwt: null,
+    messageEmail: "",
+    messagePhone: "",
     step: 1,
     fname: "",
     lname: "",
@@ -40,7 +42,6 @@ export default class Signup extends React.Component {
 
     event.preventDefault();
     try {
-      
       await axios.post(Constants.API_ADDRESS + "/signup",
       {
         fname: this.state.fname,
@@ -73,18 +74,51 @@ export default class Signup extends React.Component {
     }
   }
 
+  validateUserDetail = async (event) => {
+    event.preventDefault();
+    try {
+      const checkExistingEmail = await axios.get(Constants.API_ADDRESS + "/signup/validatecustomeremail/" + this.state.email);
+      this.state.messageEmail = checkExistingEmail.data;
+      if(this.state.messageEmail === "email_exists"){
+        this.state.messageEmail = "emailtaken";
+        this.setState({ step: 0 });
+        this.setState({ step: 1 });
+      } else {
+        if(/^[0-9.,]+$/.test(this.state.phone) === false){
+          this.state.messagePhone = "notvalid";
+          this.setState({ step: 0 });
+          this.setState({ step: 1 });
+        } else {
+          this.state.messageEmail = "";
+          this.state.messagePhone = "";
+          this.setState({ step: 2 });
+        } 
+      }
+    } catch (e) {
+      this.setState({ step: 1 })
+      alert("Error. Please try again");
+    }
+  }
+
   render() {
     const { step } = this.state;
     const { fname, lname, email, phone, address, password } = this.state;
     const values = { fname, lname, email, phone, address, password };
     
     switch(step) {
+      case 0: 
+        return (
+          <></>
+        )
       case 1: 
         return (
           <UserDetails
             nextStep={ this.nextStep }
             handleChange={ this.handleChange }
+            validateDetails={ this.validateUserDetail }
             values={ values }
+            emailErrorMsg={ this.state.messageEmail }
+            phoneErrorMsg={ this.state.messagePhone }
           />
         )
       case 2: 

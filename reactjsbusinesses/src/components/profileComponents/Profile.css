@@ -2,18 +2,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
 
+<<<<<<< HEAD
 .customerProfile{
+=======
+.businessProfile{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
     margin-left: 2rem;
     margin-top: 2rem;
 }
 
+<<<<<<< HEAD
 .customerProfile h1{
+=======
+.businessProfile h1{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
     font-weight: 100;
     font-size: 2.5rem;
     font-family: 'Fredoka One';
 }
 
+<<<<<<< HEAD
 .customerProfileOptions{
+=======
+.businessProfileOptions{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
     font-size: 1.2rem;
     display: flex;
     margin-top: 4rem;
@@ -23,7 +35,11 @@
     width: 95%;
 }
 
+<<<<<<< HEAD
 #customerProfilePersonalInfo{
+=======
+#businessProfilePersonalInfo{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
     margin-top: -2rem;
     padding-bottom: 0.45rem;
     position: absolute;
@@ -32,7 +48,11 @@
     color: black;
 }
 
+<<<<<<< HEAD
 #customerProfileOrderHistory{
+=======
+#businessProfileOrderHistory{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
     margin-top: -2rem;
     padding-bottom: 0.45rem;
     position: absolute;
@@ -42,7 +62,11 @@
     color: black;
 }
 
+<<<<<<< HEAD
 #customerProfileSettings{
+=======
+#businessProfileSettings{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
     margin-top: -2rem;
     padding-bottom: 0.45rem;
     position: absolute;
@@ -58,7 +82,11 @@
 }
 
 @media (max-width: 600px) {    
+<<<<<<< HEAD
     .customerProfileOptions{
+=======
+    .businessProfileOptions{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
         display: flex;
         flex-direction: column;
         margin-top: 1.5rem;
@@ -66,26 +94,42 @@
         gap: 0.6rem;
     }
     
+<<<<<<< HEAD
     #customerProfilePersonalInfo{
+=======
+    #businessProfilePersonalInfo{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
         position: relative;
         padding-bottom: 0rem;
     }
     
+<<<<<<< HEAD
     #customerProfileOrderHistory{
+=======
+    #businessProfileOrderHistory{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
         position: relative;
         margin-left: 0;
         margin-top: 0rem;
         padding-bottom: 0rem;
     }
     
+<<<<<<< HEAD
     #customerProfileSettings{
+=======
+    #businessProfileSettings{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
         position: relative;
         margin-left: 0;
         margin-top: 2rem;
         padding-bottom: 0rem;
     }
 
+<<<<<<< HEAD
     .customerProfileOptionBorder{
+=======
+    .businessProfileOptionBorder{
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
         border: 1px solid rgb(230, 227, 227);
         background-color: rgb(230, 227, 227);
         width: 100%;
@@ -99,7 +143,11 @@
 }
 
 @media (min-width: 1800px) {
+<<<<<<< HEAD
     .customerProfile {
+=======
+    .businessProfile {
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
         width: 1610px;
         margin: 0px auto;
         margin-top: 2rem;

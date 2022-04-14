@@ -35,8 +35,8 @@ function App() {
   let authRoutes = <></>;
 
   if(userJWT != null){
-    noAuthRoutes = <></>
-    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }                                                                                                                          
+    noAuthRoutes = <></>;
+    authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }
                                                               logout={ () => {setUserJWT(null)
                                                               window.localStorage.removeItem('token')}}
                                                               restaurants={allRestaurants}/>} /></>
@@ -118,7 +118,7 @@ function App() {
               <Route path='/' element={<Discover />} />
               { noAuthRoutes }
               { authRoutes }
-              <Route path='/restaurant/:id' element={ <Restaurant /> } />
+              <Route path='/restaurant/:id' element={ <Restaurant jwt={ userJWT }/> } />
               <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />
@@ -127,7 +127,7 @@ function App() {
             </Routes>  
         </div>
 
-        <footer className="footer">
+        <footer id="footer">
           <Footer />
         </footer>
 

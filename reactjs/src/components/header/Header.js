@@ -86,7 +86,7 @@ function Header( props ) {
   }
 
   return (
-    <div className="header">
+    <div id="header">
       <div className="headerContent">
 
         <div className="headerLeft">

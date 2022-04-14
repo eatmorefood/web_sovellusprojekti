@@ -10,7 +10,12 @@ import Login from './components/customerAuth/Login.js';
 import NotFound from './components/staticPages/NotFound.js';
 import Signup from './components/customerAuth/Signup.js';
 import Disclaimer from './components/staticPages/Disclaimer.js';
+<<<<<<< HEAD
 import Profile from './components/profileComponents/Profile.js';
+=======
+import BusinessProfile from './components/profileComponents/BusinessProfile.js';
+import MenuPage from './components/MenuPage.js';
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
 
 const importJWTFromBrowser = window.localStorage.getItem('token');
 
@@ -27,12 +32,23 @@ function App() {
                               }}/>} /></>
   let authRoutes = <></>;
 
+<<<<<<< HEAD
+=======
+  let mainPageRoutes =<Route path='/' element={<Discover userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />;
+
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
   console.log(importJWTFromBrowser);
 
   if(userJWT != null){
     //console.log("userjwt log");
+<<<<<<< HEAD
     noAuthRoutes = <></>
     authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }/>} /></>
+=======
+    mainPageRoutes = <Route path='/' element={<MenuPage userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />
+    noAuthRoutes = <></>
+    authRoutes = <><Route path='/profile/*' element={<BusinessProfile jwt={ userJWT }/>} /></>
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -92,7 +108,11 @@ function App() {
                 window.localStorage.removeItem('token')}}/>
         <div id="appContent">
             <Routes>
+<<<<<<< HEAD
               <Route path='/' element={<Discover />} />
+=======
+              { mainPageRoutes }
+>>>>>>> 50559b3e15ff1f097ae8639e86e2265c90424b01
               { noAuthRoutes }
               { authRoutes }
               <Route path='/support' element={<Support />} />

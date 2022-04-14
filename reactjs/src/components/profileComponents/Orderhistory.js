@@ -36,19 +36,19 @@ const Orderhistory = (props) => {
     <>{userData.map((item) => {
       return ( 
         <div className="orderinfo"key={item.idorders}> 
-          <div className="personalinfoSection1">
-            <div className="personalinfoSection1Right">
-              <div className="personalinfoSection1RightBottom">
-                <div className="personalinfoSection1RightBottomLeft">
-                <div className="personalinfoSubTitle">Restaurant</div>
+          <div className="orderinfoSection1">
+            <div className="orderinfoSection1Right">
+              <div className="orderinfoSection1RightBottom">
+                <div className="orderinfoSection1RightBottomLeft">
+                <div className="orderinfoSubTitle">Restaurant</div>
                   <div>{ getname(item.idrestaurant) }</div>
                 </div>
-                <div className="personalinfoSection1RightBottomLeft">
-                  <div className="personalinfoSubTitle">Orderdate</div>
+                <div className="orderinfoSection1RightBottomLeft">
+                  <div className="orderinfoSubTitle">Orderdate</div>
                   <div>{ item.orderdate }</div>
                 </div>
-                <div className="personalinfoSection1RightBottomLeft">
-                <div className="personalinfoSubTitle">Price</div>
+                <div className="orderinfoSection1RightBottomLeft">
+                <div className="orderinfoSubTitle">Price</div>
                   <div>{ item.price }€</div>
               </div>
             </div>

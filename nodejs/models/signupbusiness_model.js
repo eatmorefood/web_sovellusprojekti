@@ -8,7 +8,7 @@ const business={
       },
     
     getProfileData: function(ID, callback) { 
-        return db.query('select * from restaurant where idrestaurant = $1;',
+        return db.query('select restaurant.*, userr.email from restaurant join userr on userr.idrestaurant = restaurant.idrestaurant where restaurant.idrestaurant = $1;',
         [ID], callback);
     }
 
