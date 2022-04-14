@@ -11,8 +11,6 @@ function Search(props){
 
 
     useEffect(() => {
-        console.log(stateParam)
-
         if(!stateParam){ //if there's no query, navigate to main page
             navigate('/');
         }

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-var port = 8080;
+const port = process.env.PORT || 8080;
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy,

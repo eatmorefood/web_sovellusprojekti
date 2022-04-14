@@ -105,9 +105,21 @@
 }
 
 @media (max-width: 850px){
-    .shoppingCartPopup{
-        width: 90vw;
+    .shoppingCartPopupContainer{
+        min-width: 80vw;
+        max-height: 80vh;
     }
+}
+
+@media (max-width: 1000px){
+    .shoppingCartBarContent{
+        justify-content: space-between;
+        bottom: 1rem !important;
+        top: auto !important;
+        right: 1rem !important;
+        left: 1rem;
+        position: fixed !important;
+        }
 }
 
 .shoppingCartBarContent{
@@ -125,6 +137,8 @@
     font-weight: 600;
     cursor: pointer;
     border: 1px solid rgba(0, 0, 0, 0.259);
+    box-shadow: 0px 0px 20px 2px black;
+    z-index: 1;
 }
 
 .shoppingCartBarContent:hover{
@@ -215,4 +229,16 @@
 
 .singleFoodItemPopupQuantityButtonRemove:hover{
     transform: scale(1.2);
+}
+
+@media (min-width: 1800px) {
+    #shoppingCartBar{
+        position: relative;
+        width: 1600px !important;
+        margin: 0px auto;
+    }
+
+    .shoppingCartBarContent{
+        top: 2rem;
+    }
 }

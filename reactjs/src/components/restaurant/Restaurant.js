@@ -9,26 +9,29 @@ import SingleFoodItem from './SingleFoodItem.js';
 import HandleClickOutside from "../functional/HandleCLickOutside.js";
 import ShoppingCart from '../shoppingCart/ShoppingCart.js';
 
-function Restaurant(props){ //displays single restaurant page
+//const importCartFromBrowser = window.localStorage.getItem('cart');
+/*        let cartObj = {
+            restaurant: restaurantData[0].idrestaurant,
+            cart: updatedCart
+        }
+        window.localStorage.setItem('cart', JSON.stringify(cartObj));*/
+
+function Restaurant({ restaurantData, setRestaurantData, jwt, showLogin, cart, setCart }){ //displays single restaurant page
     let { id } = useParams();
     const navigate = useNavigate();
-
-    const [restaurantData, setRestaurantData] = useState([]); //stores specific restaurant's data
+    
     const [restaurantFoods, setRestaurantFoods] = useState([]); //stores all foods for specific restaurant
     let [foodCategories, setFoodCategories] = useState([]); //stores all food categories
     const {ref, displayFoodPopup, setDisplayFoodPopup} = HandleClickOutside(false); //display / hide single restaurant item when clicked
     const [foodPopupItemData, setFoodPopupItemData] = useState([null]); //stores clicked single food itme's data
     const {cartRef, cartVisibility, switchCartVisibility} = HandleClickOutside(false); //handles hiding / showing shopping cart
-    let [cart, setCart] = useState([]); //stores shopping cart items
-    const [userJWT, setUserJWT] = useState(props.jwt); //stores user JWT
+    const [userJWT, setUserJWT] = useState(jwt); //stores user JWT
 
     let singleFoodItemPopup = <></>;
     let foodNotFoundMessage = <></>;
     let shoppingCartBar = <></>;
     let shoppingCartPopup = <></>;
 
-    console.log("track re render")
-    
 //====================================== HANDLES SHOPPING CART ACTIONS =========================================
     const getTotalSum = () => { //calculate total cart sum
         let totalSum = 0;
@@ -38,30 +41,34 @@ function Restaurant(props){ //displays single restaurant page
         return totalSum.toFixed(2);
     };
 
-    const totalQty = cart.reduce(function(prev, cur) { //calculate total quantity of cart items
-        return prev + cur.qty;
-    }, 0);   
+    const totalQty = () => {
+        const x = cart.reduce(function(prev, cur) { //calculate total quantity of cart items
+            return prev + cur.qty;
+        }, 0);
+        return x;
+    } 
 
-    if(Array.isArray(cart) && cart.length){ //if cart has content...
+    if(cart.length){ //if cart has content...
         shoppingCartBar = <><div className="shoppingCartBarContent">
-                                <div className="shoppingCartBarTotalQuantity">{totalQty}</div>
+                                <div className="shoppingCartBarTotalQuantity">{totalQty()}</div>
                                 <div>Display order</div>
                                 <div className="shoppingCartBarTotalCost">{getTotalSum()}€</div>
                             </div></>;
     }
 
-    useEffect(() => { setUserJWT(props.jwt) }, [props.jwt]); //update user jwt on login
+    useEffect(() => { setUserJWT(jwt) }, [jwt]); //update user jwt on login
 
     const AddItemToCart = (product) => {
         if(userJWT === null){
-            alert("Please login first")
+            setDisplayFoodPopup(false);
+            showLogin();
         } else {
-            setDisplayFoodPopup(false)      
+            setDisplayFoodPopup(false)
             setCart([...cart, product]); //push new item to cart
         }
     }
 
-    const ModifyCartItem = (product) => {    
+    const ModifyCartItem = (product) => {     //modify cart item
         const prodIndex = cart.findIndex(obj => obj.id === product.id);
         const updatedProdObj = { ...cart[prodIndex], qty: product.qty};
 
@@ -72,14 +79,15 @@ function Restaurant(props){ //displays single restaurant page
         ];
 
         setCart(updatedCart);
+        setDisplayFoodPopup(false);
     }
 
-    const RemoveCartItem = (itemID) => {
+    const RemoveCartItem = (itemID) => { //remove item from card
         const updatedCart = cart.filter((item) => item.id !== itemID);
         setCart(updatedCart);
     }
 
-    const ModifyCartItemQty = (item) => {   
+    const ModifyCartItemQty = (item) => { //modify cart item quantity 
         const prodIndex = cart.findIndex(obj => obj.id === item.id);
         const updatedProdObj = { ...cart[prodIndex], qty: item.qty};
 
@@ -96,9 +104,10 @@ function Restaurant(props){ //displays single restaurant page
         shoppingCartPopup = <div ref={cartRef}><ShoppingCart cart={cart}
                                                             closeBtn={() => switchCartVisibility(!cartVisibility)}
                                                             totalSum={() => getTotalSum()}
-                                                            totalQty={totalQty}
+                                                            totalQty={totalQty()}
                                                             modifyQty={ModifyCartItemQty}
-                                                            removeCartItem={RemoveCartItem}/>
+                                                            removeCartItem={RemoveCartItem}
+                                                            restID={id}/>
                                                             </div>;
     }
 
@@ -190,7 +199,7 @@ function Restaurant(props){ //displays single restaurant page
         }
 
         fetchRestaurantData(); //this actually calls the axios await -> gets restaurant data on render
-    }, [id, navigate]);
+    }, [id, setRestaurantData, navigate]);
 
     if(!Array.isArray(restaurantFoods) || !restaurantFoods.length){ //if restaurant food items are not found..
         foodNotFoundMessage = <><div>Sorry!<br></br>We could not find any food items for this restaurant.</div></>
@@ -198,17 +207,18 @@ function Restaurant(props){ //displays single restaurant page
 
 //================================================= RENDER =================================================
     return (
-        <>{restaurantData.map((item, index) => {
+        <>
+        {restaurantData.map((item, index) => {
             return (
                 <div key={index}>
                 <div id="shoppingCartPopup" >{ shoppingCartPopup }</div>
                 <div id="singleRestItemPopupBox" >{ singleFoodItemPopup }</div>
                 <div id="restaurantMainContainer">
+                <div id="shoppingCartBar" onClick={() => switchCartVisibility(!cartVisibility)}>{ shoppingCartBar }</div> 
                     <div className="restaurantName">
                         <div>{item.name}</div>   
                         <div className="restaurantContainerType">{item.type}</div>
-                    </div>
-                    <div id="shoppingCartBar" onClick={() => switchCartVisibility(!cartVisibility)}>{ shoppingCartBar }</div>               
+                    </div>             
                     <img className="restaurantImage" src={ item.image }  alt="" loading="eager"/>                    
                     
                     <div className="restaurantDataContainer">

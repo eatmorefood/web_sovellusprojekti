@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './ShoppingCart.css';
 import CloseCartPopup from '../../images/closeBtnCircle.png';
 import Minus from '../../images/minus.png';
@@ -7,6 +8,7 @@ import Trashcan from '../../images/trashcan.png';
 
 function ShoppingCart(props){ //displays shopping cart popup
     let [itemSwitchQty, setItemSwitchQty] = useState(false);
+    const location = useLocation();
 
     const reduceQuantity = (item) => { //handle quantity adjustment
         if(item.qty > 1){
@@ -29,6 +31,19 @@ function ShoppingCart(props){ //displays shopping cart popup
             props.modifyQty(updatedProd);
         }
     };
+
+    function CloseCart(){
+        document.body.style.removeProperty("overflow"); 
+        let app = document.getElementById("restaurantMainContainer");
+        let a = document.getElementById("header");
+        let b = document.getElementById("footer");
+        app.style.filter = "none";
+        app.style.pointerEvents = "all";     
+        a.style.filter = "none";
+        a.style.pointerEvents = "all";
+        b.style.filter = "none";
+        b.style.pointerEvents = "all";
+    }
 
     return (    
         <div className="shoppingCartPopupContainer">
@@ -59,15 +74,17 @@ function ShoppingCart(props){ //displays shopping cart popup
                     </div>
                 ))}
             </div>
-            <div className="shoppingCartProceedToCheckout">
-                <div className="shoppingCartProceedToCheckoutLeft">
-                    <div className="shoppingCartTotalItemNumber">{props.totalQty}</div>
-                    <div>Proceed to checkout</div>
+            <Link to={location.pathname + "/checkout"} style={{ textDecoration: 'none' }} >
+                <div className="shoppingCartProceedToCheckout" onClick={() => CloseCart()}>
+                    <div className="shoppingCartProceedToCheckoutLeft">
+                        <div className="shoppingCartTotalItemNumber">{props.totalQty}</div>
+                        <div>Proceed to checkout</div>
+                    </div>
+                    <div className="shoppingCartProceedToCheckoutRight">
+                        <div>{props.totalSum()}€</div>
+                    </div>
                 </div>
-                <div className="shoppingCartProceedToCheckoutRight">
-                    <div>{props.totalSum()}€</div>
-                </div>
-            </div>
+            </Link>
         </div>
     )
 };

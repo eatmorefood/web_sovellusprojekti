@@ -25,7 +25,7 @@ router.get('/:id?', function (req, res) {
 
     restaurant.getByName(restaurantId, function (err, dbResult) {
       if (err) {
-        console.log(err);
+        console.log("could not get single restaurant");
       } else {
         let data = dbResult;
         try{
@@ -38,7 +38,7 @@ router.get('/:id?', function (req, res) {
   } else { //if no id in params, get all restaurants
     restaurant.getAllRestaurants(function(err, dbResult) {
       if (err) {
-        console.log(err);
+        console.log("could not get all restaurants");
       } else {
         let data = dbResult;
         try{
