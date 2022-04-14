@@ -5,7 +5,9 @@ import axios from 'axios';
 import Constants from './Constants.json';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
-import Discover from './components/restaurant/Discover.js';
+import Discover from './components/discover/Discover.js';
+import DiscoverAll from './components/discover/DiscoverAll';
+
 import Restaurant from './components/restaurant/Restaurant.js';
 import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
@@ -16,6 +18,7 @@ import Signup from './components/customerAuth/Signup.js';
 import Disclaimer from './components/staticPages/Disclaimer.js';
 import Profile from './components/profileComponents/Profile.js';
 
+
 const importJWTFromBrowser = window.localStorage.getItem('token');
 
 function App() {
@@ -23,7 +26,7 @@ function App() {
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
   const [userJWT, setUserJWT] = useState(importJWTFromBrowser);
-  const [allRestaurants, setAllRestaurants] = useState([]);
+  let [allRestaurants, setAllRestaurants] = useState([]);
 
 //========================================= CONDITIONAL RENDERING ==================================================
 
@@ -65,29 +68,17 @@ function App() {
 
 //========================================= USE EFFECTS ==================================================
 
-  /*
   useEffect(() => { //get all restaurants 
     const fetchQueryResults = async () => {
       try {
         const results = await axios.get(Constants.API_ADDRESS + '/restaurant');
-        setAllRestaurants(results.data.restaurant);
+        setAllRestaurants(results.data);
       } catch(error) {
         console.log("something went wrong");
       }
     }
     fetchQueryResults();
   }, []);
-  */
-  
-  useEffect(() => {
-    const getData = async () => {
-      const results = await axios.get('http://localhost:8080/restaurant')   // axios.get('https://localhost:3000/restaurant)  http://localhost:8080/restaurant
-
-      setAllRestaurants(results.data.restaurant);    // setRestaurants(results.data.restaurants) , 2.2.2022 30:00
-    }
-
-    getData();
-
 
   useEffect(() => {
     const checkIfClickedOutside = e => {
@@ -126,15 +117,9 @@ function App() {
                 window.localStorage.removeItem('token')}}/>
         <div id="appContent">
             <Routes>
+              <Route path='/' element={<Discover />} />
+              <Route path='/allrestaurants' element={<DiscoverAll />} />
               
-              <Route path='/' element={ allRestaurants.map(p => <Discover name={p.name} category={p.type} pricelevel={p.pricelevel} />)} />
-
-{/*
-            <div className="productContainer">
-              { restaurants.map(p => <Discover name={p.name} category={p.type} pricelevel={p.pricelevel} />)}  
-            </div>
-              */}
-
               { noAuthRoutes }
               { authRoutes }
               <Route path='/restaurant/:id' element={ <Restaurant jwt={ userJWT }/> } />
@@ -153,6 +138,6 @@ function App() {
       </div>
     </div>
   );
-})}
+}
 
 export default App;

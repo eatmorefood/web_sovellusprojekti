@@ -1,18 +1,19 @@
 import React from "react";
 import muffin from "../../images/muffinDance.gif";
+import { Link } from "react-router-dom"; 
 
 function Discover(props) {
 
   return (
-    <div className="discover">
+     
+    <div>
+      <p>
         <img className="haha" alt="" src={muffin}></img>
-    </div>,
-
-    <div className="dRestaurant">
-        <div>{ props.name }</div>
-        <div>{ props.category }</div>
-        <div>{ props.pricelevel }</div>
+      </p>
+      <Link to="allrestaurants"><button>See all restaurants</button></Link>
+      
     </div>
+
   );
 }
 

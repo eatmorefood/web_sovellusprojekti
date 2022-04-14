@@ -16,6 +16,6 @@ const restaurant={
         return db.query('update "restaurant" set "image" = $2 where "idrestaurant" = $1',
         [params.id, params.image_url], callback);
     }
-    */
+    
 }
 module.exports = restaurant;
