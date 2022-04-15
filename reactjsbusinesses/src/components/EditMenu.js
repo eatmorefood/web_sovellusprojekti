@@ -5,6 +5,8 @@ import jwt_decode from 'jwt-decode';
 import './MenuPage.css';
 import Constants from '../Constants.json';
 import trashcan from '../images/delete.png';
+import checkmark from '../images/checkmark.png';
+import cancelcross from '../images/cancelcross.png';
 
 
 function EditMenu ( props ) {
@@ -17,6 +19,10 @@ function EditMenu ( props ) {
     let loggedInName = "";
 
     let navigation = useNavigate(); 
+
+    useEffect(() => { //automatically scrolls to the top of the page, useful for mobile users
+      window.scrollTo(0, 0)
+    }, []);
   
     if(props.jwt != null){
     decodedToken = jwt_decode(props.jwt);
@@ -39,6 +45,10 @@ function EditMenu ( props ) {
           'Authorization': 'Bearer ' + props.jwt
       }
       });
+      navigation("/");
+    }
+
+    const handleCancel = async => {
       navigation("/");
     }
     
@@ -115,6 +125,7 @@ function EditMenu ( props ) {
           );
         }
         alert('Tallennettu!');
+        navigation("/");
       }
 
         catch(error){
@@ -126,15 +137,12 @@ function EditMenu ( props ) {
     
   return (
     <div className="menupage">
-        <div>
-          <h1 className="businessTitle">{loggedInName}</h1>
-        </div>
-        <div>This is EditMenu.js</div>
         <div className="editContent">
         <div className="editTitle">Edit your food: </div>
-        <div className="editSubTitle">Click save to save the changes.</div>
-        
+        <div className="editSubTitle">Click save to save the changes, cancel to take you back and trashcan to delete the food.</div>
+
         <form className="editForm" onSubmit={ handleSubmit }>
+                
                 <div className="editMenuTitle">Name:</div>
                 <input
                     type="text"
@@ -183,7 +191,7 @@ function EditMenu ( props ) {
                     maxLength="50"
                     required
                 />
-                <div className="editMenuTitle">Image path:</div>
+                <div className="editMenuTitle">Image:</div>
                 <input
                     type="file"
                     className="editField"
@@ -193,8 +201,12 @@ function EditMenu ( props ) {
                     autoComplete="off"
                     maxLength="50"
                 />
-                <input type="submit"></input>
-                <img className="deleteBtn" onClick={handleDelete} src={trashcan}/>
+                <div className="buttons">
+                  <div className="cancel" onClick={handleCancel}><div className="btnText">Cancel</div><div className="btnIcon"><img className="cancelCross" src={cancelcross}/></div></div>
+                  <div className="delete" onClick={handleDelete}><img className="deleteBtn" src={trashcan}/></div>
+                  <div className="save" onClick={handleSubmit}><div className="btnText">Save</div><div className="btnIcon"><img className="checkMark" src={checkmark}/></div></div>
+
+                </div>
         
         </form>
         </div>

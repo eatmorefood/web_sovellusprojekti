@@ -5,8 +5,7 @@ import jwt_decode from 'jwt-decode';
 import './MenuPage.css';
 import Constants from '../Constants.json';
 import FoodGrid from './FoodGrid'
-import editbtn from '../images/editbtn.png';
-import EditMenu from './EditMenu.js';
+import plus from '../images/plus.png';
 import {useNavigate} from "react-router-dom";
 
 
@@ -69,14 +68,14 @@ function MenuPage ( props ) {
     
   return (
     <div className="menupage">
+      
         <div>
-          <h1 className="businessTitle">{loggedInName}</h1>
+          <div className="grid">
+            <div className="newMeal" onClick={navigate()}>
+              <div className="btnText">Add new meal</div><div className="btnIcon"><img className="plusIcon" src={plus}/></div></div>
+              <FoodGrid arrOfFood={userData}/>
+            </div>
         </div>
-        <div>This is logged in main page (MenuPage.js)</div>
-        <img className="haha" alt="" src={muffin}></img>
-
-        <div className="grid"><FoodGrid arrOfFood={userData}/></div>
-        <div className="newMeal" onClick={navigate()}>Add new meal</div>
         
 
 
