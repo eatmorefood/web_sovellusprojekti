@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap');
 
-.Checkout{
+#Checkout{
     letter-spacing: .05em;
 }
 
@@ -56,23 +56,31 @@
 }
 
 .checkoutContentContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 6rem;
+    display: grid;
+    grid-template-columns: 50% 15% 35%;
+    margin: 0 auto 11rem;
+    padding: 2rem 30px 0;
 }
 
 .checkoutContainerRight{
     position: relative;
-    top: -4rem;
+    top: -6rem;
+    grid-column: 3;
+    -ms-grid-column: 3;
+    z-index: 1000;
+    height: calc(100% + 7.5rem);
+}
+
+.checkoutContainerRightBox{
+    position: sticky;
+    top: 6rem;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: rgb(244, 244, 244);
     border: 1px solid rgb(211, 211, 211);
     box-shadow: 0px 0px 15px 3px #d7d7d7;
     border-radius: 7px;
     width: 330px;
-    height: 250px;
     padding: 1.5rem;
     gap: 1rem;
 }
@@ -99,7 +107,7 @@
 .checkoutContainerLeft{
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1.5rem;
 }
 
 .checkoutDeliveryContainer{
@@ -107,23 +115,61 @@
     flex-direction: column;
 }
 
-.checkoutDeliveryContainerAddress{
-    width: 400px;
+#checkoutDeliveryContainerAddress{
     border: 1px solid rgb(211, 211, 211);
     border-radius: 7px;
     padding: 1rem;
-    transition: all 0.2s;
+    font-size: 1.3rem;
 }
 
-.checkoutDeliveryContainerAddress:hover{
-    box-shadow: 0px 0px 15px 3px #d7d7d7;
+#checkoutDeliveryContainerAddress:hover{
+    box-shadow: 0px 0px 10px 3px #d7d7d7;
+}
+
+#checkoutDeliveryContainerAddressCollapse{
+    display: none;
+    background-color: rgb(247, 247, 247);   
+    border-left: 1px solid rgb(211, 211, 211);
+    border-bottom: 1px solid rgb(211, 211, 211);
+    border-right: 1px solid rgb(211, 211, 211);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: 1rem;
+}
+
+#checkoutDeliveryContainerAddressCollapse div{
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: default;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+#checkoutuDeliveryNewAddressInput{
+    display: none;
+    margin-top: 1rem;
+    margin-left: 1.5rem;
+}
+
+#checkoutuDeliveryNewAddressInput label{
+    color: rgb(105, 105, 105);
+}
+
+#checkoutuDeliveryNewAddressInput input{
+    font-size: 1.4rem;
+    width: 90%;
+    height: 40px;
 }
 
 .checkoutContainerLeftTitle{
     font-family: 'Dosis';
     font-size: 1.6rem;
     font-weight: 900;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.checkoutProductContainer{
+    margin-top: 3rem;
 }
 
 .checkoutProductListContainer{
@@ -179,6 +225,77 @@
     color: rgb(255, 98, 0);
 }
 
+#checkoutContainerRightPayment{
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 2.5rem;
+    background-color: rgb(72, 72, 72);
+    color: white;
+    border-radius: 7px;
+    padding: 0.8rem;
+    transition: all 0.2s;
+}
+
+#checkoutContainerRightPayment:hover{
+    background-color: rgb(255, 140, 0);
+}
+
+.checkoutPaymentContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+#checkoutPaymentContainerBox{
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 7px;
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+
+#checkoutPaymentContainerBox:hover{
+    box-shadow: 0px 0px 10px 3px #d7d7d7;
+}
+
+#checkoutPaymentContainerCollapse{
+    display: none;
+    background-color: rgb(247, 247, 247);   
+    border-left: 1px solid rgb(211, 211, 211);
+    border-bottom: 1px solid rgb(211, 211, 211);
+    border-right: 1px solid rgb(211, 211, 211);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: 1rem;
+}
+
+#checkoutPaymentContainerCollapse div{
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: default;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.checkoutRadioBtnOption{
+    cursor: pointer;
+}
+
+#checkoutArrow{
+    margin-left: 1rem;
+    width: 20px;
+    height: 20px;
+    transition: all 0.15s;
+}
+
+#checkoutPaymentArrow{
+    margin-left: 1rem;
+    width: 20px;
+    height: 20px;
+    transition: all 0.15s;
+}
+
 @media (max-width: 1000px) {
     .checkoutContentContainer{
         display: flex;
@@ -189,14 +306,15 @@
         left: 0; 
         right: 0; 
         margin-left: auto; 
-        margin-right: auto; 
+        margin-right: auto;
     }
 
-    .checkoutContainerRight{
-        position: static;
-        top: auto;
+    .checkoutContainerRightBox{
+        position: relative;
+        top: 3rem;
         box-shadow: none;
         width: auto;
+        margin-top: 2.5rem;
     }
 }
 

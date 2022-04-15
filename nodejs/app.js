@@ -93,14 +93,6 @@ app.use('/signupbusiness', signupbusinessRouter);
 app.use('/restaurant', restaurantRouter);
 app.use('/meal', mealRouter);
 
-app.use((err, req, res, next) => { //general error handler
-  res.status(500).json({
-    error: err,
-    message: 'Internal server error!',
-  })
-  next()
-})
-
 app.listen(port, () => {
   console.log(`App listening at http://localhost:${port}`)
 })

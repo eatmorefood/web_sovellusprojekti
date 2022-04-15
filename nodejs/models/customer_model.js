@@ -15,6 +15,11 @@ const customer={
     findExistingEmail: function(checkEmail, callback) { 
         return db.query('select "email" from "customer" where "email" = $1;',
         [checkEmail], callback);
+    },
+
+    createPurchase: function(params, callback) {
+        return db.query('insert into "orders" ("orderdate", "price", "idcustomer", "idrestaurant", "idfood", "deliveryaddress") values ($1, $2, $3, $4, $5, $6);',
+        [params.date, params.total, params.custID, params.restID, params.foodID, params.address], callback);
     }
 
 }

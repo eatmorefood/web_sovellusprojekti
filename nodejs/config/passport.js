@@ -61,7 +61,7 @@ module.exports = function(passport) {
                                         lname: results.rows[0].lname
                                     }
                                     //console.log(results);
-                                    console.log("user with email: " + user.email + " has logged in");
+                                    console.log("user with email: " + user.email + " has been authenticated");
                                     res.status(200);
                                     done(null, user);
                                 }

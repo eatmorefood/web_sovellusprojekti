@@ -26,16 +26,16 @@ function Login( props ){
       props.login(receivedJWT);
 
     } catch(error) {
-      var body = document.getElementById("loginErrorMessage");
+      var q = document.getElementById("loginErrorMessage");
       var x = document.getElementById("loginEmail");      
       var y = document.getElementById("loginPassword");
-      body.style.visibility = "visible";
+      q.style.visibility = "visible";
       x.style.borderColor = "red";
       x.value = "";
       y.style.borderColor = "red";
       y.value = "";
       setTimeout(function() {
-        body.style.visibility = "hidden";
+        q.style.visibility = "hidden";
         x.style.borderColor = "lightgrey";
         y.style.borderColor = "lightgrey";
       }, 5000);
