@@ -38,7 +38,8 @@ function App() {
     noAuthRoutes = <></>;
     authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }
                                                               logout={ () => {setUserJWT(null)
-                                                              window.localStorage.removeItem('token')}}/>} /></>
+                                                              window.localStorage.removeItem('token')
+                                                              window.localStorage.removeItem('cart')}}/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -111,7 +112,8 @@ function App() {
                 jwt={ userJWT }
                 displayLogin={ toggleLogin }
                 logout={ () => {setUserJWT(null)
-                window.localStorage.removeItem('token')}}/>
+                window.localStorage.removeItem('token')
+                window.localStorage.removeItem('cart')}}/>
         <div id="appContent">
             <Routes>
               <Route path='/' element={<Discover />} />

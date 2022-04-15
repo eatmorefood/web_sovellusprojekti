@@ -9,13 +9,6 @@ import SingleFoodItem from './SingleFoodItem.js';
 import HandleClickOutside from "../functional/HandleCLickOutside.js";
 import ShoppingCart from '../shoppingCart/ShoppingCart.js';
 
-//const importCartFromBrowser = window.localStorage.getItem('cart');
-/*        let cartObj = {
-            restaurant: restaurantData[0].idrestaurant,
-            cart: updatedCart
-        }
-        window.localStorage.setItem('cart', JSON.stringify(cartObj));*/
-
 function Restaurant({ restaurantData, setRestaurantData, jwt, showLogin, cart, setCart }){ //displays single restaurant page
     let { id } = useParams();
     const navigate = useNavigate();
@@ -57,6 +50,30 @@ function Restaurant({ restaurantData, setRestaurantData, jwt, showLogin, cart, s
     }
 
     useEffect(() => { setUserJWT(jwt) }, [jwt]); //update user jwt on login
+
+    useEffect(() => {
+        window.localStorage.removeItem('cart');
+        setCart([]);
+    }, [id, setCart]);
+
+    useEffect(() => {
+        if(cart.length){
+            let mycart = {
+                restaurant: {
+                    id: id,
+                    name: restaurantData[0].name
+                },
+                basket: cart
+            }
+            window.localStorage.setItem('cart', JSON.stringify(mycart));
+        } else {
+            const importCartFromBrowser = window.localStorage.getItem('cart');
+            if(importCartFromBrowser){
+                let y = JSON.parse(importCartFromBrowser);
+                setCart(y.basket);
+            }
+        }
+    }, [cart]);
 
     const AddItemToCart = (product) => {
         if(userJWT === null){
