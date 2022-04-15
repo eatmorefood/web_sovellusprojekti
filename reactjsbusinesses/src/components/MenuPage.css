@@ -6,28 +6,57 @@
     border-spacing: 0px;
     grid-auto-flow: row;
     align-items: center;
+    margin-top: 2%;
+}
+
+.grid{
+    padding: 4.5rem;
+    min-width: 920px;
 }
 
 .newMeal:hover{
     cursor: pointer;
 }
 
+.newMeal{
+    border: 2px solid green;
+    width: 140px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    color: green;
+    font-weight: bold;
+    font-size: large;
+    margin-right: 0px;
+    margin-left: auto;
+}
+
 .foodImage{
-    width: 100px;
+    width: 250px;
 }
 
 .deleteBtn{
-    width: 100px;
+    height: 60px;
 }
 
 .deleteBtn:hover{
     cursor: pointer;
 }
 
+.plusIcon{
+    width: 50px;
+}
+
 .menuContainer td{
-    border: 1px;
-    border-style: solid;
     text-align: center;
+    font-family: cursive;
+    font-size: 24px;
+    border: 1px solid black;
+    padding: 1rem 1rem;
+    min-height: 3em;
+    width: 60%;
+    resize: both;
+    
 }
 
 .editBtn{
@@ -102,3 +131,69 @@
     margin-left: 5px;
 }
 
+.checkMark{
+    width: 50px;
+}
+
+.cancelCross{
+    width: 50px;
+}
+
+.cancel{
+    border: 2px solid red;
+    width: 115px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: auto;
+    margin-left: 10%;
+    display: flex;
+    color: red;
+    font-weight: bold;
+    font-size: large;
+}
+
+.save{
+    border: 2px solid green;
+    width: 115px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    margin-left: auto;
+    margin-right: 10%;
+    color: green;
+    font-weight: bold;
+    font-size: large;
+}
+
+.save:hover{
+    cursor: pointer;
+}
+
+.cancel:hover{
+    cursor: pointer;
+}
+
+.delete:hover{
+    cursor: pointer;
+}
+
+.buttons{
+    display: flex;
+}
+
+.btnIcon{
+    margin-right: 2px;
+    margin-left: auto;
+    align-self: center;
+}
+
+.btnText{
+    align-self: center;
+    margin-left: 5px;
+    margin-right: auto;
+}
+
+.gridHeaders{
+    font-family: cursive;
+    font-size: 25px;
+}

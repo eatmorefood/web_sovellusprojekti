@@ -1,6 +1,5 @@
 import React from 'react'
 import './MenuPage.css';
-import MenuPage from './MenuPage.js';
 import editbtn from '../images/editbtn.png';
 import {useNavigate} from "react-router-dom";
 
@@ -34,6 +33,14 @@ export default function FoodGrid (props) {
     return (
 
         <table className="menuContainer">
+            <thead>
+                <tr>
+                    <th className="gridHeaders">Name:</th>
+                    <th className="gridHeaders">Description:</th>
+                    <th className="gridHeaders">Category:</th>
+                    <th className="gridHeaders">Price:</th>
+                </tr>
+            </thead>
             <tbody>{menuCells}</tbody>
         </table>
     )
