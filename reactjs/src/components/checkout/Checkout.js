@@ -101,11 +101,10 @@ function Checkout(props) {
   }
 
   const getCustID = () => {
-    if(props.customerData.idcustomer){
-      return props.customerData.idcustomer;
+    if(props.decodedToken.user.id){
+      return props.decodedToken.user.id;
     }
   }
-
   function HandleAddressChange(param){
     const input = document.getElementById("checkoutuDeliveryNewAddressInput");
     const addressDisplayed = document.getElementById("checkoutDeliveryContainerAddress");

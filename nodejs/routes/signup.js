@@ -16,9 +16,9 @@ function (req, res) {
         res.json({status: "Missing last name from request body"});
         return;
     }
-    if(('phone' in req.body == false) || (typeof req.body.phone != 'number')){
+    if(('phone' in req.body == false) || (typeof req.body.phone != 'string')){
         res.status(400);
-        res.json({status: "Missing phone number from request body"});
+        res.json({status: "Missing phone string from request body"});
         return;
     }
     if(('address' in req.body == false) || (typeof req.body.address != 'string')){

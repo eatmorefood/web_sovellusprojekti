@@ -105,13 +105,13 @@ function (req, res) {
         return;
     }
 
-    if(('price' in req.body == false) || (typeof req.body.price != 'number')){
+    if(('price' in req.body == false) || (typeof req.body.price != 'string')){
         res.status(400);
         res.json({status: "Missing meal price from request body"});
         return;
     }
 
-    if(('idrestaurant' in req.body == false) || (typeof req.body.idrestaurant != 'number')){
+    if(('idrestaurant' in req.body == false) || (typeof req.body.idrestaurant != 'string')){
         res.status(400);
         res.json({status: "Missing restaurant id from request body"});
         return;
