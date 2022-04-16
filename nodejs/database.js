@@ -13,10 +13,6 @@ const pool = new Pool({
   statement_timeout: 10000,
 });
 
-pool.on('error', e => {
-  console.error('Database error', e);
-  pool = null;
-});
 
 module.exports = pool;
 

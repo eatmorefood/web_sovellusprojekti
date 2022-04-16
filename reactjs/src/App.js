@@ -9,7 +9,7 @@ import Discover from './components/Discover.js';
 import RestaurantPaths from './components/restaurant/RestaurantPaths.js';
 import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
-import Businesses from './components/staticPages/Businesses.js';
+//import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/customerAuth/Login.js';
 import NotFound from './components/staticPages/NotFound.js';
 import Signup from './components/customerAuth/Signup.js';
@@ -122,7 +122,7 @@ function App() {
               <Route path='/restaurant/*' element={ <RestaurantPaths jwt={ userJWT } showLogin={toggleLogin} /> } />
               <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
-              <Route path='/businesses' element={<Businesses />} />
+              {/*<Route path='/businesses' element={<Businesses />} />*/}
               <Route path='/disclaimer' element={<Disclaimer />} />
               <Route path='/*' element={<NotFound />} />
             </Routes>  
