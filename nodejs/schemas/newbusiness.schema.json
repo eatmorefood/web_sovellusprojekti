@@ -1,0 +1,101 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "email": "naughty@burgers.com",
+            "name": "Naughty burgerz",
+            "address": "Burger road 2",
+            "open": "10:00 - 12:00",
+            "type": "Fast food",
+            "pricelevel": "€€",
+            "password": "Bestpassword1"
+        }
+    ],
+    "required": [
+        "email",
+        "name",
+        "address",
+        "open",
+        "type",
+        "pricelevel",
+        "password"
+    ],
+    "properties": {
+        "email": {
+            "$id": "#/properties/email",
+            "type": "string",
+            "title": "The email schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "naughty@burgers.com"
+            ]
+        },
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The name schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Naughty burgerz"
+            ]
+        },
+        "address": {
+            "$id": "#/properties/address",
+            "type": "string",
+            "title": "The address schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Burger road 2"
+            ]
+        },
+        "open": {
+            "$id": "#/properties/open",
+            "type": "string",
+            "title": "The open schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "10:00 - 12:00"
+            ]
+        },
+        "type": {
+            "$id": "#/properties/type",
+            "type": "string",
+            "title": "The type schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Fast food"
+            ]
+        },
+        "pricelevel": {
+            "$id": "#/properties/pricelevel",
+            "type": "string",
+            "title": "The pricelevel schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "€€"
+            ]
+        },
+        "password": {
+            "$id": "#/properties/password",
+            "type": "string",
+            "title": "The password schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Bestpassword1"
+            ]
+        }
+    },
+    "additionalProperties": false
+}

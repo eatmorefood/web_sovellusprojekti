@@ -93,6 +93,15 @@ app.use('/signupbusiness', signupbusinessRouter);
 app.use('/restaurant', restaurantRouter);
 app.use('/meal', mealRouter);
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`)
-})
+let serverInstance = null;
+
+module.exports = {
+  start: function() {
+    serverInstance = app.listen(port, () => {
+      console.log(`App listening at http://localhost:${port}`)
+    })
+  },
+  close: function() {
+    serverInstance.close();
+  }
+}
