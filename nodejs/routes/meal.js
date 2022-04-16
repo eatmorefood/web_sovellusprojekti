@@ -27,17 +27,19 @@ router.get('/byrestaurant/:id?', function (req, res) {
     
         meal.getByRestaurant(restaurantId, function (err, dbResult) {
         if (err) {
-            console.log(err);
+            //console.log(err);
+            console.log("database error")
+            res.status(500);
         } else {
             let data = dbResult;
             try{
-                res.json(data.rows)
+                res.status(200).json(data.rows)
             } catch(err){
                 res.send("nothing found")
             }
         }
         });
-    } else { //if no id in params, get all restaurants
+    } else { //if no id in params
         throw new Error('no restaurant ID given');
     };
 });
@@ -48,13 +50,15 @@ router.get('/byid/:id?', function (req, res) {
     
         meal.getById(foodId, function (err, dbResult) {
         if (err) {
-            console.log(err);
+            //console.log(err);
+            console.log("database error")
+            res.status(500);
         } else {
             let data = dbResult;
             try{
                 res.json(data.rows)
             } catch(err){
-                res.send("nothing found")
+                res.status(200).send("nothing found")
             }
         }
         });
@@ -71,7 +75,9 @@ router.delete('/:id?', function (req, res)
     {
         if (err)
         {
-            console.log(err);
+            //console.log(err);
+            console.log("database error")
+            res.status(500);
         }
         else{
             res.status(200).json({code: 200, message: 'Meal deleted'})
@@ -81,27 +87,33 @@ router.delete('/:id?', function (req, res)
 
 router.post('/', //update or create new meals
 function (req, res) {
-    if('name' in req.body == false){
+    if(('name' in req.body == false) || (typeof req.body.name != 'string')){
         res.status(400);
         res.json({status: "Missing meal name from request body"});
         return;
     }
 
-    if('category' in req.body == false){
+    if(('category' in req.body == false) || (typeof req.body.category != 'string')){
         res.status(400);
         res.json({status: "Missing meal category from request body"});
         return;
     }
 
-    if('description' in req.body == false){
+    if(('description' in req.body == false) || (typeof req.body.description != 'string')){
         res.status(400);
         res.json({status: "Missing meal description from request body"});
         return;
     }
 
-    if('price' in req.body == false){
+    if(('price' in req.body == false) || (typeof req.body.price != 'number')){
         res.status(400);
         res.json({status: "Missing meal price from request body"});
+        return;
+    }
+
+    if(('idrestaurant' in req.body == false) || (typeof req.body.idrestaurant != 'number')){
+        res.status(400);
+        res.json({status: "Missing restaurant id from request body"});
         return;
     }
     
@@ -116,7 +128,7 @@ function (req, res) {
         image: req.body.image
     }
 
-    console.log(newMeal.idfood);
+    //console.log(newMeal.idfood);
 
     try{
 
@@ -126,13 +138,15 @@ function (req, res) {
         var result = 
     meal.update(newMeal, function(err) {
         if (err) {
-            console.log(err);
+            //console.log(err);
+            console.log("database error")
+            res.status(500);
         } else {
             res.status(201).json({status: "meal updated"});
             console.log("meal updated with id: " + newMeal.idfood);
         }
     });
-    console.log(result);
+    //console.log(result);
 }
 
     else{ //create new meal
@@ -140,7 +154,9 @@ function (req, res) {
         newMeal.idfood = uuidv4();
         meal.add(newMeal, function(err) {
             if (err) {
-                console.log(err);
+                //console.log(err);
+                //console.log("database error")
+                //res.status(500);
             } else {
                 //res.json({idfood: newMeal.idfood});
                 res.status(201).json({status: "meal created", idfood: newMeal.idfood});
@@ -150,7 +166,9 @@ function (req, res) {
     }
 }
 catch(exception){
-    console.log(exception);
+    //console.log(exception);
+    console.log("an error occurred")
+    res.status(500);
 }
 }),
 
@@ -171,7 +189,9 @@ router.put('/imageupload', multer_upload.single('file'), async (req, res) => { /
 
     meal.modifyIcon(params, function(err, dbResult) {
         if (err) {
-        console.log(err);
+        //console.log(err);
+            console.log("database error")
+            res.status(500);
         } else {
         let data = Object.assign({}, dbResult[0]);
         console.log("db result: " + data)
@@ -179,7 +199,7 @@ router.put('/imageupload', multer_upload.single('file'), async (req, res) => { /
         }
     })
 
-  res.send('Item image updated successfully');
+  res.status(200).send('Item image updated successfully');
 });
 
 module.exports = router;
