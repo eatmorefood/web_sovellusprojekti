@@ -51,7 +51,7 @@ router.get('/:id?', function (req, res) {
   }   
 });
 
-router.put('/imageupload', multer_upload.single('image'), async (req, res) => { //update restaurant image
+router.put('/imageupload', multer_upload.single('file'), async (req, res) => { //update restaurant image
 
   if(!req.body.id || !req.file){
     console.log("Request data missing or invalid file type");

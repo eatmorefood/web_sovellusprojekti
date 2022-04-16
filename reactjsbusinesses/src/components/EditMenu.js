@@ -104,10 +104,10 @@ function EditMenu ( props ) {
           price: userData.price,
           idrestaurant: userData.idrestaurant
         });
-        console.log("Result");
-        console.log(result);
-        console.log(result.idfood);
-        console.log(result.data.idfood);
+        //console.log("Result");
+        //console.log(result);
+        //console.log(result.idfood);
+        //console.log(result.data.idfood);
         if(!userData.idfood)
         {
           userData.idfood = result.data.idfood;
@@ -164,7 +164,7 @@ function EditMenu ( props ) {
                     onChange={handleChange('description')}
                     defaultValue={userData.description}
                     autoComplete="off"
-                    maxLength="50"
+                    maxLength="255"
                     required
                 />
                 <div className="editMenuTitle">Category:</div>

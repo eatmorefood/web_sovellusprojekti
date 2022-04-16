@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import '../customerAuth/Signup.css';
 
 //This is part 1/4 of the multiphase signup form
-const UserDetails = ({ nextStep, handleChange, values }) => {
+const UserDetails = ({ nextStep, handleChange, values, handleImageChange }) => {
 
     useEffect(() => { //automatically scrolls to the top of the page, useful for mobile users
         window.scrollTo(0, 0)
@@ -85,6 +85,15 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     autoComplete="off"
                     maxLength="35"
                     required
+                />
+                <div className="signupInputTitle">Image:</div>
+                <input
+                    type="file"
+                    className="signupField"
+                    name="image"
+                    placeholder="image"
+                    onChange={handleImageChange('image')}
+                    autoComplete="off"
                 />
                 <button value="submit" className="multiphaseFormBtn">Next</button>
             </form>

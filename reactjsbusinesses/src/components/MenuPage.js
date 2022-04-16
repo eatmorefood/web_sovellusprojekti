@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import muffin from "../images/muffinDance.gif";
 import jwt_decode from 'jwt-decode';
 import './MenuPage.css';
 import Constants from '../Constants.json';
@@ -25,15 +24,15 @@ function MenuPage ( props ) {
     useEffect(() => {
       const loadProfileDataWithJWT = async () => { //load user data to show here
         try {
-          console.log(props);
-          console.log(decodedToken);
+          //console.log(props);
+         // console.log(decodedToken);
           const results = await axios.get(Constants.API_ADDRESS + '/meal/byrestaurant/' +  decodedToken.user.id,
           {
               headers: {
                   'Authorization': 'Bearer ' + props.jwt
               }
           })
-          console.log(results.data);
+          //console.log(results.data);
           if (results.data && results.data.length > 0)
           {
           setUserData(results.data);
@@ -48,11 +47,11 @@ function MenuPage ( props ) {
 
     function editMenu ( props )
     {
-      console.log(userData);
+      //console.log(userData);
       console.log("Edited");
     }
 
-    console.log(userData);
+    //console.log(userData);
 
     let navigation = useNavigate();
 
