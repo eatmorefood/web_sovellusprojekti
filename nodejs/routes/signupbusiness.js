@@ -53,13 +53,13 @@ function (req, res) {
     }
 
 
-    signup.add(newBusiness, function(err) {
+    signup.add(newBusiness, function(err, dbResult) {
         if (err) {
             //console.log(err);
             console.log("database error")
             res.status(500);
         } else {
-            res.status(201).json({status: "business created"});
+            res.status(201).json({status: "business created", id: dbResult.rows[0].idrestaurant});
             console.log("business created with id: " + newBusiness.id);
         }
     });

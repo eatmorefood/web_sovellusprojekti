@@ -7,6 +7,8 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
         window.scrollTo(0, 0)
       }, []);
 
+      //console.log(values);
+
     return (
         <div className="Signup">
             <div className="signupContent">
@@ -25,6 +27,8 @@ const Confirmation = ({ prevStep, nextStep, values }) => {
                     <div className="confirmationContainer">{values.type}</div>
                     <p>Price level</p>
                     <div className="confirmationContainer">{values.pricelevel}</div>
+                    <p>Image</p>
+                    <img className="confirmationImage" src={values.tempImage}/>
                 </div>
                 <div className="confirmationBtns">
                     <button id="confirmPrev" className="multiphaseFormBtn" onClick={ () => prevStep() }>&#11160; No, take me back</button>

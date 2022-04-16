@@ -210,6 +210,16 @@
     border-radius: 0.5rem;
 }
 
+.confirmationImage{
+    width: 250px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    border: 1px solid rgb(255, 123, 0);
+    border-radius: 0.5rem;
+}
+
 .processingSignup{
     margin-top: 5rem;
     text-align: center;
