@@ -203,7 +203,9 @@ function Restaurant({ restaurantData, setRestaurantData, jwt, showLogin, cart, s
                         try {
                             const results = await axios.get(Constants.API_ADDRESS + '/meal/byrestaurant/' + id);
                             setRestaurantFoods(results.data); //save food items if found
-                            setFoodCategories(results.data.map(({ category }) => category)); //get all food categories and save them into an array
+                            let categ = results.data.map(({ category }) => category); //get all food categories and save them into an array
+                            let uniqueCateg = Array.from(new Set(categ));
+                            setFoodCategories(uniqueCateg);
                         } catch(error) {
                         console.log("Failed to fetch restaurant foods");
                         }
