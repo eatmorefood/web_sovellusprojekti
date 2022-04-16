@@ -1,10 +1,4 @@
-
-
-.restaurantContainer{
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0px, 1fr));;
-    gap: 2rem;
-    font-family: 'Dosis', sans-serif;
+.DMain{
     max-width: 1700px;
     margin: 0px auto;
     padding-left: 2rem;
@@ -12,7 +6,14 @@
     margin-top: 2rem;
 }
 
-.restaurant{    
+.DrestaurantContainer{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0px, 1fr));;
+    gap: 2rem;
+    font-family: 'Dosis', sans-serif;    
+}
+
+.Drestaurant{    
     display: flex;
     flex-direction: column;
     border-radius: 8px;
@@ -34,13 +35,13 @@
      }
 }
 
-#restaurant:hover{
+#DrestaurantID:hover{
     -ms-transform: scale(1.03);
     -webkit-transform: scale(1.03);
     transform: scale(1.03); 
 }
 
-.restaurant img{
+.Drestaurant > img{
     object-fit: cover;
     width: 100%;
     height: 200px;
@@ -48,29 +49,29 @@
     border-top-right-radius: 8px;
 }
 
-.restaurantInnerContainer{
+.DrestaurantInnerContainer{
     padding-left: 1rem;
     padding-top: 1rem;
     padding-right: 1rem;
 }
 
-.restaurantName{
+.DrestaurantName{
     font-weight: 500;
     overflow: hidden;
 }
 
-.restaurantType{
+.DrestaurantType{
     color: rgb(120, 120, 120);
     font-size: 13px;
     padding-bottom: 1rem;
     overflow: hidden;
 }
 
-.restaurantsDivider{
+.DrestaurantsDivider{
     border-bottom: 1px dotted lightgrey;
 }
 
-.restaurantsInnerBottomContainer{
+.DrestaurantsInnerBottomContainer{
     padding-left: 1rem;
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
@@ -81,3 +82,23 @@
     color: rgb(120, 120, 120);
 }
 
+@media (max-width: 600px){
+    .restaurantName{
+        font-size: 13px;
+        margin-top: -5px;
+    }
+    
+    .restaurantType{
+        color: rgb(100, 100, 100);
+        font-size: 12px;
+        padding-bottom: 0.5rem;
+        overflow: hidden;
+    }
+    
+    .InnerBottomContainer{
+        padding-left: 1rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        font-size: 10px;
+    }
+}
