@@ -19,6 +19,7 @@ export default class Signup extends React.Component {
     open: "",
     type: "",
     pricelevel: "",
+    image: "",
     password:""
   }
 
@@ -36,13 +37,18 @@ export default class Signup extends React.Component {
     this.setState({ [input]: e.target.value });
   }
 
+  handleImageChange = input => e => {
+    this.setState({ [input]: e.target.files[0]});
+    this.setState({ ["tempImage"]: (URL.createObjectURL(e.target.files[0]))});
+  }
+
   handleSignup = async (event) => {
     this.setState({ step: 4 }); //switches to processing view
 
     event.preventDefault();
     //console.log(event);
     try {
-      /*const result =*/ await axios.post(Constants.API_ADDRESS + "/signupbusiness",
+      const signUpResult = await axios.post(Constants.API_ADDRESS + "/signupbusiness",
       {
         email: this.state.email,
         name: this.state.name,
@@ -64,6 +70,17 @@ export default class Signup extends React.Component {
           }
         });
 
+        if(this.state.image && signUpResult.data.id)
+        {
+          console.log("Update image");
+          const data = new FormData();
+          data.append('file', this.state.image);
+          data.append('id', signUpResult.data.id);
+          var result = await axios.put(Constants.API_ADDRESS + "/restaurant/imageupload",
+            data
+          );
+        }
+
         //console.log(saveUserData); //do something with the result
         this.state.jwt = saveUserData.data.jwt;
         this.setState({ step: 5 })
@@ -80,8 +97,8 @@ export default class Signup extends React.Component {
 
   render() {
     const { step } = this.state;
-    const { name, open, email, type, pricelevel, address, password } = this.state;
-    const values = { name, open, email, type, pricelevel, address, password };
+    const { name, open, email, type, pricelevel, address, image, tempImage, password } = this.state;
+    const values = { name, open, email, type, pricelevel, address, image, tempImage, password };
     
     switch(step) {
       case 1: 
@@ -89,6 +106,7 @@ export default class Signup extends React.Component {
           <UserDetails
             nextStep={ this.nextStep }
             handleChange={ this.handleChange }
+            handleImageChange={this.handleImageChange}
             values={ values }
           />
         )

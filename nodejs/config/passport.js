@@ -89,7 +89,6 @@ module.exports = function(passport) {
     async function loginUser() {
         const client = await pool.connect();
         try {
-            console.log("Toimiiko");
             await client.query('begin');
             var businessAccCredentials = await JSON.stringify(client.query('select u."idrestaurant" as idrestaurant, u."password" as password from "userr" u where u."email" = ($1);',
             [email], (err, result) => {
