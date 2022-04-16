@@ -53,7 +53,8 @@ function RestaurantPaths(props) {
                                                                  setCart={ setCart }
                                                                  restaurantData={ JSON.stringify(restaurantData) }
                                                                  restaurantName={ restaurantName }
-                                                                 setRestaurantName={ setRestaurantName }/> } />
+                                                                 setRestaurantName={ setRestaurantName }
+                                                                 decodedToken={ decodedToken }/> } />
             <Route path='*' element={<Navigate to="/" replace/>} />
         </Routes>
         </>    

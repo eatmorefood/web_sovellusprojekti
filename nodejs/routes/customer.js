@@ -21,9 +21,8 @@ router.post('/purchase', function (req, res) {
     || !req.body.total
     || !req.body.foodID
     || !req.body.address
-    || (typeof req.body.restID != 'number')
     || (typeof req.body.custID != 'string')
-    || (typeof req.body.total != 'number')
+    || (typeof req.body.total != 'string')
     || (typeof req.body.foodID != 'string')
     || (typeof req.body.address != 'string')      
     ){
