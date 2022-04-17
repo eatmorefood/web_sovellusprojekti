@@ -4,13 +4,46 @@
     padding-left: 2rem;
     padding-right: 2rem;
     margin-top: 2rem;
+    font-family: 'Dosis', sans-serif;    
 }
+
+.AllContainer{
+    display: flex;
+    align-items:baseline;
+    justify-content: space-between;
+}
+
+.buttonSeeAll{
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    padding: 8px;
+  }
 
 .DrestaurantContainer{
     display: grid;
     grid-template-columns: repeat(4, minmax(0px, 1fr));;
     gap: 2rem;
     font-family: 'Dosis', sans-serif;    
+    width: 1500px;
+    
+}
+
+.DMainRestaurantContainer{
+    gap: 2rem;
+    font-family: 'Dosis', sans-serif;    
+    width: 1500px;
+    overflow: auto;
+    padding: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.DrestaurantContent{
+    width: 2700px;
+    display: inline-flex;
 }
 
 .Drestaurant{    
@@ -24,6 +57,21 @@
                 0 6px 20px 0 rgba(126, 126, 126, 0.19);
     animation: fadeInAnimation ease-out 1s;
     overflow: hidden;  
+}
+
+.DMainRestaurant{    
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 480px;
+    margin-right: 50px;
+    transition: transform .2s;
+    box-shadow: 0 4px 8px 0 rgba(132, 132, 132, 0.2),
+                0 6px 20px 0 rgba(126, 126, 126, 0.19);
+    animation: fadeInAnimation ease-out 1s;
+    overflow: hidden;  
+  
 }
 
 @keyframes fadeInAnimation {
@@ -42,6 +90,14 @@
 }
 
 .Drestaurant > img{
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.DMainRestaurant > img{
     object-fit: cover;
     width: 100%;
     height: 200px;
@@ -83,22 +139,28 @@
 }
 
 @media (max-width: 600px){
-    .restaurantName{
+    .DrestaurantName{
         font-size: 13px;
         margin-top: -5px;
     }
     
-    .restaurantType{
+    .DrestaurantType{
         color: rgb(100, 100, 100);
         font-size: 12px;
         padding-bottom: 0.5rem;
         overflow: hidden;
     }
     
-    .InnerBottomContainer{
+    .DrestaurantsInnerBottomContainer{
         padding-left: 1rem;
         padding-top: 0.3rem;
         padding-bottom: 0.3rem;
         font-size: 10px;
     }
 }
+
+
+
+
+
+

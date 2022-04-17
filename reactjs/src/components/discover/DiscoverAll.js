@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import './DiscoverAll.css';
+import './Discover.css';
 
 
 function DiscoverAll(props) {

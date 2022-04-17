@@ -117,7 +117,7 @@ function App() {
                 window.localStorage.removeItem('token')}}/>
         <div id="appContent">
             <Routes>
-              <Route path='/' element={<Discover />} />
+              <Route path='/' element={<Discover allRestaurants={allRestaurants}/>} />
               <Route path='/allrestaurants' element={<DiscoverAll allRestaurants={allRestaurants} />} />
               
               { noAuthRoutes }
