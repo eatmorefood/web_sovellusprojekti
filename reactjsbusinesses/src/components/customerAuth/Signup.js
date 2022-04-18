@@ -88,12 +88,14 @@ export default class Signup extends React.Component {
       this.setState({ step: 1 })
       alert("Account creation failed, please try again :/");
     }
+    
+  }
     } catch(error) {
       //console.log(error);
       this.setState({ step: 1 })
       alert("Account creation failed, please try again :/");
     }
-  }
+}
 
   render() {
     const { step } = this.state;
