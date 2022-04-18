@@ -73,18 +73,20 @@ function Header( props ) {
             <img
               className="logoLarge"
               onClick={(e) => { e.preventDefault();
-              window.location.href='/'; }}
+              window.location.href='/business'; }}
               src={logo}
               alt="EatMoreFood">
             </img>
             <img
             className="businesslogo"
             src={businesseslogo}
-            alt="For businesses"/>
+            alt="For businesses"
+            onClick={(e) => { e.preventDefault();
+              window.location.href='/business'; }}/>
             <img
               className="logoSmall"
               onClick={(e) => { e.preventDefault();
-              window.location.href='/'; }}
+              window.location.href='/business'; }}
               src={logo_small} alt="EMF">
             </img>
         </div> {/* header left section ends */}
@@ -100,12 +102,12 @@ function Header( props ) {
               <img id="loggedInArrow" src={arrowDown} alt="" />
               <div className="userDropdownContainer">
                 <div id="userDropdown" className="userDropdownContent">
-                  <Link to="/profile" style={{ textDecoration: 'none' }}>
+                  <Link to="/business/profile" style={{ textDecoration: 'none' }}>
                     <div>Profile<br></br>
                       <span>{ loggedInName }</span>
                     </div>
                   </Link>
-                  <Link to="/" style={{ textDecoration: 'none' }}>
+                  <Link to="/business" style={{ textDecoration: 'none' }}>
                     <div onClick={() => props.logout()}>Log out</div>
                   </Link>
                 </div>
@@ -119,7 +121,7 @@ function Header( props ) {
               <button
                 className="signupBtnHeader"
                 onClick={(e) => { e.preventDefault();
-                window.location.href='/signup'; }}>
+                window.location.href='/business/signup'; }}>
                 <span>Sign up</span>
               </button>
               

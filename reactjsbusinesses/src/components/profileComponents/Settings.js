@@ -43,7 +43,6 @@ const Settings = (props) => {
         })
         setUserData(results.data.rows[0]);
       } catch(error) {
-        console.log(error);
           console.log("something went wrong");
       }
     }
@@ -78,7 +77,7 @@ const Settings = (props) => {
         </div>
         <div className="ProfileSettingsItem">
           <div className="ProfileSettingsItemTitle">Log out of EatMoreFood</div>
-          <Link to="/" style={{ textDecoration: 'none' }}>                
+          <Link to="/business" style={{ textDecoration: 'none' }}>                
             <div className="ProfileSettingsItemValue" onClick={() => props.logout()}>Log out</div>
           </Link>
         </div>

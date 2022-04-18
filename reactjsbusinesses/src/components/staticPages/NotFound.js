@@ -8,7 +8,7 @@ function NotFound() {
       <img src={muffin} alt=""/>
       <h1>Sorry, something went wrong &#128566;</h1>
       <div>We could not find the content you were looking for.</div>
-      <p>You can return back to our main page from <a href="/">here</a>.</p>
+      <p>You can return back to our main page from <a href="/business">here</a>.</p>
     </div>
   );
 }
