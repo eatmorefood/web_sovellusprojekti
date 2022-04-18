@@ -47,54 +47,55 @@ export default class Signup extends React.Component {
 
     event.preventDefault();
     //console.log(event);
+  try {
+    const signUpResult = await axios.post(Constants.API_ADDRESS + "/signupbusiness",
+    {
+      email: this.state.email,
+      name: this.state.name,
+      address: this.state.address,
+      open: this.state.open,
+      type: this.state.type,
+      pricelevel: this.state.pricelevel,
+      password: this.state.password
+    });
+
+    //console.log(result);
     try {
-      const signUpResult = await axios.post(Constants.API_ADDRESS + "/signupbusiness",
+      const saveUserData = await axios.post(Constants.API_ADDRESS + "/jwtBusinessLogin",
+      null,
       {
-        email: this.state.email,
-        name: this.state.name,
-        address: this.state.address,
-        open: this.state.open,
-        type: this.state.type,
-        pricelevel: this.state.pricelevel,
-        password: this.state.password
+        auth: {
+          username: this.state.email,
+          password: this.state.password
+        }
       });
 
-      //console.log(result);
-      try {
-        const saveUserData = await axios.post(Constants.API_ADDRESS + "/jwtBusinessLogin",
-        null,
-        {
-          auth: {
-            username: this.state.email,
-            password: this.state.password
-          }
-        });
+      if(this.state.image && signUpResult.data.id)
+      {
+        console.log("Update image");
+        const data = new FormData();
+        data.append('file', this.state.image);
+        data.append('id', signUpResult.data.id);
+        var result = await axios.put(Constants.API_ADDRESS + "/restaurant/imageupload",
+          data
+        );
+      }
 
-        if(this.state.image && signUpResult.data.id)
-        {
-          console.log("Update image");
-          const data = new FormData();
-          data.append('file', this.state.image);
-          data.append('id', signUpResult.data.id);
-          var result = await axios.put(Constants.API_ADDRESS + "/restaurant/imageupload",
-            data
-          );
-        }
 
-        //console.log(saveUserData); //do something with the result
-        this.state.jwt = saveUserData.data.jwt;
-        this.setState({ step: 5 })
-    } catch (e) {
+      //console.log(saveUserData); //do something with the result
+      this.state.jwt = saveUserData.data.jwt;
+      this.setState({ step: 5 })
+    } catch (error) {
       this.setState({ step: 1 })
       alert("Account creation failed, please try again :/");
     }
     
+  } catch(error) {
+    //console.log(error);
+    this.setState({ step: 1 })
+    alert("Account creation failed, please try again :/");
   }
-    } catch(error) {
-      //console.log(error);
-      this.setState({ step: 1 })
-      alert("Account creation failed, please try again :/");
-    }
+
 }
 
   render() {

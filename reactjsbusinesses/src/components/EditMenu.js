@@ -34,7 +34,7 @@ function EditMenu ( props ) {
       userData[input] = e.target.value;
     }
 
-    const handleImageChange = input => e => {
+    const handleImageChange = (e) => {
       userData.image = e.target.files[0];
     }
 
@@ -181,15 +181,14 @@ function EditMenu ( props ) {
                     maxLength="50"
                     required
                 />
-                <div className="editMenuTitle">Image:</div>
+                <div className="editMenuTitle">Image: (.jpg/.jpeg/.png only!)</div>
                 <input
                     type="file"
                     className="editField"
                     name="image"
                     placeholder="image"
-                    onChange={handleImageChange('image')}
+                    onChange={handleImageChange}
                     autoComplete="off"
-                    maxLength="50"
                 />
                 <div className="buttons">
                   <div className="cancel" onClick={handleCancel}><div className="btnText">Cancel</div><div className="btnIcon"><img className="cancelCross" src={cancelcross}/></div></div>
