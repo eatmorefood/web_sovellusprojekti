@@ -31,14 +31,38 @@
     
 }
 
+.leftBtnDiscover{
+    background-color: orange;
+    border: 1px solid black; 
+    border-radius: 10rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+.btnDivsDiscover{
+display: flex;
+justify-content: space-between;
+margin-left: 2rem;
+margin-right: 2rem;
+}
+
+.rightBtnDiscover{
+    background-color: orange;
+    border: 1px solid black; 
+    border-radius: 10rem;
+    height: 2rem;
+    width: 2rem;
+}
+
 .DMainRestaurantContainer{
     gap: 2rem;
     font-family: 'Dosis', sans-serif;    
-    width: 1500px;
+    width:100%;
     overflow: auto;
     padding: 10px;
     justify-content: flex-start;
     align-items: center;
+    scroll-behavior: smooth;
 }
 
 .DrestaurantContent{

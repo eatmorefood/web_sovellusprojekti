@@ -38,7 +38,7 @@ function App() {
     mainPageRoutes = <Route path='/business' element={<MenuPage userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />
     noAuthRoutes = <></>
 
-    authRoutes = <><Route path='/business/profile/*' element={<BusinessProfile jwt={ userJWT } logout={ () => {setUserJWT(null)}}/>} /><Route path='/business/editmenu/:id' element={<EditMenu jwt={ userJWT }/>}/></>
+    authRoutes = <><Route path='/business/profile/*' element={<BusinessProfile jwt={ userJWT } customers={allCustomers} logout={ () => {setUserJWT(null)}}/>} /><Route path='/business/editmenu/:id' element={<EditMenu jwt={ userJWT }/>}/></>
 
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself

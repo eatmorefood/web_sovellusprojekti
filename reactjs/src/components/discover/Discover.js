@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useRef} from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom"; 
 import './Discover.css';
 
 function Discover(props) {
-
+  const ref = useRef(null);
   const navigate = useNavigate();
 
     function RestaurantClicked(params) { //direct to restaurant page when user clicks search result
@@ -13,6 +13,10 @@ function Discover(props) {
 
 }
 
+const scroll = (scrollOffset) => {
+  ref.current.scrollLeft += scrollOffset;
+};
+
   return (
      
     <div className="DMain">
@@ -20,10 +24,16 @@ function Discover(props) {
      <div className="AllContainer">
         <h1>Restaurants</h1>
         <Link to="allrestaurants"><button className="buttonSeeAll">See all restaurants</button></Link>
+
+        
+        
         
       </div>
-        <div className="DMainRestaurantContainer">
-          <div className="DrestaurantContent">
+      <div className="btnDivsDiscover"><button className="leftBtnDiscover" onClick={() => scroll(-600)}>&#11164;</button>
+        <button className="rightBtnDiscover" onClick={() => scroll(600)}>&#11166;</button></div>
+        <div className="DMainRestaurantContainer" ref={ref}>
+          <div className="DrestaurantContent" >
+          
 
           {
           <>{props.allRestaurants.map((item, index) => {

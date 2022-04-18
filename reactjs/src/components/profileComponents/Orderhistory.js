@@ -3,6 +3,7 @@ import axios from 'axios';
 import Constants from '../../Constants.json';
 import './Orderhistory.css';
 
+
 const Orderhistory = (props) => {
   const [userData, setUserData] = useState([]);
 
@@ -34,35 +35,26 @@ const Orderhistory = (props) => {
 
   return (
     <>
-    <div className="orderinfo">
-          <div className="orderinfoSection1RightBottom">
-            <div className="orderinfoSection1RightBottom">
-              <div className="orderinfoSubTitle">Restaurant</div>
-            </div>
-            <div className="orderinfoSection1RightBottom">
-              <div className="orderinfoSubTitle">Orderdate</div>
-            </div>
-            <div className="orderinfoSection1RightBottom">
-              <div className="orderinfoSubTitle">Price</div>
-            </div>
-      </div>
-    </div>
+    <thead>
+      <tr>
+        <td><div className="orderinfoSubTitle">Restaurant</div></td>
+        <td><div className="orderinfoSubTitle">Orderdate</div></td>
+        <td><div className="orderinfoSubTitle">Price</div></td>
+
+      </tr>
+      
+      </thead> 
+    <tbody>
     {userData.map((item) => {
       return ( 
-        <div className="orderinfo"key={item.idorders}>
-            <div className="orderinfoSection1RightBottom1">
-                  <div className="orderinfoSection1RightBottom1">
-                  <div>{ getname(item.idrestaurant) }</div>
-                  </div>
-                  <div className="orderinfoSection1RightBottom1">
-                  <div>{ item.orderdate }</div>
-                  </div>
-                  <div className="orderinfoSection1RightBottom1">
-                  <div>{ item.price }€</div>
-            </div>
-          </div>
-        </div>
-    )})}</>
+        <tr className="orderinfo"key={item.idorders}>
+          <td><div>{ getname(item.idrestaurant) }</div></td>
+          <td><div>{ item.orderdate }</div></td>
+          <td><div>{ item.price }€</div></td>
+
+      </tr>
+    )})}
+    </tbody></>
     )
 
 };
