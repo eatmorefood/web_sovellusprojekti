@@ -1,12 +1,15 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+
+const helmet = require('helmet');
 const port = process.env.PORT || 8080;
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy,
       ExtractJwt = require('passport-jwt').ExtractJwt;
 const bodyParser = require('body-parser');
+
 const cors = require('cors');
 const path = require('path');
 
@@ -101,6 +104,7 @@ app.use('/orders',ordersRouter);
 app.get('/business/*', (req, res) => {
   res.sendFile(path.join(__dirname + '/reactBusinessBuild', 'index.html'))
 })
+
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname + '/reactCustomerBuild', 'index.html'));

@@ -5,7 +5,11 @@ import axios from 'axios';
 import Constants from './Constants.json';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
-import Discover from './components/Discover.js';
+
+import Discover from './components/discover/Discover.js';
+import DiscoverAll from './components/discover/DiscoverAll';
+
+import Restaurant from './components/restaurant/Restaurant.js';
 import RestaurantPaths from './components/restaurant/RestaurantPaths.js';
 import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
@@ -15,6 +19,7 @@ import NotFound from './components/staticPages/NotFound.js';
 import Signup from './components/customerAuth/Signup.js';
 import Disclaimer from './components/staticPages/Disclaimer.js';
 import Profile from './components/profileComponents/Profile.js';
+
 
 const importJWTFromBrowser = window.localStorage.getItem('token');
 
@@ -117,7 +122,9 @@ function App() {
                 window.localStorage.removeItem('cart')}}/>
         <div id="appContent">
             <Routes>
-              <Route path='/' element={<Discover />} />
+              <Route path='/' element={<Discover allRestaurants={allRestaurants}/>} />
+              <Route path='/allrestaurants' element={<DiscoverAll allRestaurants={allRestaurants} />} />
+              
               { noAuthRoutes }
               { authRoutes }
               <Route path='/restaurant/*' element={ <RestaurantPaths jwt={ userJWT } showLogin={toggleLogin} /> } />
