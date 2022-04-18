@@ -177,8 +177,10 @@ function EditMenu ( props ) {
                     placeholder="price"
                     onChange={handleChange('price')}
                     defaultValue={userData.price}
+                    pattern="[0-9\.]+"
+		                title="Only digits and . as separator"
+                    maxLength="10"
                     autoComplete="off"
-                    maxLength="50"
                     required
                 />
                 <div className="editMenuTitle">Image: (.jpg/.jpeg/.png only!)</div>
