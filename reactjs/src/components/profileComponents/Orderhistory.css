@@ -75,7 +75,15 @@
 }
 .orderinfoSection1RightBottom1{
     display: flex;
-    gap: 5rem;
+    gap: 6rem;
     font-family: 'Dosis';
+    flex-direction: row;
+    
+}
+
+.orderinfoSection1Right1{
+    display: flex;
+    gap: 6rem;
+    flex-direction: column;
     
 }
