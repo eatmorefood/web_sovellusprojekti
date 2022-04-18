@@ -58,23 +58,8 @@ router.post('/purchase', function (req, res) {
   })
 });
 
-router.get('/:id?', function (req, res) {
-  if(req.params.id){
-    let customerId = req.params.id;
+router.get('/', function (req, res) {
 
-    customer.getByName(customerId, function (err, dbResult) {
-      if (err) {
-        console.log(err);
-      } else {
-        let data = dbResult;
-        try{
-          res.json(data.rows)
-        } catch(err){
-          res.send("nothing found")
-        }
-      }
-    });
-  } else { 
     customer.getAllcustomers(function(err, dbResult) {
       if (err) {
         console.log(err);
@@ -86,8 +71,7 @@ router.get('/:id?', function (req, res) {
           res.send("nothing found")
         }
       }
-    });
-  }   
+    });   
 });
 
 
