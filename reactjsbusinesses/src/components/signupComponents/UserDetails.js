@@ -83,7 +83,7 @@ const UserDetails = ({ nextStep, handleChange, values, handleImageChange }) => {
                     onChange={handleChange('pricelevel')}
                     defaultValue={values.pricelevel}
                     autoComplete="off"
-                    pattern="[€]"
+                    pattern="[€]+$"
                     title="Max 4 letter price level"
                     maxLength="4"
                     required

@@ -41,7 +41,6 @@ function (req, res) {
     const passwordHash = bcrypt.hashSync(req.body.password, salt);
 
     const newBusiness = {
-        id: uuidv4(),
         email: req.body.email,
         name: req.body.name,
         address: req.body.address,
@@ -55,12 +54,12 @@ function (req, res) {
 
     signup.add(newBusiness, function(err, dbResult) {
         if (err) {
-            //console.log(err);
+            console.log(err);
             console.log("database error")
             res.status(500);
         } else {
+            console.log(dbResult)
             res.status(201).json({status: "business created", id: dbResult.rows[0].idrestaurant});
-            console.log("business created with id: " + newBusiness.id);
         }
     });
 

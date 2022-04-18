@@ -16,8 +16,11 @@ const multer_upload = multer({
         ) {
             console.log("file type not allowed")
             return cb(null, false);
+        } else {
+            console.log("image uploaded to cloudinary")
+            cb(null, true);
         }
-        cb(null, true);
+        
     }
 });
 
@@ -27,7 +30,7 @@ router.get('/byrestaurant/:id?', function (req, res) {
     
         meal.getByRestaurant(restaurantId, function (err, dbResult) {
         if (err) {
-            //console.log(err);
+            console.log(err);
             console.log("database error")
             res.status(500);
         } else {
@@ -50,7 +53,7 @@ router.get('/byid/:id?', function (req, res) {
     
         meal.getById(foodId, function (err, dbResult) {
         if (err) {
-            //console.log(err);
+            console.log(err);
             console.log("database error")
             res.status(500);
         } else {
@@ -75,7 +78,7 @@ router.delete('/:id?', function (req, res)
     {
         if (err)
         {
-            //console.log(err);
+            console.log(err);
             console.log("database error")
             res.status(500);
         }
@@ -128,17 +131,15 @@ function (req, res) {
         image: req.body.image
     }
 
-    //console.log(newMeal.idfood);
-
     try{
 
     
-    if(newMeal.idfood) //update if id exists
+    if(newMeal.idfood)// update if id exists
     {
         var result = 
     meal.update(newMeal, function(err) {
         if (err) {
-            //console.log(err);
+            console.log(err);
             console.log("database error")
             res.status(500);
         } else {
@@ -146,7 +147,7 @@ function (req, res) {
             console.log("meal updated with id: " + newMeal.idfood);
         }
     });
-    //console.log(result);
+    console.log(result);
 }
 
     else{ //create new meal
@@ -154,9 +155,9 @@ function (req, res) {
         newMeal.idfood = uuidv4();
         meal.add(newMeal, function(err) {
             if (err) {
-                //console.log(err);
-                //console.log("database error")
-                //res.status(500);
+                console.log(err);
+                console.log("database error")
+                res.status(500);
             } else {
                 //res.json({idfood: newMeal.idfood});
                 res.status(201).json({status: "meal created", idfood: newMeal.idfood});
@@ -166,7 +167,7 @@ function (req, res) {
     }
 }
 catch(exception){
-    //console.log(exception);
+    console.log(exception);
     console.log("an error occurred")
     res.status(500);
 }
@@ -189,7 +190,7 @@ router.put('/imageupload', multer_upload.single('file'), async (req, res) => { /
 
     meal.modifyIcon(params, function(err, dbResult) {
         if (err) {
-        //console.log(err);
+        console.log(err);
             console.log("database error")
             res.status(500);
         } else {
