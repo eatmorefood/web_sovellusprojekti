@@ -47,11 +47,11 @@ function BusinessProfile(props) {
             <h1>Profile</h1>
             <div className="businessProfileOptions">
                 <div className="businessProfileOptionBorder"/>
-                <div><Link to="/profile/personal-info" id="businessProfilePersonalInfo" onClick={ () => switchView('x') }>Business information</Link></div>
+                <div><Link to="personal-info" id="businessProfilePersonalInfo" onClick={ () => switchView('x') }>Business information</Link></div>
                 <div className="businessProfileOptionBorder"/>
-                <div><Link to="/profile/order-history" id="businessProfileOrderHistory" onClick={ () => switchView('y') }>Order history</Link></div>
+                <div><Link to="order-history" id="businessProfileOrderHistory" onClick={ () => switchView('y') }>Order history</Link></div>
                 <div className="businessProfileOptionBorder"/>
-                <div><Link to="/profile/settings" id="businessProfileSettings" onClick={ () => switchView('z') }>Settings</Link></div>
+                <div><Link to="settings" id="businessProfileSettings" onClick={ () => switchView('z') }>Settings</Link></div>
                 <div className="businessProfileOptionBorder"/>
             </div>
 
@@ -69,11 +69,11 @@ function BusinessProfile(props) {
                 </table>*/}
         
             <Routes>
-                <Route path='/' element={<Navigate to='/profile/personal-info' replace />} />  
+                <Route path='/' element={<Navigate to='/business/profile/personal-info' replace />} />  
                 <Route path='/personal-info' element={<Personalinfo userToken={ decodedToken } userJWT={ props.jwt } />} />
-                <Route path='/order-history' element={<Orderhistory />} />
+                <Route path='/order-history' element={<Orderhistory userToken={ decodedToken } userJWT={ props.jwt } customers={props.customers}/>} />
                 <Route path='/settings' element={<Settings userToken={ decodedToken } userJWT={ props.jwt } logout={ props.logout } />} />
-                <Route path='/*' element={<Navigate to="/profile/personal-info" replace/>} />
+                <Route path='/*' element={<Navigate to="/business/profile/personal-info" replace/>} />
             </Routes>  
         </div>        
     );

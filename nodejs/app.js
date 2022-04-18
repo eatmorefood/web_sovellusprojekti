@@ -1,19 +1,24 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-var port = 8080;
 
 const helmet = require('helmet');
-const cors = require('cors');
+const port = process.env.PORT || 8080;
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy,
       ExtractJwt = require('passport-jwt').ExtractJwt;
 const bodyParser = require('body-parser');
 
+const cors = require('cors');
+const path = require('path');
+
 app.use(cors());
 app.use(bodyParser.json()); //parse requests of content-type: application/json
 app.use(bodyParser.urlencoded({ extended: true })); //parse requests of content-type: application/x-www-form-urlencoded 
+
+app.use('/business', express.static('reactBusinessBuild'));
+app.use(express.static('reactCustomerBuild'));
 
 require('./config/passport')(passport);
 
@@ -23,7 +28,7 @@ const businessRouter = require('./routes/business.js');
 const signupbusinessRouter = require('./routes/signupbusiness.js');
 const restaurantRouter = require('./routes/restaurants.js');
 const mealRouter = require('./routes/meal.js');
-
+const ordersRouter = require('./routes/orders.js');
 
 const jwtOptions ={
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -94,17 +99,26 @@ app.use('/business', businessRouter);
 app.use('/signupbusiness', signupbusinessRouter);
 app.use('/restaurant', restaurantRouter);
 app.use('/meal', mealRouter);
+app.use('/orders',ordersRouter);
 
-app.use((err, req, res, next) => { //general error handler
-  res.status(500).json({
-    error: err,
-    message: 'Internal server error!',
-  })
-  next()
+app.get('/business/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/reactBusinessBuild', 'index.html'))
 })
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`)
-})
 
-module.exports = app;
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/reactCustomerBuild', 'index.html'));
+});
+
+let serverInstance = null;
+
+module.exports = {
+  start: function() {
+    serverInstance = app.listen(port, () => {
+      console.log(`App listening at http://localhost:${port}`)
+    })
+  },
+  close: function() {
+    serverInstance.close();
+  }
+}

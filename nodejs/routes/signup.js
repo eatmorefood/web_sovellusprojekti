@@ -6,39 +6,34 @@ const signup = require('../models/customer_model');
 
 router.post('/',
 function (req, res) {
-    if('fname' in req.body == false){
+    if(('fname' in req.body == false)  || (typeof req.body.fname != 'string')){
         res.status(400);
         res.json({status: "Missing first name from request body"});
         return;
     }
-    if('lname' in req.body == false){
+    if(('lname' in req.body == false)  || (typeof req.body.lname != 'string')){
         res.status(400);
         res.json({status: "Missing last name from request body"});
         return;
     }
-    if('phone' in req.body == false){
+    if(('phone' in req.body == false) || (typeof req.body.phone != 'string')){
         res.status(400);
-        res.json({status: "Missing phone number from request body"});
+        res.json({status: "Missing phone string from request body"});
         return;
     }
-    if('address' in req.body == false){
+    if(('address' in req.body == false) || (typeof req.body.address != 'string')){
         res.status(400);
         res.json({status: "Missing address from request body"});
         return;
     }
-    if('password' in req.body == false){
+    if(('password' in req.body == false) || (typeof req.body.password != 'string')){
         res.status(400);
         res.json({status: "Missing password from request body"});
         return;
     }
-    if('email' in req.body == false){
+    if(('email' in req.body == false) || (typeof req.body.email != 'string')){
         res.status(400);
         res.json({status: "Missing email from request body"});
-        return;
-    } else if (!validateEmail(req.body.email)) {
-        console.log("validate email fail")
-        res.status(400);
-        res.json({status: "Enter valid email address!"});
         return;
     } else { //check if a customer already exists with the given email
         try{
@@ -70,7 +65,9 @@ function (req, res) {
 
                     signup.add(newUser, function(err) {
                         if (err) {
-                            console.log(err);
+                            //console.log(err);
+                            console.log("database error")
+                            res.status(500);
                             return;
                         } else {
                             res.status(201).json({status: "customer created"});
@@ -92,7 +89,9 @@ router.get('/validatecustomeremail/:email', function (req, res) {
             let checkEmail = req.params.email.toLowerCase();
             signup.findExistingEmail(checkEmail, function(err, existingCustomer) {
                 if (err) {
-                    console.log(err);
+                    //console.log(err);
+                    console.log("database error")
+                    res.status(500);
                 } else {
                     if (existingCustomer.rowCount > 0) { //existing email found                   
                         try{
@@ -107,15 +106,11 @@ router.get('/validatecustomeremail/:email', function (req, res) {
             })
         } catch (err) {
             console.log("an error occurred")
+            res.status(500);
             return;
      
         }
     }
 });
-
-function validateEmail(email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
     
 module.exports=router;

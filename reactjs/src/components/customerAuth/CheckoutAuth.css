@@ -1,0 +1,132 @@
+.CheckoutAuth{
+    display: block;
+    position: fixed;
+    background-color: rgb(240, 240, 240);
+    border-radius: 1rem;
+    border: 1px solid grey;
+    z-index: 100000;
+    padding: 2rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: authzoomanimation 0.4s;
+}
+
+@keyframes authzoomanimation {
+    from {transform: scale(0) translate(-50%, -50%);} 
+    to {transform: scale(1) translate(-50%, -50%);}
+}
+
+.closeCheckoutAuthPopup{
+    display: block;
+    position: fixed;
+    right: 1rem;
+    top: 0.5rem;
+    height: 1.5rem;
+    border: 0.1rem solid grey;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.closeCheckoutAuthPopup:hover{
+    border: 0.1rem solid orange;
+}
+
+.checkoutAuthContent{
+    padding-top: 2rem;
+    padding-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.checkoutAuthTitle{
+    cursor: default;
+    font-family: 'Dosis', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.checkoutAuthSubTitle{
+    cursor: default;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.checkoutAuthForm{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: none;
+}
+
+#checkoutAuthEmail{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.6rem;
+    margin-bottom: 1.3rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+}
+
+#checkoutAuthEmail:hover{
+    border-color: orange !important;
+}
+
+#checkoutAuthEmail:focus{
+    border: 2px solid black !important;
+}
+
+#checkoutAuthPassword{
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    padding-left: 0.6rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+}
+
+#checkoutAuthPassword:hover{
+    border-color: orange !important;
+}
+
+#checkoutAuthPassword:focus{
+    border: 2px solid black !important;
+}
+
+.checkoutAuthSubmit{
+    margin-top: 2.5rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.4rem;
+    transition: all 0.2s;
+    background-color: rgb(252, 198, 99);
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.checkoutAuthSubmit:hover{
+    background-color: orange;
+    cursor: pointer;
+}
+
+#checkoutAuthErrorMessage{
+    visibility: hidden;
+    color: red;
+    margin-bottom: 0.5rem;
+    margin-top: -1rem;
+    font-weight: 600;
+}
+
+@media (max-width: 600px){
+    .CheckoutAuth{
+        padding: 1rem;
+        width: 80vw;
+    }
+}

@@ -19,8 +19,8 @@ function Login( props ){
           password: event.target.password.value
         }
       });
-      if(window.location.pathname.indexOf("signup") > -1){
-        navigate('/');
+      if(window.location.pathname.indexOf("business/signup") > -1){
+        navigate('/business');
       }
       const receivedJWT = result.data.jwt;
       props.login(receivedJWT);
@@ -47,8 +47,9 @@ function Login( props ){
     <div className="Login animateLoginZoom">
       <img className="closeLogin" src={closeBtn} onClick={ props.displayLogin } alt="x" />
       <div className="loginContent">
-        <div className="loginTitle">Log in or create account</div>
-        <div className="loginSubTitle">Log in below or create a new EatMoreFood account.</div>
+        <div className="loginTitleWarning">THIS LOGIN IS BUSINESS ONLY</div>
+        <div className="loginTitle">Log in or create account <br></br> for your business.</div>
+        <div className="loginSubTitle">Log in below or create a new EatMoreFood <br></br> account for your business.</div>
         <div id="loginErrorMessage">Wrong email or password!</div>
         <form className="loginForm" onSubmit={ handleLoginSubmit }>
           <input
@@ -73,7 +74,7 @@ function Login( props ){
             value="Log in"
           />
           <div className="loginMiddleText">OR</div>
-          <button className="loginBtnRegister" onClick={(e) => { e.preventDefault(); window.location.href='/signup'; }}>Sign up</button>
+          <button className="loginBtnRegister" onClick={(e) => { e.preventDefault(); window.location.href='/business/signup'; }}>Sign up</button>
       </form>  
       </div>
     </div>

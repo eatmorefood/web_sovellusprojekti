@@ -28,7 +28,7 @@ module.exports = function(passport) {
                 if(result.rows[0] == null) {
                     
                     //console.error('incorrect email');
-                    res.status(401);
+                    res.status(403);
                     return done(null, false);
                 } else {
                     //console.log(result.rows[0])
@@ -61,14 +61,14 @@ module.exports = function(passport) {
                                         lname: results.rows[0].lname
                                     }
                                     //console.log(results);
-                                    console.log("user with email: " + user.email + " has logged in");
+                                    console.log("user with email: " + user.email + " has been authenticated");
                                     res.status(200);
                                     done(null, user);
                                 }
                             }));
                         } else {
                             //console.log('incorrect password');
-                            res.status(401);
+                            res.status(403);
                             return done(null, false);
                         }
                     })
@@ -89,7 +89,6 @@ module.exports = function(passport) {
     async function loginUser() {
         const client = await pool.connect();
         try {
-            console.log("Toimiiko");
             await client.query('begin');
             var businessAccCredentials = await JSON.stringify(client.query('select u."idrestaurant" as idrestaurant, u."password" as password from "userr" u where u."email" = ($1);',
             [email], (err, result) => {
@@ -100,7 +99,7 @@ module.exports = function(passport) {
                 if(result.rows[0] == null) {
                     
                     //console.error('incorrect email');
-                    res.status(401);
+                    res.status(403);
                     return done(null, false);
                 } else {
                     //console.log(result.rows[0])
@@ -139,7 +138,7 @@ module.exports = function(passport) {
                             }));
                         } else {
                             //console.log('incorrect password');
-                            res.status(401);
+                            res.status(403);
                             return done(null, false);
                         }
                     })

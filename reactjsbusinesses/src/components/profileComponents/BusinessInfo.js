@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Constants from '../../Constants.json';
 import './Personalinfo.css';
+import checkmark from '../../images/checkmark.png';
 
 const BusinessInfo = (props) => {
   const [userData, setUserData] = useState([]);
@@ -24,7 +25,31 @@ const BusinessInfo = (props) => {
     loadProfileDataWithJWT();
   }, [props]); //dependency array includes only prop => triggers useEffect only when component mounts
 
-  console.log(userData);
+  //console.log("UserData");
+ // console.log(userData);
+
+  const imageFileChange = input => e => {
+    userData.newImage = e.target.files[0];
+  }
+
+ const handleImageChange = async (event) => {
+    event.preventDefault();
+    if(userData.newImage)
+    {
+      console.log("Update image");
+      const data = new FormData();
+      data.append('file', userData.newImage);
+      data.append('id', userData.idrestaurant);
+      var result = await axios.put(Constants.API_ADDRESS + "/restaurant/imageupload",
+        data
+      );
+      window.location.reload();
+    }
+    else{
+      alert('Choose image');
+    }
+
+ }
 
   return (
     <div className="personalinfo">
@@ -54,9 +79,20 @@ const BusinessInfo = (props) => {
               <div>{userData.pricelevel}</div>
             </div>
           </div>
+          <div className="personalinfoPFPdiv">
+            <div className="personalinfoPFPTitle">Picture:</div>
+            <img className="personalinfoPFP" src={userData.image}/>
+          </div>
+          <div className="editPFP">
+            <div className="personalinfoPFPTitle">Edit:</div>
+            <form onSubmit={handleImageChange}>
+              <input className="inputPFP" onChange={imageFileChange('newImage')} type="file"></input>
+              <div className="savePFP" onClick={handleImageChange}><div className="btnText">Save</div><div className="btnIcon"><img className="checkMark" src={checkmark}/></div></div>
+            </form>
+          </div>
         </div>
       </div>
-        
+
     </div>
   );
 }

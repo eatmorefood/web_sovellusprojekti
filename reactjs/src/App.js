@@ -5,10 +5,12 @@ import axios from 'axios';
 import Constants from './Constants.json';
 import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
+
 import Discover from './components/discover/Discover.js';
 import DiscoverAll from './components/discover/DiscoverAll';
 
 import Restaurant from './components/restaurant/Restaurant.js';
+import RestaurantPaths from './components/restaurant/RestaurantPaths.js';
 import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
 import Businesses from './components/staticPages/Businesses.js';
@@ -41,7 +43,9 @@ function App() {
     noAuthRoutes = <></>;
     authRoutes = <><Route path='/profile/*' element={<Profile jwt={ userJWT }
                                                               logout={ () => {setUserJWT(null)
-                                                              window.localStorage.removeItem('token')}}/>} /></>
+                                                              window.localStorage.removeItem('token')
+                                                              window.localStorage.removeItem('cart')}}
+                                                              restaurants={allRestaurants}/>} /></>
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -114,7 +118,8 @@ function App() {
                 jwt={ userJWT }
                 displayLogin={ toggleLogin }
                 logout={ () => {setUserJWT(null)
-                window.localStorage.removeItem('token')}}/>
+                window.localStorage.removeItem('token')
+                window.localStorage.removeItem('cart')}}/>
         <div id="appContent">
             <Routes>
               <Route path='/' element={<Discover allRestaurants={allRestaurants}/>} />
@@ -122,7 +127,7 @@ function App() {
               
               { noAuthRoutes }
               { authRoutes }
-              <Route path='/restaurant/:id' element={ <Restaurant jwt={ userJWT }/> } />
+              <Route path='/restaurant/*' element={ <RestaurantPaths jwt={ userJWT } showLogin={toggleLogin} /> } />
               <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
               <Route path='/businesses' element={<Businesses />} />

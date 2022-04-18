@@ -26,32 +26,33 @@ router.get('/:id?', function (req, res) {
     restaurant.getByName(restaurantId, function (err, dbResult) {
       if (err) {
         console.log(err);
+        console.log("could not get single restaurant");
       } else {
         let data = dbResult;
         try{
-          res.json(data.rows)
+          res.status(200).json(data.rows)
         } catch(err){
-          res.send("nothing found")
+          res.status(404).send("nothing found")
         }
       }
     });
   } else { //if no id in params, get all restaurants
     restaurant.getAllRestaurants(function(err, dbResult) {
       if (err) {
-        console.log(err);
+        console.log("could not get all restaurants");
       } else {
         let data = dbResult;
         try{
-          res.json(data.rows)
+          res.status(200).json(data.rows)
         } catch(err){
-          res.send("nothing found")
+          res.status(404).send("nothing found")
         }
       }
     });
   }   
 });
 
-router.put('/imageupload', multer_upload.single('image'), async (req, res) => { //update restaurant image
+router.put('/imageupload', multer_upload.single('file'), async (req, res) => { //update restaurant image
 
   if(!req.body.id || !req.file){
     console.log("Request data missing or invalid file type");
@@ -69,14 +70,16 @@ router.put('/imageupload', multer_upload.single('image'), async (req, res) => { 
   restaurant.modifyIcon(params, function(err, dbResult) {
     if (err) {
       console.log(err);
+      console.log("database error")
+      res.status(500);
     } else {
-      let data = Object.assign({}, dbResult[0]);
-      console.log("db result: " + data)
+      //let data = Object.assign({}, dbResult[0]);
+      //console.log("db result: " + data)
       console.log("image path updated succesfully")
     }
   })
 
-  res.send('Restaurant image updated successfully');
+  res.status(200).send('Restaurant image updated successfully');
 });
 
 module.exports = router;

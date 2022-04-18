@@ -5,63 +5,65 @@ import Header from './components/header/Header.js';
 import Footer from './components/footer/Footer.js';
 import Discover from './components/Discover.js';
 import Support from './components/staticPages/Support.js';
-import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/customerAuth/Login.js';
 import NotFound from './components/staticPages/NotFound.js';
 import Signup from './components/customerAuth/Signup.js';
 import Disclaimer from './components/staticPages/Disclaimer.js';
 import BusinessProfile from './components/profileComponents/BusinessProfile.js';
 import MenuPage from './components/MenuPage.js';
+import EditMenu from './components/EditMenu.js';
+import axios from 'axios';
+import Constants from './Constants.json';
 
-const importJWTFromBrowser = window.localStorage.getItem('token');
+const importJWTFromBrowser = window.localStorage.getItem('token2');
 
 function App() {
+
+  let [allCustomers, setAllcustomers] = useState([]);
   
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
   const [userJWT, setUserJWT] = useState(importJWTFromBrowser);
 
   let loginScreen = <></>; //initialize login screen as non-visible
-  let noAuthRoutes = <><Route path='/signup' element={<Signup login={ receivedJWT => {
+  let noAuthRoutes = <><Route path='/business/signup' element={<Signup login={ receivedJWT => {
                               setUserJWT(receivedJWT)
-                              window.localStorage.setItem('token', receivedJWT)
+                              window.localStorage.setItem('token2', receivedJWT)
                               }}/>} /></>
   let authRoutes = <></>;
 
-  let mainPageRoutes =<Route path='/' element={<Discover userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />;
-
-  console.log(importJWTFromBrowser);
+  let mainPageRoutes =<Route path='/business' element={<Discover userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />;
 
   if(userJWT != null){
-    //console.log("userjwt log");
-    mainPageRoutes = <Route path='/' element={<MenuPage userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />
+    mainPageRoutes = <Route path='/business' element={<MenuPage userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />
     noAuthRoutes = <></>
-    authRoutes = <><Route path='/profile/*' element={<BusinessProfile jwt={ userJWT }/>} /></>
+
+    authRoutes = <><Route path='/business/profile/*' element={<BusinessProfile jwt={ userJWT } logout={ () => {setUserJWT(null)}}/>} /><Route path='/business/editmenu/:id' element={<EditMenu jwt={ userJWT }/>}/></>
+
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
-                          window.localStorage.setItem('token', receivedJWT)
+                          window.localStorage.setItem('token2', receivedJWT)
                           }}
                           displayLogin={ toggleLogin } />;
   }
   
-  /*useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
+  useEffect(() => { //checks if login screen is visible => if yes, then sets background blur & disables page scrolling
     const app = document.getElementById("blurrableContent");
-    if( loginVisible === true) {
-      app.style.filter = "blur(8px)";
+    if(loginVisible === true && userJWT === null) {
+      app.style.filter = "blur(4px)";
       app.style.background = "lightgrey";
       app.style.pointerEvents = "none";
-      app.style.cursor = "pointer"; 
       document.body.style.overflow = "hidden";
       
-    } else if( loginVisible === false) { //restores normal page view when login screen not visible
-      app.style.removeProperty("background");
-      app.style.removeProperty("filter"); 
-      app.style.removeProperty("pointerEvents");
-      app.style.removeProperty("pointer");
+    } else if(loginVisible === false || userJWT !== null) { //restores normal page view when login screen not visible
+      app.style.filter = "none";
+      app.style.background = "none";
+      app.style.pointerEvents = "all";
       document.body.style.removeProperty("overflow"); 
     }
-  });*/
+  },[loginVisible, userJWT]);
+
 
   function toggleLogin() { //function to switch login screen visibility status
     setLoginVisible(!loginVisible);
@@ -81,6 +83,18 @@ function App() {
     }
   }, [loginVisible]);
 
+  useEffect(() => {
+    const fetchQueryResults = async () => {
+      try {
+        const results = await axios.get(Constants.API_ADDRESS + '/customer');
+        setAllcustomers(results.data);
+      } catch(error) {
+        console.log("something went wrong");
+      }
+    }
+    fetchQueryResults();
+  }, []);
+
   return (
     
     <div className="App">
@@ -93,16 +107,15 @@ function App() {
                 jwt={ userJWT }
                 displayLogin={ toggleLogin }
                 logout={ () => {setUserJWT(null)
-                window.localStorage.removeItem('token')}}/>
+                window.localStorage.removeItem('token2')}}/>
         <div id="appContent">
             <Routes>
               { mainPageRoutes }
               { noAuthRoutes }
               { authRoutes }
-              <Route path='/support' element={<Support />} />
-              <Route path='/businesses' element={<Businesses />} />
-              <Route path='/disclaimer' element={<Disclaimer />} />
-              <Route path='/*' element={<NotFound />} />
+              <Route path='business/support' element={<Support />} />
+              <Route path='business/disclaimer' element={<Disclaimer />} />
+              <Route path='business/*' element={<NotFound />} />
             </Routes>  
         </div>
 
@@ -111,7 +124,6 @@ function App() {
         </footer>
 
       </div>
-      {/*</Router>*/}
     </div>
   );
 }

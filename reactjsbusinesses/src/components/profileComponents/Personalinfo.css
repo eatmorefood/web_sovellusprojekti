@@ -53,6 +53,60 @@
     font-weight: 900;
 }
 
+.personalinfoPFPTitle{
+    font-family: 'Dosis';
+    font-size: 1.2rem;
+    font-weight: 900;
+    padding-top: 1rem;
+    display: flex;
+}
+
+.personalinfoPFPdiv{
+    display: flex;
+}
+
+.personalinfoPFP{
+    display: flex;
+    padding: 1rem;
+    width: 450px;
+    border: groove;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.inputPFP{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.6rem;
+    margin-bottom: 0.5rem;
+    border: 0.1rem solid lightgrey;
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    display: flex;
+    margin-left: 2.5rem;
+}
+
+.savePFP{
+    display: flex;
+    border: 2px solid green;
+    width: 115px;
+    height: 60px;
+    border-radius: 10px;
+    margin-left: 2.5rem;
+    color: green;
+    font-weight: bold;
+    font-size: large;
+}
+
+.savePFP:hover{
+    cursor: pointer;
+}
+
+.editPFP{
+    display: flex;
+    padding-top: 1rem;
+}
+
 @media (max-width: 400px) {
     .personalinfoSection1{
         display: flex;

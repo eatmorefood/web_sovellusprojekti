@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import '../customerAuth/Signup.css';
 
 //This is part 1/4 of the multiphase signup form
-const UserDetails = ({ nextStep, handleChange, values }) => {
+const UserDetails = ({ nextStep, handleChange, values, handleImageChange }) => {
 
     useEffect(() => { //automatically scrolls to the top of the page, useful for mobile users
         window.scrollTo(0, 0)
@@ -50,7 +50,7 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     maxLength="35"
                     required
                 />
-                <div className="signupInputTitle">Open:</div>
+                <div className="signupInputTitle">Open: (example: 10-21)</div>
                 <input
                     type="text"
                     className="signupField"
@@ -74,7 +74,7 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     maxLength="35"
                     required
                 />
-                <div className="signupInputTitle">Price level:</div>
+                <div className="signupInputTitle">Price level: (only € marks. Choose between € and €€€€)</div>
                 <input
                     type="text"
                     className="signupField"
@@ -83,8 +83,19 @@ const UserDetails = ({ nextStep, handleChange, values }) => {
                     onChange={handleChange('pricelevel')}
                     defaultValue={values.pricelevel}
                     autoComplete="off"
-                    maxLength="35"
+                    pattern="[€]"
+                    title="Max 4 letter price level"
+                    maxLength="4"
                     required
+                />
+                <div className="signupInputTitle">Image:</div>
+                <input
+                    type="file"
+                    className="signupField"
+                    name="image"
+                    placeholder="image"
+                    onChange={handleImageChange('image')}
+                    autoComplete="off"
                 />
                 <button value="submit" className="multiphaseFormBtn">Next</button>
             </form>
