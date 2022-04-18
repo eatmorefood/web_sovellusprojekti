@@ -39,38 +39,27 @@ const getlname = (id) => {
 }
   return (
     <>
-    <div className="orderinfo">
-      <div className="orderinfoSection1">
-        <div className="orderinfoSection1Right">
-          <div className="orderinfoSection1RightBottom">
-            <div className="orderinfoSection1RightBottom">
-              <div className="orderinfoSubTitle">Customer</div>
-            </div>
-            <div className="orderinfoSection1RightBottom">
-              <div className="orderinfoSubTitle">Orderdate</div>
-            </div>
-            <div className="orderinfoSection1RightBottom">
-              <div className="orderinfoSubTitle">Price</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <thead>
+      <tr>
+        <td><div className="orderinfoSubTitle">Customer</div></td>
+        <td><div className="orderinfoSubTitle">Orderdate</div></td>
+        <td><div className="orderinfoSubTitle">Price</div></td>
+
+      </tr>
+      
+      </thead>             
+
+    <tbody>
     {userData.map((item) => {
       return ( 
-        <div className="orderinfo"key={item.idorders}>
-          <div className="orderinfoSection1">
-            <div className="orderinfoSection1Right">
-              <div className="orderinfoSection1RightBottom1">
-                  <div>{ getfname(item.idcustomer) }</div>
-                  <div>{ getlname(item.idcustomer) }</div>
-                  <div>{ item.orderdate }</div>
-                  <div>{ item.price }€</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )})}</>
+        <tr className="orderinfo"key={item.idorders}>
+          <td><div>{ getfname(item.idcustomer) } { getlname(item.idcustomer) }</div></td>
+          <td><div>{ item.orderdate }</div></td>
+          <td><div>{ item.price }€</div></td>
+
+      </tr>
+    )})}
+    </tbody></>
     )
 };
 
