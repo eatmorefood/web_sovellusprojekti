@@ -12,10 +12,14 @@ import Disclaimer from './components/staticPages/Disclaimer.js';
 import BusinessProfile from './components/profileComponents/BusinessProfile.js';
 import MenuPage from './components/MenuPage.js';
 import EditMenu from './components/EditMenu.js';
+import axios from 'axios';
+import Constants from './Constants.json';
 
 const importJWTFromBrowser = window.localStorage.getItem('token');
 
 function App() {
+
+  let [allCustomers, setAllcustomers] = useState([]);
   
   const ref = useRef()  
   const [loginVisible, setLoginVisible] = useState(false); //state for login screen visibility
@@ -33,7 +37,9 @@ function App() {
   if(userJWT != null){
     mainPageRoutes = <Route path='/business' element={<MenuPage userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />
     noAuthRoutes = <></>
+
     authRoutes = <><Route path='/business/profile/*' element={<BusinessProfile jwt={ userJWT }/>} /><Route path='/business/editmenu/:id' element={<EditMenu jwt={ userJWT }/>}/></>
+
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
@@ -76,6 +82,18 @@ function App() {
       document.removeEventListener("mousedown", checkIfClickedOutside);
     }
   }, [loginVisible]);
+
+  useEffect(() => {
+    const fetchQueryResults = async () => {
+      try {
+        const results = await axios.get(Constants.API_ADDRESS + '/customer');
+        setAllcustomers(results.data);
+      } catch(error) {
+        console.log("something went wrong");
+      }
+    }
+    fetchQueryResults();
+  }, []);
 
   return (
     

@@ -71,7 +71,7 @@ function BusinessProfile(props) {
             <Routes>
                 <Route path='/' element={<Navigate to='business/profile/personal-info' replace />} />  
                 <Route path='/personal-info' element={<Personalinfo userToken={ decodedToken } userJWT={ props.jwt } />} />
-                <Route path='/order-history' element={<Orderhistory />} />
+                <Route path='/order-history' element={<Orderhistory userToken={ decodedToken } userJWT={ props.jwt } customers={props.customers}/>} />
                 <Route path='/settings' element={<Settings userToken={ decodedToken } userJWT={ props.jwt } logout={ props.logout } />} />
                 <Route path='/*' element={<Navigate to="business/profile/personal-info" replace/>} />
             </Routes>  

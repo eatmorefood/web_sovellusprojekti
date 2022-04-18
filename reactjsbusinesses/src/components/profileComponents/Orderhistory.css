@@ -1,0 +1,81 @@
+.orderinfo{
+    padding-top: 1rem;
+    max-width: 90vw;
+    margin: 0px auto;
+    align-items: center;
+}
+
+.orderinfoSection1{
+    display: flex;
+    gap: 4rem;
+}
+
+.orderinfoSection1Left{
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    background: rgb(255, 233, 192);
+    border: 5px solid white;
+    border-radius: 10rem;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+.orderinfoSection1Left span{
+    display: inline-block;
+    margin-top: 1.2rem;
+    font-weight: 500;
+    font-size: 1.8em;
+    color: grey;
+}
+
+.orderinfoSection1Right{
+    display: flex;
+    flex-direction: column;
+}
+
+.orderinfoSection1RightTop{
+    font-size: 2rem;
+    font-family: 'Dosis';
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+
+.orderinfoSection1RightBottom{
+    display: flex;
+    gap: 5rem;
+    font-family: 'Dosis';
+
+}
+
+.orderinfoSubTitle{
+    font-family: 'Dosis';
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+@media (max-width: 400px) {
+    .orderinfoSection1{
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .orderinfoSection1RightBottom{
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 600px) {
+    .orderinfoSection1RightBottom{
+        flex-direction: column;
+        gap: 1rem;
+
+    }
+}
+.orderinfoSection1RightBottom1{
+    display: flex;
+    gap: 5rem;
+    font-family: 'Dosis';
+    
+}
