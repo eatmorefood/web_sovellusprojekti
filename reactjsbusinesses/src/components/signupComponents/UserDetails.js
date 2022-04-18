@@ -50,7 +50,7 @@ const UserDetails = ({ nextStep, handleChange, values, handleImageChange }) => {
                     maxLength="35"
                     required
                 />
-                <div className="signupInputTitle">Open:</div>
+                <div className="signupInputTitle">Open: (example: 10-21)</div>
                 <input
                     type="text"
                     className="signupField"
@@ -74,7 +74,7 @@ const UserDetails = ({ nextStep, handleChange, values, handleImageChange }) => {
                     maxLength="35"
                     required
                 />
-                <div className="signupInputTitle">Price level:</div>
+                <div className="signupInputTitle">Price level: (only € marks. Choose between € and €€€€)</div>
                 <input
                     type="text"
                     className="signupField"
@@ -83,7 +83,9 @@ const UserDetails = ({ nextStep, handleChange, values, handleImageChange }) => {
                     onChange={handleChange('pricelevel')}
                     defaultValue={values.pricelevel}
                     autoComplete="off"
-                    maxLength="35"
+                    pattern="[€]"
+                    title="Max 4 letter price level"
+                    maxLength="4"
                     required
                 />
                 <div className="signupInputTitle">Image:</div>

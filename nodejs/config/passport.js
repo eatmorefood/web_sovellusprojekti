@@ -28,7 +28,7 @@ module.exports = function(passport) {
                 if(result.rows[0] == null) {
                     
                     //console.error('incorrect email');
-                    res.status(401);
+                    res.status(403);
                     return done(null, false);
                 } else {
                     //console.log(result.rows[0])
@@ -68,7 +68,7 @@ module.exports = function(passport) {
                             }));
                         } else {
                             //console.log('incorrect password');
-                            res.status(401);
+                            res.status(403);
                             return done(null, false);
                         }
                     })
@@ -99,7 +99,7 @@ module.exports = function(passport) {
                 if(result.rows[0] == null) {
                     
                     //console.error('incorrect email');
-                    res.status(401);
+                    res.status(403);
                     return done(null, false);
                 } else {
                     //console.log(result.rows[0])
@@ -138,7 +138,7 @@ module.exports = function(passport) {
                             }));
                         } else {
                             //console.log('incorrect password');
-                            res.status(401);
+                            res.status(403);
                             return done(null, false);
                         }
                     })

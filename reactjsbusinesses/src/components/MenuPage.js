@@ -52,7 +52,7 @@ function MenuPage ( props ) {
     {
         return function ()
         {
-            let path = "business/editmenu/new"; 
+            let path = "editmenu/new"; 
             navigation(path);
         }
     }

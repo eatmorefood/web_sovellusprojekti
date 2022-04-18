@@ -15,7 +15,7 @@ import EditMenu from './components/EditMenu.js';
 import axios from 'axios';
 import Constants from './Constants.json';
 
-const importJWTFromBrowser = window.localStorage.getItem('token');
+const importJWTFromBrowser = window.localStorage.getItem('token2');
 
 function App() {
 
@@ -28,7 +28,7 @@ function App() {
   let loginScreen = <></>; //initialize login screen as non-visible
   let noAuthRoutes = <><Route path='/business/signup' element={<Signup login={ receivedJWT => {
                               setUserJWT(receivedJWT)
-                              window.localStorage.setItem('token', receivedJWT)
+                              window.localStorage.setItem('token2', receivedJWT)
                               }}/>} /></>
   let authRoutes = <></>;
 
@@ -38,12 +38,12 @@ function App() {
     mainPageRoutes = <Route path='/business' element={<MenuPage userLoggedIn={ userJWT != null } jwt={ userJWT }/>} />
     noAuthRoutes = <></>
 
-    authRoutes = <><Route path='/business/profile/*' element={<BusinessProfile jwt={ userJWT }/>} /><Route path='/business/editmenu/:id' element={<EditMenu jwt={ userJWT }/>}/></>
+    authRoutes = <><Route path='/business/profile/*' element={<BusinessProfile jwt={ userJWT } logout={ () => {setUserJWT(null)}}/>} /><Route path='/business/editmenu/:id' element={<EditMenu jwt={ userJWT }/>}/></>
 
     loginScreen = <></>;
   } else if(loginVisible === true) { //login screen visible, displayLogin = button in login screen to close itself
     loginScreen = <Login login={ receivedJWT => { setUserJWT(receivedJWT)
-                          window.localStorage.setItem('token', receivedJWT)
+                          window.localStorage.setItem('token2', receivedJWT)
                           }}
                           displayLogin={ toggleLogin } />;
   }
@@ -107,7 +107,7 @@ function App() {
                 jwt={ userJWT }
                 displayLogin={ toggleLogin }
                 logout={ () => {setUserJWT(null)
-                window.localStorage.removeItem('token')}}/>
+                window.localStorage.removeItem('token2')}}/>
         <div id="appContent">
             <Routes>
               { mainPageRoutes }
