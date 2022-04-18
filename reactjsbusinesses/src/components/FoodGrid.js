@@ -12,7 +12,7 @@ export default function FoodGrid (props) {
     {
         return function ()
         {
-            let path = "editmenu/" + obj.idfood; 
+            let path = "business/editmenu/" + obj.idfood; 
             navigation(path);
         }
     }

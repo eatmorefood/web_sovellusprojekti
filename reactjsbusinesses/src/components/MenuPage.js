@@ -24,21 +24,17 @@ function MenuPage ( props ) {
     useEffect(() => {
       const loadProfileDataWithJWT = async () => { //load user data to show here
         try {
-          //console.log(props);
-         // console.log(decodedToken);
           const results = await axios.get(Constants.API_ADDRESS + '/meal/byrestaurant/' +  decodedToken.user.id,
           {
               headers: {
                   'Authorization': 'Bearer ' + props.jwt
               }
           })
-          //console.log(results.data);
           if (results.data && results.data.length > 0)
           {
           setUserData(results.data);
           }
         } catch(error) {
-          console.log(error);
             console.log("something went wrong");
         }
       }
@@ -47,11 +43,8 @@ function MenuPage ( props ) {
 
     function editMenu ( props )
     {
-      //console.log(userData);
       console.log("Edited");
     }
-
-    //console.log(userData);
 
     let navigation = useNavigate();
 
@@ -59,7 +52,7 @@ function MenuPage ( props ) {
     {
         return function ()
         {
-            let path = "editmenu/new"; 
+            let path = "business/editmenu/new"; 
             navigation(path);
         }
     }

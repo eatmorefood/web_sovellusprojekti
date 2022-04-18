@@ -122,7 +122,7 @@ function App() {
               <Route path='/restaurant/*' element={ <RestaurantPaths jwt={ userJWT } showLogin={toggleLogin} /> } />
               <Route path='/search' element={ <Search allRestaurants={ allRestaurants } /> } />
               <Route path='/support' element={<Support />} />
-              {/*<Route path='/businesses' element={<Businesses />} />*/}
+              <Route path='/businesses' element={<Businesses />} />
               <Route path='/disclaimer' element={<Disclaimer />} />
               <Route path='/*' element={<NotFound />} />
             </Routes>  

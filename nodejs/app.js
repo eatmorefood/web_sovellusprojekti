@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json()); //parse requests of content-type: application/json
 app.use(bodyParser.urlencoded({ extended: true })); //parse requests of content-type: application/x-www-form-urlencoded 
 
-app.use('/app2', express.static('reactBusinessBuild'));
+app.use('/business', express.static('reactBusinessBuild'));
 app.use(express.static('reactCustomerBuild'));
 
 require('./config/passport')(passport);
@@ -97,12 +97,12 @@ app.use('/signupbusiness', signupbusinessRouter);
 app.use('/restaurant', restaurantRouter);
 app.use('/meal', mealRouter);
 
-app.get('app2/*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/reactBusinessBuild/index.html'))
+app.get('/business/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/reactBusinessBuild', 'index.html'))
 })
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/reactCustomerBuild/index.html'));
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/reactCustomerBuild', 'index.html'));
 });
 
 let serverInstance = null;

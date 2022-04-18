@@ -10,7 +10,7 @@ function Success({ logMeIn }) {
 
   setTimeout(function() {
     logMeIn();
-    window.location.replace('/')
+    window.location.replace('/business')
   }, 3500);
 
   return (

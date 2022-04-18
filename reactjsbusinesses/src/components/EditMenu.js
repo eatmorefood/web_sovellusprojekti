@@ -13,7 +13,7 @@ function EditMenu ( props ) {
   //const EditMenu = ({ handleChange }) => {
   const [userData, setUserData] = useState([]);
   let { id } = useParams();
-  //console.log(id);
+
 
     let decodedToken = "";
     let loggedInName = "";
@@ -45,15 +45,13 @@ function EditMenu ( props ) {
           'Authorization': 'Bearer ' + props.jwt
       }
       });
-      navigation("/");
+      navigation("/business");
     }
 
     const handleCancel = async => {
-      navigation("/");
+      navigation("/business");
     }
     
-    console.log("decode");
-    console.log(decodedToken);
     useEffect(() => {          
 
       const loadProfileDataWithJWT = async () => { //load user data to show here
@@ -65,7 +63,6 @@ function EditMenu ( props ) {
                   'Authorization': 'Bearer ' + props.jwt
               }
           })
-          //console.log(results.data);
           if (results.data && results.data.length > 0)
           {
             results.data[0].image = null;
@@ -73,7 +70,6 @@ function EditMenu ( props ) {
           
           }
         } catch(error) {
-          console.log(error);
             console.log("something went wrong");
         }
       }    
@@ -104,16 +100,11 @@ function EditMenu ( props ) {
           price: userData.price,
           idrestaurant: userData.idrestaurant
         });
-        //console.log("Result");
-        //console.log(result);
-        //console.log(result.idfood);
-        //console.log(result.data.idfood);
         if(!userData.idfood)
         {
           userData.idfood = result.data.idfood;
         }
         console.log("image");
-        console.log(userData.image);
         if(userData.image)
         {
           console.log("Update image");
@@ -125,11 +116,10 @@ function EditMenu ( props ) {
           );
         }
         alert('Tallennettu!');
-        navigation("/");
+        navigation("/business");
       }
 
         catch(error){
-          console.log(error);
           alert('Tallennus epäonnistui');
         }
     }
