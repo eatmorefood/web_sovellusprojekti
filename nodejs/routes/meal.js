@@ -111,7 +111,7 @@ function (req, res) {
         return;
     }
 
-    if(('idrestaurant' in req.body == false) || (typeof req.body.idrestaurant != 'string')){
+    if(('idrestaurant' in req.body == false)){
         res.status(400);
         res.json({status: "Missing restaurant id from request body"});
         return;
