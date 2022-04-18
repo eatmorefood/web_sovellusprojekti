@@ -21,7 +21,7 @@ const businessRouter = require('./routes/business.js');
 const signupbusinessRouter = require('./routes/signupbusiness.js');
 const restaurantRouter = require('./routes/restaurants.js');
 const mealRouter = require('./routes/meal.js');
-
+const ordersRouter = require('./routes/orders.js');
 
 const jwtOptions ={
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -92,6 +92,7 @@ app.use('/business', businessRouter);
 app.use('/signupbusiness', signupbusinessRouter);
 app.use('/restaurant', restaurantRouter);
 app.use('/meal', mealRouter);
+app.use('/orders',ordersRouter);
 
 let serverInstance = null;
 
