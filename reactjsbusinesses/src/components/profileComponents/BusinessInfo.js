@@ -80,7 +80,7 @@ const BusinessInfo = (props) => {
             </div>
           </div>
           <div className="personalinfoPFPdiv">
-            <div className="personalinfoPFPTitle">Picture:</div>
+            <div className="personalinfoPFPTitle">Picture: (.jpg/.jpeg/.png only!)</div>
             <img className="personalinfoPFP" src={userData.image}/>
           </div>
           <div className="editPFP">
