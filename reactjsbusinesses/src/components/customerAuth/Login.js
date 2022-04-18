@@ -19,8 +19,8 @@ function Login( props ){
           password: event.target.password.value
         }
       });
-      if(window.location.pathname.indexOf("signup") > -1){
-        navigate('/');
+      if(window.location.pathname.indexOf("business/signup") > -1){
+        navigate('/business');
       }
       const receivedJWT = result.data.jwt;
       props.login(receivedJWT);
