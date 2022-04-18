@@ -9,7 +9,7 @@ import Discover from './components/Discover.js';
 import RestaurantPaths from './components/restaurant/RestaurantPaths.js';
 import Search from './components/search/Search.js';
 import Support from './components/staticPages/Support.js';
-//import Businesses from './components/staticPages/Businesses.js';
+import Businesses from './components/staticPages/Businesses.js';
 import Login from './components/customerAuth/Login.js';
 import NotFound from './components/staticPages/NotFound.js';
 import Signup from './components/customerAuth/Signup.js';
