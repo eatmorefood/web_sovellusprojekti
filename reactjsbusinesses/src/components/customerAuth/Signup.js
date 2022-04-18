@@ -81,6 +81,7 @@ export default class Signup extends React.Component {
         );
       }
 
+
       //console.log(saveUserData); //do something with the result
       this.state.jwt = saveUserData.data.jwt;
       this.setState({ step: 5 })
@@ -94,6 +95,7 @@ export default class Signup extends React.Component {
     this.setState({ step: 1 })
     alert("Account creation failed, please try again :/");
   }
+
 }
 
   render() {
