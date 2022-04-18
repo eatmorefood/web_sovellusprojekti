@@ -1,6 +1,5 @@
 # web_sovellusprojekti
 ****!!!!HOXHOX!!!!****
-
 ***HEROKUN VERSIO ON KORJATTU JOTEN SITÄ VOI SURUTTA KOKEILLA MYÖS VIRHEELLISEN KIRJAUTUMISEN KANSSA***
 http://eat-more-food.herokuapp.com/
 
