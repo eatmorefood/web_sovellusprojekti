@@ -29,7 +29,7 @@ module.exports = function(passport) {
                     
                     //console.error('incorrect email');
                     res.status(403);
-                    return done(null, false);
+                    return done(null,false);
                 } else {
                     //console.log(result.rows[0])
                     //console.log("user credentials found")
@@ -52,7 +52,7 @@ module.exports = function(passport) {
                                 if(results.rows[0] == null) {
                                     console.error('could not retrieve user data after valid login');
                                     res.status(400);
-                                    return done(null, false);
+                                    return done(null,false);
                                 } else {
                                     var user = {
                                         id: results.rows[0].idcustomer,
@@ -69,7 +69,7 @@ module.exports = function(passport) {
                         } else {
                             //console.log('incorrect password');
                             res.status(403);
-                            return done(null, false);
+                            return done(null,false);
                         }
                     })
                 }
@@ -100,7 +100,7 @@ module.exports = function(passport) {
                     
                     //console.error('incorrect email');
                     res.status(403);
-                    return done(null, false);
+                    return done(null,false);
                 } else {
                     //console.log(result.rows[0])
                     //console.log("user credentials found")
@@ -123,7 +123,7 @@ module.exports = function(passport) {
                                 if(results.rows[0] == null) {
                                     console.error('could not retrieve user data after valid login');
                                     res.status(400);
-                                    return done(null, false);
+                                    return done(null,false);
                                 } else {
                                     var user = {
                                         id: results.rows[0].idrestaurant,
@@ -139,7 +139,7 @@ module.exports = function(passport) {
                         } else {
                             //console.log('incorrect password');
                             res.status(403);
-                            return done(null, false);
+                            return done(null,false);
                         }
                     })
                 }

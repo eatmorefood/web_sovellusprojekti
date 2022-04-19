@@ -177,9 +177,12 @@ function EditMenu ( props ) {
                     placeholder="price"
                     onChange={handleChange('price')}
                     defaultValue={userData.price}
+                    pattern="[0-9\.]+"
+		                title="Only digits and . as separator"
+                    maxLength="10"
                     autoComplete="off"
-		pattern="[0-9\.]+"
-		title="Only digits and ."
+                    pattern="[0-9\.]+"
+                    title="Only digits and ."
                     maxLength="10"
                     required
                 />

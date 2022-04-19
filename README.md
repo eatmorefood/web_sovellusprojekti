@@ -1,4 +1,3 @@
-# web_sovellusprojekti
 
 1. `npm install` sekä **/nodejs**, **/reactjs** että **/reactjsbusinesses** kansioihin
 2. `npm start` sekä **/nodejs**, **/reactjs** että **/reactjsbusinesses** kansioihin
