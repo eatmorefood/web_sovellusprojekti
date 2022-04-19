@@ -22,6 +22,7 @@ function Login( props ){
       if(window.location.pathname.indexOf("business/signup") > -1){
         navigate('/business');
       }
+
       const receivedJWT = result.data.jwt;
       props.login(receivedJWT);
 
