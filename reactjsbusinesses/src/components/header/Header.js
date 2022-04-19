@@ -19,6 +19,7 @@ function Header( props ) {
   decodedToken = jwt_decode(props.jwt);
   loggedInName = decodedToken.user.name;
   nameChar = loggedInName.charAt(0).toUpperCase();
+
   }
 
   function myFunction() { //function to show header language dropdown list

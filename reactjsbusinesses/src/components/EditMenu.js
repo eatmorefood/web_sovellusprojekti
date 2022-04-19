@@ -181,6 +181,9 @@ function EditMenu ( props ) {
 		                title="Only digits and . as separator"
                     maxLength="10"
                     autoComplete="off"
+                    pattern="[0-9\.]+"
+                    title="Only digits and ."
+                    maxLength="10"
                     required
                 />
                 <div className="editMenuTitle">Image: (.jpg/.jpeg/.png only!)</div>
