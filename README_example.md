@@ -59,3 +59,4 @@ Sovelluksen demo pyörii Heroku -palvelussa osoitteessa http://eat-more-food.her
 <br></br>
 
 ### `HAPPY TESTING`
+(http://eat-more-food.herokuapp.com/)
