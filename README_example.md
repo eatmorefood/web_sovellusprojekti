@@ -31,7 +31,7 @@ Projektin frontend (selainpuoli) toteutettiin käyttäen React.js -nimistä Java
 ![Asiakkaan profiilinäkymä, jossa on kolme välilehteä: henkilökohtaiset tiedot, tilaushistoria ja asetukset. Sovelluksen yrityspuolella (katso kuva 11) on myös samankaltainen yrityksen profiilinäkymä](https://user-images.githubusercontent.com/91624045/165084473-8a76764b-dff1-4acf-af1b-639325fd3a4b.png "Kuva 5")
 > Kuva 5. Asiakkaan profiilinäkymä, jossa on kolme välilehteä: henkilökohtaiset tiedot, tilaushistoria ja asetukset. Sovelluksen yrityspuolella (katso kuva 11) on myös samankaltainen yrityksen profiilinäkymä.
 
-
+<br></br>
 
 ![Rekisteröityminen on jaettu kolmeen eri vaiheeseen, joista ensimmäisessä syötetään käyttäjätiedot lomakkeeseen. Toisen vaiheen näkymässä lomakkeen tiedot tarkistutetaan käyttäjällä ja kolmannessa vaiheessa käyttäjä valitsee itselleen salasanan](https://user-images.githubusercontent.com/91624045/165084502-6231641a-d4fa-44ab-8b3f-f8d3142a10c9.png "Kuva 6")
 > Kuva 6. Rekisteröityminen on jaettu kolmeen eri vaiheeseen, joista ensimmäisessä syötetään käyttäjätiedot lomakkeeseen. Toisen vaiheen näkymässä lomakkeen tiedot tarkistutetaan käyttäjällä ja kolmannessa vaiheessa käyttäjä valitsee itselleen salasanan.
