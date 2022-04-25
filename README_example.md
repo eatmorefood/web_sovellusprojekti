@@ -6,7 +6,7 @@ EatMoreFood on Oulun ammattikorkeakoulun 2. vuoden opiskelijoiden toteuttama sov
 Projektin frontend (selainpuoli) toteutettiin käyttäen React.js -nimistä JavaScript-kirjastoa (https://en.wikipedia.org/wiki/React_(JavaScript_library)) ja backend  (palvelinosio) käyttäen Node.js-ajoympäristöä (https://fi.wikipedia.org/wiki/Node.js). Sovelluksen tietokannaksi valikoitui PostgreSQL -relaatiotietokantaan pohjautuva Heroku Postgres.
 
 ## SOVELLUKSEN TOTEUTUS
-![image](https://user-images.githubusercontent.com/91624045/165084345-407e20f4-9da1-4425-806c-10aded62b8a4.png)
+![Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.](https://user-images.githubusercontent.com/91624045/165084345-407e20f4-9da1-4425-806c-10aded62b8a4.png)
 > Kuva 1 (yllä). Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.
 
 ![image](https://user-images.githubusercontent.com/91624045/165084395-bb2319b7-7dd4-4926-9767-3a4666a0a477.png)
