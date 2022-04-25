@@ -48,4 +48,4 @@ Ravintolan tuotenäkymässä on listattuna kaikki ravintolan tuotteet sekä pain
 ## SOVELLUKSEN KÄYTTÖÖNOTTO
 Sovelluksen demo pyörii Heroku -palvelussa osoitteessa http://eat-more-food.herokuapp.com/.
 <br></br>
-### `HAPPY TESTING`
+### 😄 `HAPPY TESTING` 😄
