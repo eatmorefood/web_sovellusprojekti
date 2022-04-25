@@ -1,4 +1,4 @@
-****Online demo at http://eat-more-food.herokuapp.com/****
+## Online demo at http://eat-more-food.herokuapp.com/
 
 **To run locally:**
 1. `$ npm install` sekä **/nodejs**, **/reactjs** että **/reactjsbusinesses** kansioihin
