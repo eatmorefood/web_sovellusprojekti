@@ -1,5 +1,4 @@
 # EatMoreFood - web-ohjelmoinnin sovellusprojekti / Oulun ammattikorkeakoulu 
-
 <br></br>
 
 ## ESITTELY
