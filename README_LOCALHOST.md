@@ -1,5 +1,6 @@
-****http://eat-more-food.herokuapp.com/****
+****Online demo at http://eat-more-food.herokuapp.com/****
 
+**To run locally:**
 1. `$ npm install` sekä **/nodejs**, **/reactjs** että **/reactjsbusinesses** kansioihin
 2. `$ npm start` sekä **/nodejs**, **/reactjs** että **/reactjsbusinesses** kansioihin
 3. asiakaspuolen react -palvelin pyörii osoitteessa [localhost:3000]
