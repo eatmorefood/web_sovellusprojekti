@@ -14,8 +14,11 @@ Projektin frontend (selainpuoli) toteutettiin käyttäen React.js -nimistä Java
 > **Kuva 1 (yllä)**. Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus.
 
 Yläpalkista (header) löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen. Etusivun linkistä “See all restaurants” pääsee suoraan kaikkien ravintoloiden listanäkymään. Yksittäisen ravintolan kortti toimii linkkinä ravintolan omille sivuille.
+
 Yläpalkin hakutoiminnon kautta tapahtuva haku etsii ravintolaa sen nimen, tyypin ja osoitteen perusteella. Ensimmäiset viisi hakutulosta näytetään korttina suoraan hakupalkin alla. Kortin pohjassa hakutulosten alla on linkki, jonka kautta pääsee kaikkiin hakutuloksiin.
+
 Yläpalkissa näkyvät linkit asiakkaan kirjautumiseen ja rekisteröitymiseen. Kirjautumisnäkymä on toteutettu korttina, joka ponnahtaa silloisen näkymän päälle. Kirjautuminen tapahtuu sähköpostilla ja salasanalla. Myös kirjautumisnäkymässä on linkki rekisteröitymiseen, mikäli asiakkaalla ei ole vielä tiliä. Onnistunen kirjautumisen jälkeen näkyy sovelluksen oikeassa yläkulmassa pudotusvalikko, jonka kautta pääsee asiakkaan profiiliin.
+
 Rekisteröityminen taas on jaettu kolmeen eri vaiheeseen, joista ensimmäisessä syötetään käyttäjätiedot lomakkeeseen. Toisen vaiheen näkymässä lomakkeen tiedot tarkistutetaan käyttäjällä ja kolmannessa vaiheessa käyttäjä valitsee itselleen salasanan. Onnistunen kirjautumisen jälkeen näkyvät käyttäjän nimikirjaimet sovelluksen oikeassa yläkulmassa käyttäjäkuvakkeessa (katso kuva 2), jota klikkaamalla aukeaa käyttäjän profiiliin tai uloskirjautumiseen linkit tarjoava pudotusvalikko. Profiilinäkymässä on kolme välilehteä: henkilökohtaiset tiedot, tilaushistoria ja asetukset. Sovelluksen yrityspuolella (katso kuva 4) on myös kirjautumisen jälkeen samankaltainen käyttäjäkuvake.
 
 <br></br>
