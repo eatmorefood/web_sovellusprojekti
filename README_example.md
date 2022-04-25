@@ -11,7 +11,7 @@ Projektin frontend (selainpuoli) toteutettiin käyttäen React.js -nimistä Java
 
 ## SOVELLUKSEN TOTEUTUS
 ![Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.](https://user-images.githubusercontent.com/91624045/165084345-407e20f4-9da1-4425-806c-10aded62b8a4.png "Kuva 1.")
-> ###### Kuva 1 (yllä). Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.
+> **Kuva 1 (yllä)**. Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.
 
 <br></br>
 
