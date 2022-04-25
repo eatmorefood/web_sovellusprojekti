@@ -21,7 +21,7 @@ Projektin frontend (selainpuoli) toteutettiin käyttäen React.js -nimistä Java
 <br></br>
 
 ![Hakupalkin kautta tapahtuva haku etsii ravintolaa sen nimen, tyypin ja osoitteen perusteella. Ensimmäiset viisi hakutulosta näytetään, joiden jälkeen on linkki kaikkiin hakutuloksiin.](https://user-images.githubusercontent.com/91624045/165084424-862c6e40-3233-4985-9d60-18af7cf1f444.png "Kuva 3")
-> Kuva 3. Hakupalkin kautta tapahtuva haku etsii ravintolaa sen nimen, tyypin ja osoitteen perusteella. Ensimmäiset viisi hakutulosta näytetään, joiden jälkeen on linkki kaikkiin hakutuloksiin.
+> **Kuva 3**. Hakupalkin kautta tapahtuva haku etsii ravintolaa sen nimen, tyypin ja osoitteen perusteella. Ensimmäiset viisi hakutulosta näytetään, joiden jälkeen on linkki kaikkiin hakutuloksiin.
 
 <br></br>
 
