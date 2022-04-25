@@ -40,7 +40,9 @@ Tilauksen viimeistelynäkymän pudotusvalikosta voi valita tuotteelle toimitusos
 <br></br>
 
 ![Kuva 4](https://user-images.githubusercontent.com/91624045/165097558-cad6ba15-9324-4ba1-943d-a1e3fc1791c6.png "Kuva 4")
-> **Kuva 4**. Sovelluksen yrityspuolen etusivu, johon pääsee asiakassovelluksen alapalkista (footer) löytyvästä linkistä “For businesses”. Yrityspuolella ravintolanomistajat voivat rekisteröidä oman ravintolansa ja saattaa sen asiakaspuolen tilausjärjestelmään. Yrityspuolella on asiakaspuolta vastaava kolmivaiheinen rekisteröityminen. Yrityspuolen sivun alapalkissa on linkki asiakaspuolen sivustolle.
+> **Kuva 4**. Sovelluksen yrityspuolen etusivu.
+
+Sovelluksen yrityspuolelle pääsee asiakassovelluksen alapalkista (footer) löytyvästä linkistä “For businesses”. Yrityspuolella ravintolanomistajat voivat rekisteröidä oman ravintolansa ja saattaa sen asiakaspuolen tilausjärjestelmään. Yrityspuolella on asiakaspuolta vastaava kolmivaiheinen rekisteröityminen. Yrityspuolen sivun alapalkissa on linkki asiakaspuolen sivustolle.
 
 <br></br>
 
