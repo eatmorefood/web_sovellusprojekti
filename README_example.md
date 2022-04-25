@@ -1,5 +1,7 @@
 # EatMoreFood - web-ohjelmoinnin sovellusprojekti / Oulun ammattikorkeakoulu 
 
+<br></br>
+
 ## ESITTELY
 EatMoreFood on Oulun ammattikorkeakoulun 2. vuoden opiskelijoiden toteuttama sovellusprojekti, jossa tehtiin neljän hengen ryhmätyönä kuvitteellinen ruoan tilauspalvelu. Projektin esikuvina toimivat tosielämän palvelut Wolt ja Foodora. Projektissa toteutettiin web-pohjainen REST API-sovellus, jossa kuluttaja-asiakkaat voivat tilata ruoka-annoksia kotiinkuljetuksella ja ravintolan omistajat voivat luoda tietokantaan ravintolan sekä menun kyseiselle ravintolalle. Jokainen projektiryhmän jäsen toimi projektissa Full Stack -kehittäjänä, työstäen sekä selain- että palvelinpuolta. 
 
@@ -9,7 +11,7 @@ Projektin frontend (selainpuoli) toteutettiin käyttäen React.js -nimistä Java
 
 ## SOVELLUKSEN TOTEUTUS
 ![Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.](https://user-images.githubusercontent.com/91624045/165084345-407e20f4-9da1-4425-806c-10aded62b8a4.png "Kuva 1.")
-> Kuva 1 (yllä). Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.
+> ###### Kuva 1 (yllä). Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus. Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen.
 
 <br></br>
 
