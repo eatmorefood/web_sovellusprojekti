@@ -1,4 +1,5 @@
 # EatMoreFood - web-ohjelmoinnin sovellusprojekti / Oulun ammattikorkeakoulu 
+Tekijät: Jens Eriksson, Antti Moilanen, Elias Pirttikangas ja Katri Rahikkala TVT21KMO 
 
 <br></br>
 
