@@ -27,6 +27,7 @@ Rekisteröityminen taas on jaettu kolmeen eri vaiheeseen, joista ensimmäisessä
 > **Kuva 2**. Yksittäisen ravintolan näkymä, jossa ravintolan kaikki tuotteet on listattu kategorioittain.
 
 Ravintolanäkymän ravintolan tuotekategoriat on listattu sivun vasemmassa laidassa ja kategoriaa klikkaamalla sivu kelaa tuotelistassa kyseisen kategorian kohdalle. Yksittäistä tuotetta klikkaamalla saa kyseisen tuotteen näkymän esiin näytölle. Tuotteen näkymästä kirjautunut asiakas voi lisätä tuotteen ostoskoriin ja muuttaa sen kappalemäärää ostoskorissa. Kuvassa 2 näkyy ostoskorin pikakuvake oikeassa yläkulmassa, koska koriin on lisätty yksi tuote. Pikakuvake näyttää tuotteiden kokonaismäärän ja tuotteiden yhteenlasketun hinnan. Pikakuvaketta klikkaamalla saa koko ostoskorin näkyville.
+
 Ostoskorissa on listattu kaikki tuotteet. Yksittäisen tuotteen lukumäärää voi ostoskorissa muuttaa, tai sen voi poistaa korista. Ostoskorissa voi nähdä yksittäisen tuotteen kaikkien kappalemäärien kokonaishinnan. Kori näyttää myös kaikkien tuotteiden yhteenlasketun määrän ja hinnan painikkeessa, jonka kautta voi siirtyä tilauksen viimeistelyyn.
 
 <br></br>
