@@ -10,7 +10,7 @@ Projektin frontend toteutettiin käyttäen React.js -nimistä JavaScript-kirjast
 ![Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus.](https://user-images.githubusercontent.com/91624045/165097227-583d0a7b-eead-45b1-9872-632f3978d9a1.png)
 > **KUVA 1**. Asiakaspuolen käyttöliittymän etusivu, jossa ravintoloiden sivuttaisselaus.
 
-Yläpalkista (header) löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen. Etusivun linkistä “See all restaurants” pääsee suoraan kaikkien ravintoloiden listanäkymään. Yksittäisen ravintolan kortti toimii linkkinä ravintolan omille sivuille.
+Yläpalkista löytyvät ravintoloiden hakupalkki, sekä linkit asiakastille kirjautumiseen ja sen luomiseen. Etusivun linkistä “See all restaurants” pääsee suoraan kaikkien ravintoloiden listanäkymään. Yksittäisen ravintolan kortti toimii linkkinä ravintolan omille sivuille.
 
 Yläpalkin hakutoiminnon kautta tapahtuva haku etsii ravintolaa sen nimen, tyypin ja osoitteen perusteella. Ensimmäiset viisi hakutulosta näytetään korttina suoraan hakupalkin alla. Kortin pohjassa hakutulosten alla on linkki, jonka kautta pääsee kaikkiin hakutuloksiin.
 
@@ -36,7 +36,7 @@ Tilauksen viimeistelynäkymän pudotusvalikosta voi valita tuotteelle toimitusos
 ![Sovelluksen yrityspuolen etusivu.](https://user-images.githubusercontent.com/91624045/165097558-cad6ba15-9324-4ba1-943d-a1e3fc1791c6.png)
 > **KUVA 4**. Sovelluksen yrityspuolen etusivu.
 
-Sovelluksen yrityspuolelle pääsee asiakassovelluksen alapalkista (footer) löytyvästä linkistä “For businesses”. Yrityspuolella ravintolanomistajat voivat rekisteröidä oman ravintolansa ja saattaa sen asiakaspuolen tilausjärjestelmään. Yrityspuolella on asiakaspuolta vastaava kolmivaiheinen rekisteröityminen. Yrityspuolen sivun alapalkissa on linkki asiakaspuolen sivustolle.
+Sovelluksen yrityspuolelle pääsee asiakassovelluksen alapalkista löytyvästä linkistä “For businesses”. Yrityspuolella ravintolanomistajat voivat rekisteröidä oman ravintolansa ja saattaa sen asiakaspuolen tilausjärjestelmään. Yrityspuolella on asiakaspuolta vastaava kolmivaiheinen rekisteröityminen. Yrityspuolen sivun alapalkissa on linkki asiakaspuolen sivustolle.
 <br></br>
 
 ![Ravintolan tuotenäkymä, joka aukeaa onnistuneen yrityspuolelle kirjautumisen jälkeen.](https://user-images.githubusercontent.com/91624045/165097640-987133dd-e7af-4741-8a0f-558838d2cfbb.png)
