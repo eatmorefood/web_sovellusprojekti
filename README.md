@@ -1,5 +1,5 @@
 # EatMoreFood – ruoan tilauspalveluprojekti 
-Tekijät: Jens Eriksson, Antti Moilanen, Elias Pirttikangas ja Katri Rahikkala TVT21KMO
+Tekijät: Jens Eriksson, Antti Moilanen, Elias Pirttikangas ja Katri Rahikkala
 <br></br>
 ## ESITTELY
 EatMoreFood on Oulun ammattikorkeakoulun 2. vuoden opiskelijoiden toteuttama sovellusprojekti, jossa tehtiin neljän hengen ryhmätyönä kuvitteellinen ruoan tilauspalvelu. Projektin esikuvina toimivat tosielämän palvelut Wolt ja Foodora. Projektissa toteutettiin web-pohjainen REST API -sovellus, jossa kuluttaja-asiakkaat voivat tilata ruoka-annoksia kotiinkuljetuksella ja ravintolan omistajat voivat luoda tietokantaan ravintolan sekä menun kyseiselle ravintolalle. Jokainen projektiryhmän jäsen toimi projektissa Full Stack -kehittäjänä, työstäen sekä selain- että palvelinpuolta. 
