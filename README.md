@@ -33,8 +33,8 @@ Ostoskorissa on listattu kaikki tuotteet. Yksittäisen tuotteen lukumäärää v
 Tilauksen viimeistelynäkymän pudotusvalikosta voi valita tuotteelle toimitusosoitteeksi joko asiakkaan vakio-osoitteen tai uuden osoitteen. Näkymässä on myös listattu kaikki ostoskorissa olevat tuotteet sekä yksittäisen tuotteen lukumäärä ja sen kaikkien kappalemäärien kokonaishinta. Sivulla on kaksi painiketta, joiden kautta pääsee takaisin ravintolan omalle sivulle muokkaamaan ostoskoria. Viimeistelynäkymässä on nähtävillä myös tilauksen kokonaishinta, sekä mistä maksuista se koostuu. Näkymässä on ”Proceed to payment” -painike, jonka kautta pääsee tilauksen maksuun. Maksu tapahtuu syöttämällä asiakkaan kirjautumistunnukset, eli sähköposti ja salasana. Onnistuneesta maksusta tulee näytölle ponnahdusilmoitus ja asiakas ohjataan palvelun etusivulle (kuva 1).
 <br></br>
 
-![Sovelluksen yrityspuolen etusivu.](https://user-images.githubusercontent.com/91624045/165097558-cad6ba15-9324-4ba1-943d-a1e3fc1791c6.png)
-> **KUVA 4**. Sovelluksen yrityspuolen etusivu.
+![Sovelluksen yrityskäyttöliittymän etusivu.](https://user-images.githubusercontent.com/91624045/165097558-cad6ba15-9324-4ba1-943d-a1e3fc1791c6.png)
+> **KUVA 4**. Sovelluksen yrityskäyttöliittymän etusivu.
 
 Sovelluksen yrityspuolelle pääsee asiakassovelluksen alapalkista löytyvästä linkistä ”For businesses”. Yrityspuolella ravintolanomistajat voivat rekisteröidä oman ravintolansa ja saattaa sen asiakaspuolen tilausjärjestelmään. Yrityspuolella on asiakaspuolta vastaava kolmivaiheinen rekisteröityminen. Yrityspuolen sivun alapalkissa on linkki asiakaspuolen sivustolle.
 <br></br>
