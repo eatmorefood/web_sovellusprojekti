@@ -48,7 +48,6 @@ Ravintolan tuotenäkymässä (kuva 5) on listattuna kaikki ravintolan tuotteet s
 
 ![Ravintolan tuotenäkymä, joka aukeaa onnistuneen yrityspuolelle kirjautumisen jälkeen.](https://user-images.githubusercontent.com/91624045/165097640-987133dd-e7af-4741-8a0f-558838d2cfbb.png)
 > **KUVA 5**. Ravintolan tuotenäkymä, joka aukeaa onnistuneen yrityspuolelle kirjautumisen jälkeen.
-
 <br></br>
 
 ## SOVELLUKSEN KÄYTTÖÖNOTTO
