@@ -54,4 +54,4 @@ Ravintolan tuotenäkymässä (kuva 5) on listattuna kaikki ravintolan tuotteet s
 [Sovelluksen demo](http://eat-more-food.herokuapp.com/ "Sovelluksen demon linkki") pyörii Heroku -palvelussa.
 
 
-[Projektin GitHub -linkki ](http://eat-more-food.herokuapp.com/ "Projektin GitHub -linkki")
+[Projektin GitHub -linkki](http://eat-more-food.herokuapp.com/ "Projektin GitHub -linkki")
